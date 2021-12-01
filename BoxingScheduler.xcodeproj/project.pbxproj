@@ -15,6 +15,7 @@
 		FCF9145E2756F68F00717347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF9145C2756F68F00717347 /* LaunchScreen.storyboard */; };
 		FCF914692756F68F00717347 /* BoxingSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914682756F68F00717347 /* BoxingSchedulerTests.swift */; };
 		FCF914742756F68F00717347 /* BoxingSchedulerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */; };
+		FCF914822756FE6B00717347 /* ClassListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914812756FE6B00717347 /* ClassListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		FCF9146F2756F68F00717347 /* BoxingSchedulerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxingSchedulerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxingSchedulerUITests.swift; sourceTree = "<group>"; };
 		FCF914752756F68F00717347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FCF914812756FE6B00717347 /* ClassListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				FCF914512756F68700717347 /* AppDelegate.swift */,
 				FCF914532756F68700717347 /* SceneDelegate.swift */,
 				FCF914552756F68700717347 /* ViewController.swift */,
+				FCF914812756FE6B00717347 /* ClassListTableViewController.swift */,
 				FCF914572756F68700717347 /* Main.storyboard */,
 				FCF9145A2756F68F00717347 /* Assets.xcassets */,
 				FCF9145C2756F68F00717347 /* LaunchScreen.storyboard */,
@@ -260,6 +263,7 @@
 			files = (
 				FCF914562756F68700717347 /* ViewController.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
+				FCF914822756FE6B00717347 /* ClassListTableViewController.swift in Sources */,
 				FCF914542756F68700717347 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
