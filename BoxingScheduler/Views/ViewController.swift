@@ -37,13 +37,28 @@ class ViewController: UIViewController {
                 return
             }
             if let str = String(data: data, encoding: .utf8) {
-                print(str)
+                let stringData = self.parseHtml(fromString: str)
+                print(stringData)
             }
         }
         
         dataTask.resume()
         
         return dataTask
+    }
+    
+    func parseHtml(fromString: String) -> String? {
+        do {
+            let html: String = fromString
+            let doc: Document = try SwiftSoup.parse(html)
+            return try doc.text()
+        } catch Exception.Error(let type, let message) {
+            print(message)
+            return nil
+        } catch {
+            print("error")
+            return nil
+        }
     }
 }
 
