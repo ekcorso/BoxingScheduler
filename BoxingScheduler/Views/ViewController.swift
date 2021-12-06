@@ -38,7 +38,7 @@ class ViewController: UIViewController {
             }
             if let str = String(data: data, encoding: .utf8) {
                 let stringData = self.parseHtml(fromString: str)
-                print(stringData)
+                print(stringData!)
             }
         }
         
@@ -51,7 +51,10 @@ class ViewController: UIViewController {
         do {
             let html: String = fromString
             let doc: Document = try SwiftSoup.parse(html)
-            return try doc.text()
+            let date = try doc.select(".class-date-row")[0].text()
+            let className = try doc.select(".class-name")[0].text()
+            let spotsAvailable = try doc.select(".num-slots-available-container")[0].text()
+            return "\(date) \(className) \(spotsAvailable)"
         } catch Exception.Error(let type, let message) {
             print(message)
             return nil
