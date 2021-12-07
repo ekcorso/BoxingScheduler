@@ -7,11 +7,15 @@
 
 import Foundation
 
-struct MbaClass {
+class MbaClass {
     // name could have an enum
     var name: String
     var spotsAvailable: Int?
     
+    init(name: String, spotsAvailable: Int?) {
+        self.name = name
+        self.spotsAvailable = spotsAvailable
+    }
     // Look into how date is formatted-- this might require some conversion/ use of a DateFormatter
     //var date: Date
 }
