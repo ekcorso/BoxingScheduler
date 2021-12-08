@@ -10,9 +10,9 @@ import Foundation
 class MbaClass {
     // name could have an enum
     var name: String
-    var spotsAvailable: Int?
+    var spotsAvailable: String
     
-    init(name: String, spotsAvailable: Int?) {
+    init(name: String, spotsAvailable: String) {
         self.name = name
         self.spotsAvailable = spotsAvailable
     }

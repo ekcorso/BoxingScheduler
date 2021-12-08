@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Date {
+class Date {
     // exactDate should eventually be passed into a DateFormatter()
     var exactDate: String
     var classes: [MbaClass]
