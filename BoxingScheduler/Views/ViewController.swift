@@ -38,7 +38,8 @@ class ViewController: UIViewController {
             }
             if let str = String(data: data, encoding: .utf8) {
                 let stringData = self.parseHtml(fromString: str)
-                print(stringData!)
+                //print(stringData!)
+                self.createDateList(from: stringData!)
             }
         }
         
@@ -47,14 +48,15 @@ class ViewController: UIViewController {
         return dataTask
     }
     
-    func parseHtml(fromString: String) -> String? {
+    func parseHtml(fromString: String) -> Document? {
         do {
             let html: String = fromString
             let doc: Document = try SwiftSoup.parse(html)
-            let date = try doc.select(".class-date-row")[0].text()
-            let className = try doc.select(".class-name")[0].text()
-            let spotsAvailable = try doc.select(".num-slots-available-container")[0].text()
-            return "\(date) \(className) \(spotsAvailable)"
+            return doc
+//            let date = try doc.select(".class-date-row")[0].text()
+//            let className = try doc.select(".class-name")[0].text()
+//            let spotsAvailable = try doc.select(".num-slots-available-container")[0].text()
+//            return "\(date) \(className) \(spotsAvailable)"
         } catch Exception.Error(let type, let message) {
             print(message)
             return nil
@@ -63,5 +65,23 @@ class ViewController: UIViewController {
             return nil
         }
     }
+    
+    func createDateList(from doc: Document) -> [Date] {
+        let dateArray = [Date]()
+        guard let elements = try? doc.getElementsByClass("class-date-row") else {
+            print("getElementsByClass failed")
+            return dateArray
+        }
+        
+        for item in elements {
+            do {
+                let date = try Date(exactDate: item.text(), classes: [MbaClass]())
+                print(date.exactDate)
+            } catch {
+                print("accessing element text failed")
+            }
+        }
+        
+        return dateArray    }
 }
 
