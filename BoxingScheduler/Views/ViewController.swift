@@ -38,7 +38,6 @@ class ViewController: UIViewController {
             }
             if let str = String(data: data, encoding: .utf8) {
                 let stringData = self.parseHtml(fromString: str)
-                //print(stringData!)
                 self.createDateList(from: stringData!)
             }
         }
@@ -53,11 +52,7 @@ class ViewController: UIViewController {
             let html: String = fromString
             let doc: Document = try SwiftSoup.parse(html)
             return doc
-//            let date = try doc.select(".class-date-row")[0].text()
-//            let className = try doc.select(".class-name")[0].text()
-//            let spotsAvailable = try doc.select(".num-slots-available-container")[0].text()
-//            return "\(date) \(className) \(spotsAvailable)"
-        } catch Exception.Error(let type, let message) {
+        } catch Exception.Error(_, let message) {
             print(message)
             return nil
         } catch {
@@ -67,21 +62,37 @@ class ViewController: UIViewController {
     }
     
     func createDateList(from doc: Document) -> [Date] {
-        let dateArray = [Date]()
-        guard let elements = try? doc.getElementsByClass("class-date-row") else {
-            print("getElementsByClass failed")
+        var dateArray = [Date]()
+        guard let elements = try? doc.select("tr") else {
+            print("select for tr failed")
             return dateArray
         }
         
-        for item in elements {
+        for (index, item) in elements.enumerated() {
+            let date = Date()
             do {
-                let date = try Date(exactDate: item.text(), classes: [MbaClass]())
-                print(date.exactDate)
+                if item.hasClass("class-date-row") {
+                    let exactDate = try item.select(".class-date-row").text()
+                    date.exactDate = exactDate
+                    dateArray.append(date)
+                } else if try! item.className().contains("class-row-xs") {
+                    let name = try item.text()
+                    let spotsAvailable = try elements[index + 1].text()
+                    let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable)
+                    if let previousDate = dateArray.last {
+                        previousDate.classes.append(boxingClass)
+                    }
+                }
+            } catch Exception.Error(_, let message) {
+                print(message)
             } catch {
-                print("accessing element text failed")
+                print("other exception")
             }
         }
-        
-        return dateArray    }
+        for date in dateArray {
+            print("Classes on date \(date.exactDate): \(date.classes.count)")
+        }
+        return dateArray
+    }
 }
 
