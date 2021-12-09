@@ -9,11 +9,6 @@ import Foundation
 
 class Date {
     // exactDate should eventually be passed into a DateFormatter()
-    var exactDate: String
-    var classes: [MbaClass]
-    
-    init(exactDate: String, classes: [MbaClass]) {
-        self.exactDate = exactDate
-        self.classes = classes
-    }
+    var exactDate: String?
+    var classes: [MbaClass] = [MbaClass]()
 }
