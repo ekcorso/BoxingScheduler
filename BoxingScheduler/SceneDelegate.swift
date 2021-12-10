@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         let tableView = ClassListTableViewController()
-        window?.rootViewController = tableView
+//        let viewController = ViewController()
+        let navivationView = UINavigationController(rootViewController: tableView)
+        window?.rootViewController = navivationView
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
