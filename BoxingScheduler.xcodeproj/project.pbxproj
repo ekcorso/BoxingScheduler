@@ -10,6 +10,7 @@
 		FC3A4D42275C3B08007A5082 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* Date.swift */; };
 		FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D43275C3B83007A5082 /* ClassType.swift */; };
 		FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */; };
+		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		FC3A4D41275C3B08007A5082 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		FC3A4D43275C3B83007A5082 /* ClassType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassType.swift; sourceTree = "<group>"; };
 		FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetcher.swift; sourceTree = "<group>"; };
+		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				FCF914552756F68700717347 /* ViewController.swift */,
 				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
 				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
+				FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			files = (
 				FCF914562756F68700717347 /* ViewController.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
+				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
 				FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */,
 				FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */,
 				FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */,
