@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         
-        let tableView = ClassListTableViewController()
+        let tableView = DateListTableViewController()
         let navigationView = UINavigationController(rootViewController: tableView)
         window?.rootViewController = navigationView
     }
