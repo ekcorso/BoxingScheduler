@@ -122,8 +122,8 @@ class DateListTableViewController: UITableViewController {
                     date.exactDate = exactDate
                     dateArray.append(date)
                 } else if try! item.className().contains("class-row-xs") {
-                    let name = try item.text()
-                    let spotsAvailable = try elements[index + 1].text()
+                    let name = try item.select(".class-name").text()
+                    let spotsAvailable = try elements[index + 1].select(".class-spots").text()
                     let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)
