@@ -8,7 +8,7 @@
 import UIKit
 import SwiftSoup
 
-class ClassListTableViewController: UITableViewController {
+class DateListTableViewController: UITableViewController {
     var dateList = [Date]()
 
     override func viewDidLoad() {
@@ -16,13 +16,19 @@ class ClassListTableViewController: UITableViewController {
         self.title = "Classes Available"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        getUrlContent()
+//        DispatchQueue.main.async {
+//            let fetcher = ScheduleFetcher()
+//            if let dates = fetcher.dateList {
+//                self.dateList = dates
+//                self.tableView.reloadData()
+//                print("SUCCESS")
+//            }
+//        }
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        getUrlContent()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
 
     // MARK: - Table view data source
@@ -43,6 +49,10 @@ class ClassListTableViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
     func getUrlContent() -> URLSessionDataTask? {
@@ -118,11 +128,11 @@ class ClassListTableViewController: UITableViewController {
                 print("other exception")
             }
         }
-        
-//        for date in dateArray {
-//            print("Classes on date \(date.exactDate): \(date.classes.count)")
-//        }
-        
+
+        for date in dateArray {
+            print("Classes on date \(date.exactDate!): \(date.classes.count)")
+        }
+
         DispatchQueue.main.async {
             self.dateList = dateArray
             self.tableView.reloadData()
