@@ -12,7 +12,7 @@ class MbaClassTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        self.accessoryType = .disclosureIndicator
+//        self.accessoryType = .disclosureIndicator
     }
     
     required init?(coder: NSCoder) {
@@ -22,5 +22,11 @@ class MbaClassTableViewCell: UITableViewCell {
     func setCellText(mbaClass: MbaClass) {
         textLabel?.text = "\(mbaClass.name)"
         detailTextLabel?.text = "Spots available: \(mbaClass.spotsAvailable)"
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        accessoryType = selected ? .checkmark : .none
+        backgroundColor = selected ? .lightGray : .systemBackground
     }
 }

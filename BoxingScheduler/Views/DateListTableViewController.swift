@@ -15,7 +15,8 @@ class DateListTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Classes Available"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
-        
+        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
 //        DispatchQueue.main.async {
 //            let fetcher = ScheduleFetcher()
 //            if let dates = fetcher.dateList {
@@ -26,9 +27,9 @@ class DateListTableViewController: UITableViewController {
 //        }
         
         getUrlContent()
-
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        self.navigationItem.rightBarButtonItem = editButtonItem
+        editButtonItem.title = "Select"
     }
 
     // MARK: - Table view data source
@@ -57,10 +58,14 @@ class DateListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = ClassDetailViewController()
-        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        navigationController?.pushViewController(detailVC, animated: true)
+//        let detailVC = ClassDetailViewController()
+//        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
+//        navigationController?.pushViewController(detailVC, animated: true)
     }
+        
+    // MARK: - Actions
+    
+    // MARK: - Networking functions
     
     func getUrlContent() -> URLSessionDataTask? {
         guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Bqty%5D=1&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
@@ -136,9 +141,9 @@ class DateListTableViewController: UITableViewController {
             }
         }
 
-        for date in dateArray {
-            print("Classes on date \(date.exactDate!): \(date.classes.count)")
-        }
+//        for date in dateArray {
+//            print("Classes on date \(date.exactDate!): \(date.classes.count)")
+//        }
 
         DispatchQueue.main.async {
             self.dateList = dateArray
