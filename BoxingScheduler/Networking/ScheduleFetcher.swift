@@ -18,13 +18,7 @@ class ScheduleFetcher {
         }
     }
     
-    init() {
-        DispatchQueue.main.async {
-            self.getUrlContent()
-        }
-    }
-    
-    func getUrlContent() -> URLSessionDataTask? {
+    func getUrlContent(completion: @escaping ([Date]) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Bqty%5D=1&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
             return nil
         }
@@ -44,11 +38,8 @@ class ScheduleFetcher {
                 return
             }
             if let str = String(data: data, encoding: .utf8) {
-                    let stringData = self.parseHtml(fromString: str)
-                DispatchQueue.main.async {
-                    self.createDateList(from: stringData!)
-//                    self.dateList = self.createDateList(from: stringData!)
-                }
+                let stringData = self.parseHtml(fromString: str)
+                completion(self.createDateList(from: stringData!))
             }
         }
 
@@ -57,7 +48,7 @@ class ScheduleFetcher {
         return dataTask
     }
 
-    func parseHtml(fromString: String) -> Document? {
+    private func parseHtml(fromString: String) -> Document? {
         do {
             let html: String = fromString
             let doc: Document = try SwiftSoup.parse(html)
@@ -71,7 +62,7 @@ class ScheduleFetcher {
         }
     }
 
-    func createDateList(from doc: Document) -> [Date] {
+    private func createDateList(from doc: Document) -> [Date] {
         var dateArray = [Date]()
         guard let elements = try? doc.select("tr") else {
             print("select for tr failed")
@@ -86,8 +77,8 @@ class ScheduleFetcher {
                     date.exactDate = exactDate
                     dateArray.append(date)
                 } else if try! item.className().contains("class-row-xs") {
-                    let name = try item.text()
-                    let spotsAvailable = try elements[index + 1].text()
+                    let name = try item.select(".class-name").text()
+                    let spotsAvailable = try elements[index + 1].select(".class-spots").text()
                     let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)
@@ -100,14 +91,9 @@ class ScheduleFetcher {
             }
         }
         
-        for date in dateArray {
-            print("Classes on date \(date.exactDate!): \(date.classes.count)")
-        }
-        
-        DispatchQueue.main.async {
-            self.dateList = dateArray
-        }
-        
+//        for date in dateArray {
+//            print("Classes on date \(date.exactDate!): \(date.classes.count)")
+//        }
         return dateArray
     }
 }
