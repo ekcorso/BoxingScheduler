@@ -21,6 +21,6 @@ class MbaClassTableViewCell: UITableViewCell {
 
     func setCellText(mbaClass: MbaClass) {
         textLabel?.text = "\(mbaClass.name)"
-        detailTextLabel?.text = "(Spots available: \(mbaClass.spotsAvailable))"
+        detailTextLabel?.text = "Spots available: \(mbaClass.spotsAvailable)"
     }
 }

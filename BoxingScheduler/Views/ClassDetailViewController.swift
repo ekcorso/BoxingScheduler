@@ -28,7 +28,7 @@ class ClassDetailViewController: UIViewController {
         let nameLabel = UILabel()
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = mbaClass?.name
+        nameLabel.text = "Name: \(mbaClass!.name)"
         nameLabel.textColor = .label
         nameLabel.numberOfLines = 0
         
@@ -40,7 +40,7 @@ class ClassDetailViewController: UIViewController {
         let spotsAvailableLabel = UILabel()
         
         spotsAvailableLabel.translatesAutoresizingMaskIntoConstraints = false
-        spotsAvailableLabel.text = mbaClass?.spotsAvailable
+        spotsAvailableLabel.text = "Spots: \(mbaClass!.spotsAvailable)"
         spotsAvailableLabel.textColor = .label
         spotsAvailableLabel.numberOfLines = 0
         
