@@ -14,7 +14,6 @@
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
-		FCF914562756F68700717347 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914552756F68700717347 /* ViewController.swift */; };
 		FCF914592756F68700717347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF914572756F68700717347 /* Main.storyboard */; };
 		FCF9145B2756F68F00717347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF9145A2756F68F00717347 /* Assets.xcassets */; };
 		FCF9145E2756F68F00717347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF9145C2756F68F00717347 /* LaunchScreen.storyboard */; };
@@ -51,7 +50,6 @@
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FCF914552756F68700717347 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FCF914582756F68700717347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FCF9145A2756F68F00717347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FCF9145D2756F68F00717347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 		FCF91489275704D700717347 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FCF914552756F68700717347 /* ViewController.swift */,
 				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
 				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
 				FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */,
@@ -314,7 +311,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCF914562756F68700717347 /* ViewController.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
 				FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */,
