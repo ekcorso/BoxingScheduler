@@ -14,7 +14,7 @@ class DateListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Classes Available"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
         
 //        DispatchQueue.main.async {
 //            let fetcher = ScheduleFetcher()
@@ -34,25 +34,32 @@ class DateListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dateList.count
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dateList[section].classes.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return dateList[section].exactDate!
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MbaClassTableViewCell.identifier, for: indexPath) as? MbaClassTableViewCell else {
+            return UITableViewCell()
+        }
 
-        let classDate = dateList[indexPath.row]
-        cell.textLabel?.text = classDate.exactDate!
-        cell.accessoryType = .disclosureIndicator
+        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        cell.setCellText(mbaClass: mbaClass)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let detailVC = ClassDetailViewController()
+        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func getUrlContent() -> URLSessionDataTask? {
