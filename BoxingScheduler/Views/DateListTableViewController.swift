@@ -16,8 +16,7 @@ class DateListTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Classes Available"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
-        tableView.allowsMultipleSelection = true
-        //tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         let fetcher = ScheduleFetcher()
         fetcher.getUrlContent() { dates in
@@ -28,7 +27,11 @@ class DateListTableViewController: UITableViewController {
         }
         
         self.navigationItem.rightBarButtonItem = editButtonItem
-        editButtonItem.title = "Select"
+        if tableView.isEditing == true {
+            editButtonItem.action = #selector(submitSelections)
+        } else {
+            editButtonItem.action = #selector(startEditing)
+        }
     }
 
     // MARK: - Table view data source
@@ -66,4 +69,22 @@ class DateListTableViewController: UITableViewController {
         
     // MARK: - Actions
     
+    @objc func startEditing() {
+        tableView.isEditing.toggle()
+        self.editButtonItem.title = "Submit"
+        self.editButtonItem.action = #selector(submitSelections)
+        tableView.reloadData()
+        print("Editing enabled")
+    }
+    
+    @objc func submitSelections() {
+        tableView.isEditing.toggle()
+        //Instead of resetting, this should push to the next view instead after "Submit"
+        self.editButtonItem.action = #selector(startEditing)
+        self.editButtonItem.title = "Select"
+        tableView.reloadData()
+        print("tapped done")
+        print("selections: \(selectedClasses.count)")
+        //Submit selections and show confirmation ac
+    }
 }
