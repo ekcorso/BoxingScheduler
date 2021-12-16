@@ -12,7 +12,6 @@ class MbaClassTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-//        self.accessoryType = .disclosureIndicator
     }
     
     required init?(coder: NSCoder) {
@@ -26,7 +25,7 @@ class MbaClassTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        accessoryType = selected ? .checkmark : .none
-        backgroundColor = selected ? .lightGray : .systemBackground
+        //accessoryType = selected ? .checkmark : .none
+        //backgroundColor = selected ? .lightGray : .systemBackground
     }
 }
