@@ -27,3 +27,14 @@ class MbaClass {
         return spotsInt
     }
 }
+
+extension MbaClass: Equatable {
+    static func == (lhs: MbaClass, rhs: MbaClass) -> Bool {
+        //this will be a problem as the fetches update classes from different days that have the same name + spotsAvailable. Need to add dates to classes
+        if lhs.name == rhs.name && lhs.spotsAvailable == rhs.spotsAvailable {
+            return true
+        } else {
+            return false
+        }
+    }
+}
