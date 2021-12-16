@@ -10,6 +10,7 @@ import SwiftSoup
 
 class DateListTableViewController: UITableViewController {
     var dateList = [Date]()
+    var selectedClasses = [MbaClass]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class DateListTableViewController: UITableViewController {
 //        let detailVC = ClassDetailViewController()
 //        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
 //        navigationController?.pushViewController(detailVC, animated: true)
+        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        selectedClasses.append(mbaClass)
     }
         
     // MARK: - Actions
