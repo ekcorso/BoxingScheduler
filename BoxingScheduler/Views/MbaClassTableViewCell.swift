@@ -22,10 +22,4 @@ class MbaClassTableViewCell: UITableViewCell {
         textLabel?.text = "\(mbaClass.name)"
         detailTextLabel?.text = "Spots available: \(mbaClass.spotsAvailable)"
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        //accessoryType = selected ? .checkmark : .none
-        //backgroundColor = selected ? .lightGray : .systemBackground
-    }
 }

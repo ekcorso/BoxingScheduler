@@ -17,6 +17,7 @@ class DateListTableViewController: UITableViewController {
         self.title = "Classes Available"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
         tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.allowsSelection = false
         
         let fetcher = ScheduleFetcher()
         fetcher.getUrlContent() { dates in
@@ -64,7 +65,18 @@ class DateListTableViewController: UITableViewController {
 //        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
 //        navigationController?.pushViewController(detailVC, animated: true)
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        selectedClasses.append(mbaClass)
+        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
+            selectedClasses.append(mbaClass)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
+            return true
+        } else {
+            return false
+        }
     }
         
     // MARK: - Actions
