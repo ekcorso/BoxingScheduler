@@ -95,8 +95,8 @@ class DateListTableViewController: UITableViewController {
         self.editButtonItem.action = #selector(startEditing)
         self.editButtonItem.title = "Select"
         tableView.reloadData()
-        print("tapped done")
-        print("selections: \(selectedClasses.count)")
-        //Submit selections and show confirmation ac
+        let vc = WatchedClassesTableViewController()
+        vc.selectedClasses = self.selectedClasses
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
