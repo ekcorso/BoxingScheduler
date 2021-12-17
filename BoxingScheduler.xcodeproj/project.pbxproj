@@ -13,6 +13,8 @@
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */; };
 		FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */; };
+		FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC331276D46CA00091A31 /* Utilities.swift */; };
+		FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC333276D499F00091A31 /* DateHandler.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
@@ -51,6 +53,8 @@
 		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
 		FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
 		FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesTableViewController.swift; sourceTree = "<group>"; };
+		FC9DC331276D46CA00091A31 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		FC9DC333276D499F00091A31 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FC9DC330276D469600091A31 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FC9DC331276D46CA00091A31 /* Utilities.swift */,
+				FC9DC333276D499F00091A31 /* DateHandler.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		FCF914452756F68600717347 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 			children = (
 				FCF914512756F68700717347 /* AppDelegate.swift */,
 				FCF914532756F68700717347 /* SceneDelegate.swift */,
+				FC9DC330276D469600091A31 /* Helpers */,
 				FCF9148E2757F58F00717347 /* Data Model */,
 				FCF91488275704BD00717347 /* Networking */,
 				FCF91489275704D700717347 /* Views */,
@@ -317,10 +331,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
 				FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */,
 				FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */,
+				FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */,
 				FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */,
 				FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */,
 				FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */,
