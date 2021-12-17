@@ -32,6 +32,7 @@ class DateListTableViewController: UITableViewController {
             editButtonItem.action = #selector(submitSelections)
         } else {
             editButtonItem.action = #selector(startEditing)
+            editButtonItem.title = "Select"
         }
     }
 
@@ -85,16 +86,13 @@ class DateListTableViewController: UITableViewController {
         tableView.isEditing.toggle()
         self.editButtonItem.title = "Submit"
         self.editButtonItem.action = #selector(submitSelections)
-        tableView.reloadData()
         print("Editing enabled")
     }
     
     @objc func submitSelections() {
         tableView.isEditing.toggle()
-        //Instead of resetting, this should push to the next view instead after "Submit"
         self.editButtonItem.action = #selector(startEditing)
         self.editButtonItem.title = "Select"
-        tableView.reloadData()
         let vc = WatchedClassesTableViewController()
         vc.selectedClasses = self.selectedClasses
         navigationController?.pushViewController(vc, animated: true)
