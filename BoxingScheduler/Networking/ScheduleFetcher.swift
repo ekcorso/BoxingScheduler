@@ -10,7 +10,7 @@ import SwiftSoup
 import Combine
 
 class ScheduleFetcher {
-    var dateList: [Date]? {
+    var dateList: [ClassDate]? {
         didSet {
             if let dateList = dateList {
                 print("DateList updated")
@@ -18,7 +18,7 @@ class ScheduleFetcher {
         }
     }
     
-    func getUrlContent(completion: @escaping ([Date]) -> Void) -> URLSessionDataTask? {
+    func getUrlContent(completion: @escaping ([ClassDate]) -> Void) -> URLSessionDataTask? {
         guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Bqty%5D=1&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
             return nil
         }
@@ -62,15 +62,15 @@ class ScheduleFetcher {
         }
     }
 
-    private func createDateList(from doc: Document) -> [Date] {
-        var dateArray = [Date]()
+    private func createDateList(from doc: Document) -> [ClassDate] {
+        var dateArray = [ClassDate]()
         guard let elements = try? doc.select("tr") else {
             print("select for tr failed")
             return dateArray
         }
 
         for (index, item) in elements.enumerated() {
-            let date = Date()
+            let date = ClassDate()
             do {
                 if item.hasClass("class-date-row") {
                     let exactDate = try item.select(".class-date-row").text()

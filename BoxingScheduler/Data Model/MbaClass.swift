@@ -12,7 +12,7 @@ class MbaClass {
     var name: String
     var spotsAvailable: Int = 0
     // Look into how date is formatted-- this might require some conversion/ use of a DateFormatter
-    //var date: Date
+    var date: ClassDate = ClassDate()
     
     init(name: String, spotsAvailable: String) {
         self.name = name

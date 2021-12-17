@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FC3A4D42275C3B08007A5082 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* Date.swift */; };
+		FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* ClassDate.swift */; };
 		FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D43275C3B83007A5082 /* ClassType.swift */; };
 		FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */; };
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		FC3A4D41275C3B08007A5082 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		FC3A4D41275C3B08007A5082 /* ClassDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDate.swift; sourceTree = "<group>"; };
 		FC3A4D43275C3B83007A5082 /* ClassType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassType.swift; sourceTree = "<group>"; };
 		FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetcher.swift; sourceTree = "<group>"; };
 		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 			children = (
 				FCF9148C2757E2AE00717347 /* MbaClass.swift */,
 				FC3A4D43275C3B83007A5082 /* ClassType.swift */,
-				FC3A4D41275C3B08007A5082 /* Date.swift */,
+				FC3A4D41275C3B08007A5082 /* ClassDate.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 				FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */,
 				FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */,
 				FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */,
-				FC3A4D42275C3B08007A5082 /* Date.swift in Sources */,
+				FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */,
 				FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */,
 				FCF914542756F68700717347 /* SceneDelegate.swift in Sources */,
 				FCF91484275702CF00717347 /* AcuityAPI.swift in Sources */,
