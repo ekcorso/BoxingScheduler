@@ -79,11 +79,12 @@ class ScheduleFetcher {
                 } else if try! item.className().contains("class-row-xs") {
                     let name = try item.select(".class-name").text()
                     let spotsAvailable = try elements[index + 1].select(".class-spots").text()
-                    let date = date.exactDate!
+                    let date = dateArray.last?.exactDate ?? Date().toString()
                     let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable, date: date)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)
                     }
+                    print(boxingClass.date)
                 }
             } catch Exception.Error(_, let message) {
                 print(message)

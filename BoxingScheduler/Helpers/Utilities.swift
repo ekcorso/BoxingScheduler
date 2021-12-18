@@ -11,7 +11,7 @@ extension String {
     //This func returns a string with unnecessary date info stripped out
     func extractDate() -> String {
         let weekdays = Calendar.current.weekdaySymbols
-        let additionalDescriptors = ["Today", "Tomorrow", "Next Week"]
+        let additionalDescriptors = ["Today", "Tomorrow", "Next Week", "In 2 Weeks", "In 3 Weeks"]
         var mutableString = self
         
         for day in weekdays {
@@ -44,8 +44,7 @@ extension DateFormatter {
 }
 
 extension Date {
-    // Incomplete implementation -- needs formatting options
-    func toString(_ type: DateHandler) -> String {
-        type.formatter.string(from: self)
+    func toString() -> String {
+        DateHandler().formatter.string(from: self)
     }
 }

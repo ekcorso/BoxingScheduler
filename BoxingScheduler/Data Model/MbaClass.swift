@@ -11,12 +11,12 @@ class MbaClass {
     // name could have an enum
     var name: String
     var spotsAvailable: Int = 0
-    // Look into how date is formatted-- this might require some conversion/ use of a DateFormatter
-    var date: ClassDate = ClassDate()
+    var date: Date = Date()
     
-    init(name: String, spotsAvailable: String) {
+    init(name: String, spotsAvailable: String, date: String) {
         self.name = name
         self.spotsAvailable = getSpotsAsInt(from: spotsAvailable)
+        self.date = date.toDate() ?? Date()
     }
     
     private func getSpotsAsInt(from spotsString: String) -> Int {
@@ -25,6 +25,12 @@ class MbaClass {
             spotsInt = num
         }
         return spotsInt
+    }
+    
+    private func getClasstime(fromName: String) -> String {
+        // Could use regular expression to parse times from class that give one, else use a switch statement to check for classes at known times
+        // Or rather than eleaborate parsing, use the ClassType enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
+        return ""
     }
 }
 
