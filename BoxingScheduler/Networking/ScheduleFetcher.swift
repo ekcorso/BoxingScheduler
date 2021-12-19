@@ -84,7 +84,6 @@ class ScheduleFetcher {
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)
                     }
-                    print(boxingClass.date)
                 }
             } catch Exception.Error(_, let message) {
                 print(message)

@@ -8,7 +8,7 @@
 import Foundation
 
 struct DateHandler {
-    private let dateFormat = "MMM d, yyyy"
+    private let dateFormat = "MMM d, yyyy HH:mm"
     let formatter: DateFormatter
     
     init() {

@@ -9,14 +9,16 @@ import Foundation
 
 class MbaClass {
     // name could have an enum
-    var name: String
+    var name: String = ""
     var spotsAvailable: Int = 0
     var date: Date = Date()
+    var time: String = ""
     
     init(name: String, spotsAvailable: String, date: String) {
+        let fullDate = date + " \(getStartTime(for: name))"
         self.name = name
         self.spotsAvailable = getSpotsAsInt(from: spotsAvailable)
-        self.date = date.toDate() ?? Date()
+        self.date = fullDate.toDate() ?? Date()
     }
     
     private func getSpotsAsInt(from spotsString: String) -> Int {
@@ -27,10 +29,48 @@ class MbaClass {
         return spotsInt
     }
     
-    private func getClasstime(fromName: String) -> String {
-        // Could use regular expression to parse times from class that give one, else use a switch statement to check for classes at known times
-        // Or rather than eleaborate parsing, use the ClassType enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
-        return ""
+    private func getStartTime(for className: String) -> String {
+        // Rather than eleaborate parsing, use the ClassType enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
+        switch className {
+        case ClassType.morningBodyBlastMondays.rawValue:
+            return "06:30"
+        case ClassType.footworkFundamentalsMondays.rawValue:
+            return "17:00"
+        case ClassType.lunchTimeBoxingPowerHourTuesdays.rawValue:
+            return "12:00"
+        case ClassType.cardioBoxingTuesdays5.rawValue:
+            return "17:00"
+        case ClassType.cardioBoxingTuesdays615.rawValue:
+            return "18:15"
+        case ClassType.boxingSkillsTuesdays.rawValue:
+            return "19:15"
+        case ClassType.morningBodyBlastWednesdays.rawValue:
+            return "06:30"
+        case ClassType.combatConditioningWednesdays.rawValue:
+            return "17:00"
+        case ClassType.TeamPracticeWednesdays.rawValue:
+            return "18:00"
+        case ClassType.lunchTimeBoxingPowerHourThursdays.rawValue:
+            return "12:00"
+        case ClassType.cardioBoxingThursdays5.rawValue:
+            return "17:00"
+        case ClassType.cardioBoxingThursdays615.rawValue:
+            return "18:15"
+        case ClassType.boxingSkillsThursdays.rawValue:
+            return "19:15"
+        case ClassType.morningBodyBlastFridays.rawValue:
+            return "06:30"
+        case ClassType.combatConditioningFridays.rawValue:
+            return "17:00"
+        case ClassType.teamPracticeFridays.rawValue:
+            return "18:00"
+        case ClassType.cardioBoxingSaturdays9.rawValue:
+            return "09:00"
+        case ClassType.cardioBoxingSaturdays1030.rawValue:
+            return "10:15"
+        default:
+            return "12:00"
+        }
     }
 }
 

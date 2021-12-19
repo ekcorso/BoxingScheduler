@@ -27,45 +27,4 @@ enum ClassType: String {
     case teamPracticeFridays = "Team Practice Fridays (With Permission Only)"
     case cardioBoxingSaturdays9 = "Cardio Boxing Saturdays (9am)"
     case cardioBoxingSaturdays1030 = "Cardio Boxing Saturdays (10:30am)"
-    
-    func getStartTime(for mbaClass: ClassType) -> String {
-        switch mbaClass {
-        case .morningBodyBlastMondays:
-            return "6:30am"
-        case .footworkFundamentalsMondays:
-            return "5:00pm"
-        case .lunchTimeBoxingPowerHourTuesdays:
-            return "12:00pm"
-        case .cardioBoxingTuesdays5:
-            return "5:00pm"
-        case .cardioBoxingTuesdays615:
-            return "6:15pm"
-        case .boxingSkillsTuesdays:
-            return "7:15pm"
-        case .morningBodyBlastWednesdays:
-            return "6:30am"
-        case .combatConditioningWednesdays:
-            return "5:00pm"
-        case .TeamPracticeWednesdays:
-            return "6:00pm"
-        case .lunchTimeBoxingPowerHourThursdays:
-            return "12:00pm"
-        case .cardioBoxingThursdays5:
-            return "5:00pm"
-        case .cardioBoxingThursdays615:
-            return "6:15pm"
-        case .boxingSkillsThursdays:
-            return "7:15pm"
-        case .morningBodyBlastFridays:
-            return "6:30am"
-        case .combatConditioningFridays:
-            return "5:00pm"
-        case .teamPracticeFridays:
-            return "6:00pm"
-        case .cardioBoxingSaturdays9:
-            return "9:00am"
-        case .cardioBoxingSaturdays1030:
-            return "10:15am"
-        }
-    }
 }
