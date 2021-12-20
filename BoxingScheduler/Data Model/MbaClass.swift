@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MbaClass {
+class MbaClass: NSObject, NSCoding {
     // name could have an enum
     var name: String = ""
     var spotsAvailable: Int = 0
@@ -15,10 +15,38 @@ class MbaClass {
     var time: String = ""
     
     init(name: String, spotsAvailable: String, date: String) {
+        super.init()
         let fullDate = date + " \(getStartTime(for: name))"
         self.name = name
         self.spotsAvailable = getSpotsAsInt(from: spotsAvailable)
         self.date = fullDate.toDate() ?? Date()
+    }
+    
+    required init?(coder: NSCoder) {
+        guard let name = coder.decodeObject(forKey: "name") as? String else {
+            print("decoding name failed in init")
+            return nil
+        }
+        guard let date = coder.decodeObject(forKey: "date") as? Date else {
+            print("decoding date failed in init")
+            return nil
+        }
+        guard let time = coder.decodeObject(forKey: "time") as? String else {
+            print("decoding time failed in init")
+            return nil
+        }
+        
+        spotsAvailable = coder.decodeInteger(forKey: "spotsAvailable")
+        self.name = name
+        self.date = date
+        self.time = time
+    }
+    
+    func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: "name")
+        coder.encode(self.spotsAvailable, forKey: "spotsAvailable")
+        coder.encode(self.date, forKey: "date")
+        coder.encode(self.time, forKey: "time")
     }
     
     private func getSpotsAsInt(from spotsString: String) -> Int {
