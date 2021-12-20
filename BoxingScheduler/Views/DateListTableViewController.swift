@@ -14,7 +14,7 @@ class DateListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Classes Available"
+        self.navigationItem.title = "Available Classes"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsSelection = false

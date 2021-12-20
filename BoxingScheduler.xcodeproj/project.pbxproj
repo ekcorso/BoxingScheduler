@@ -16,6 +16,7 @@
 		FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC331276D46CA00091A31 /* Utilities.swift */; };
 		FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC333276D499F00091A31 /* DateHandler.swift */; };
 		FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */; };
+		FC9ECE8E277126A900097BF4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
@@ -57,6 +58,7 @@
 		FC9DC331276D46CA00091A31 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FC9DC333276D499F00091A31 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
 				FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */,
 				FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */,
+				FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC9ECE8E277126A900097BF4 /* TabBarViewController.swift in Sources */,
 				FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
