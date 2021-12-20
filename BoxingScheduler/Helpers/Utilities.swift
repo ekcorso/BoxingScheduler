@@ -44,8 +44,8 @@ extension DateFormatter {
 }
 
 extension Date {
-    func toString() -> String {
-        DateHandler().formatter.string(from: self)
+    func toString(format: String) -> String {
+        DateHandler(format: format).formatter.string(from: self)
     }
 }
 

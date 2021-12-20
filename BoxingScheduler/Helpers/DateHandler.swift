@@ -8,10 +8,17 @@
 import Foundation
 
 struct DateHandler {
-    private let dateFormat = "MMM d, yyyy HH:mm"
+    static let dateInputFormat = "MMM d, yyyy HH:mm"
+    static let dateOutputFormat = "MMM d h:mm a"
     let formatter: DateFormatter
     
     init() {
-        formatter = DateFormatter(format: dateFormat)
+        // default init assumes this is input for parsing the date format of a string
+        formatter = DateFormatter(format: DateHandler.dateInputFormat)
+    }
+    
+    init(format: String) {
+        // alt init allows the user to specify the format, in case there are multiple output formats in the future
+        formatter = DateFormatter(format: format)
     }
 }
