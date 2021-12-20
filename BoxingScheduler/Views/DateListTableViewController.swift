@@ -93,8 +93,14 @@ class DateListTableViewController: UITableViewController {
         tableView.isEditing.toggle()
         self.editButtonItem.action = #selector(startEditing)
         self.editButtonItem.title = "Select"
+        
+        do {
+            try DataStorage().save(classList: selectedClasses)
+        } catch {
+            print("Saving classList failed in DateListTableViewController")
+        }
+        
         let vc = WatchedClassesTableViewController()
-        vc.selectedClasses = self.selectedClasses
         navigationController?.pushViewController(vc, animated: true)
     }
 }

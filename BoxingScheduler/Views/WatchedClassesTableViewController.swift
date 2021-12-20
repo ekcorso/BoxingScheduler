@@ -18,6 +18,17 @@ class WatchedClassesTableViewController: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selections = DataStorage().retrieve() {
+            selectedClasses = selections
+            tableView.reloadData()
+        } else {
+            print("No selectedClasses saved")
+        }
+    }
 
     // MARK: - Table view data source
 
