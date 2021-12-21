@@ -6,24 +6,34 @@
 //
 
 import UIKit
+import Combine
 
 class WatchedClassesTableViewController: UITableViewController {
-    var selectedClasses: [MbaClass]?
+    var selectedClasses: [MbaClass]? {
+        didSet {
+            if let selectedClasses = selectedClasses {
+                WatchedClasses().current = selectedClasses
+            } else {
+                WatchedClasses().current = []
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Watched Classes"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        tableView.allowsMultipleSelectionDuringEditing = true
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if selectedClasses != nil && selectedClasses?.isEmpty == false {
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let selections = DataStorage().retrieve() {
-            selectedClasses = selections
+        if let currentClasses = DataStorage().retrieve() {
+            selectedClasses = currentClasses
             tableView.reloadData()
         } else {
             print("No selectedClasses saved")
@@ -45,30 +55,16 @@ class WatchedClassesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = selectedClasses![indexPath.row].name
-        
 
         return cell
     }
 
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            let classToDelete = selectedClasses?[indexPath.row]
+//            WatchedClasses().removeSelections([selectedClasses![indexPath.row]])
+            selectedClasses?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
-
 }
