@@ -35,6 +35,17 @@ class DateListTableViewController: UITableViewController {
             editButtonItem.title = "Select"
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let currentlySelected = DataStorage().retrieve() {
+            selectedClasses = currentlySelected
+            tableView.reloadData()
+        } else {
+            print("No saved classes retreived")
+        }
+    }
 
     // MARK: - Table view data source
 
