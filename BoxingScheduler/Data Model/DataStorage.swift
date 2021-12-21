@@ -8,7 +8,7 @@
 import Foundation
 
 struct DataStorage {
-    func save(classList: [MbaClass]) throws {
+    func save(_ classList: [MbaClass]) throws {
         let fileManager = FileManager()
         let url = fileManager.getDocumentsDirectory().appendingPathComponent("classList.txt")
         

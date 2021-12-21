@@ -95,7 +95,7 @@ class DateListTableViewController: UITableViewController {
         self.editButtonItem.title = "Select"
         
         do {
-            try DataStorage().save(classList: selectedClasses)
+            try DataStorage().save(selectedClasses)
         } catch {
             print("Saving classList failed in DateListTableViewController")
         }
