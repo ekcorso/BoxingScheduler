@@ -8,7 +8,17 @@
 import Foundation
 
 class WatchedClasses {
-    var current: [MbaClass]?
+    var current: [MbaClass]? {
+        didSet {
+            if let current = current {
+                do {
+                    try DataStorage().save(current)
+                } catch {
+                    print("saving current classes failed")
+                }
+            }
+        }
+    }
     var past: [MbaClass]? {
         guard let currentClasses = self.current else {
             return nil
@@ -36,10 +46,8 @@ class WatchedClasses {
     func addNewSelections(_ selections: [MbaClass]) {
         if var currentSelections = self.current {
             currentSelections += selections
-            // Save to DataStorage
         } else {
             current = selections
-            // Save to DataStorage
         }
     }
     
@@ -52,7 +60,6 @@ class WatchedClasses {
                 }
             }
             current = filtered
-            // Save to DataStorage
         }
     }
 }
