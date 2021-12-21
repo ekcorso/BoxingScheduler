@@ -9,11 +9,28 @@ import Foundation
 
 class WatchedClasses {
     var current: [MbaClass]?
-    var past: [MbaClass]? = [MbaClass]()
+    var past: [MbaClass]? {
+        guard let currentClasses = self.current else {
+            return nil
+        }
+        
+        let now = Date()
+        let past = currentClasses.filter() { $0.date < now }
+        removeSelections(past)
+        return past
+    }
+    
+    var nowAvailable: [MbaClass]? {
+        guard let currentClasses = self.current else {
+            return nil
+        }
+        let availableClasses = currentClasses.filter() { $0.spotsAvailable != 0 }
+        removeSelections(availableClasses)
+        return availableClasses
+    }
     
     init() {
         self.current = DataStorage().retrieve() ?? []
-    
     }
     
     func addNewSelections(_ selections: [MbaClass]) {
@@ -37,15 +54,5 @@ class WatchedClasses {
             current = filtered
             // Save to DataStorage
         }
-    }
-    
-    private func moveToPast() {
-        guard let currentClasses = self.current else {
-            return
-        }
-        
-        let now = Date()
-        past = currentClasses.filter() { $0.date < now }
-        // Save to DataStorage
     }
 }
