@@ -23,10 +23,6 @@ class WatchedClassesTableViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Watched Classes"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        if selectedClasses != nil && selectedClasses?.isEmpty == false {
-            self.navigationItem.rightBarButtonItem = self.editButtonItem
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +33,10 @@ class WatchedClassesTableViewController: UITableViewController {
             tableView.reloadData()
         } else {
             print("No selectedClasses saved")
+        }
+        
+        if selectedClasses != nil && selectedClasses?.isEmpty == false {
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
         }
     }
 
