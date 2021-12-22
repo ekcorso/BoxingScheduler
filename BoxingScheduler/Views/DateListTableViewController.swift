@@ -90,6 +90,16 @@ class DateListTableViewController: UITableViewController {
             return false
         }
     }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
+            return indexPath
+        } else {
+            // disable selection for row's that shouldn't be selectable
+            return nil
+        }
+    }
         
     // MARK: - Actions
     
