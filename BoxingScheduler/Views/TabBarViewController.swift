@@ -14,10 +14,10 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateListViewController.tabBarItem = UITabBarItem(title: "Schedule", image: UIImage(systemName: "calendar"), tag: 0)
-        watchedClassesViewController.tabBarItem = UITabBarItem(title: "Watched Classes", image: UIImage(systemName: "list.star"), tag: 1)
+        dateListViewController.tabBarItem = UITabBarItem(title: "Schedule", image: UIImage(systemName: "calendar"), tag: 1)
+        watchedClassesViewController.tabBarItem = UITabBarItem(title: "Watched Classes", image: UIImage(systemName: "list.star"), tag: 0)
         
-        viewControllers = [dateListViewController, watchedClassesViewController].map { UINavigationController(rootViewController: $0) }
+        viewControllers = [watchedClassesViewController, dateListViewController].map { UINavigationController(rootViewController: $0) }
     }
     
     override func viewWillAppear(_ animated: Bool) {
