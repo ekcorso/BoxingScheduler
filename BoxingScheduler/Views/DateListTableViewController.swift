@@ -19,13 +19,10 @@ class DateListTableViewController: UITableViewController {
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsSelection = false
         
-        let fetcher = ScheduleFetcher()
-        fetcher.getUrlContent() { dates in
-            self.dateList = dates
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        populateDateList()
+        
+        let tenMinnutes = TimeInterval(10 * 60)
+        Timer.scheduledTimer(timeInterval: tenMinnutes, target: self, selector: #selector(populateDateList), userInfo: nil, repeats: true)
         
         self.navigationItem.rightBarButtonItem = editButtonItem
         if tableView.isEditing == true {
@@ -102,6 +99,16 @@ class DateListTableViewController: UITableViewController {
     }
         
     // MARK: - Actions
+    
+    @objc func populateDateList() {
+        let fetcher = ScheduleFetcher()
+        fetcher.getUrlContent() { dates in
+            self.dateList = dates
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     @objc func startEditing() {
         tableView.isEditing.toggle()
