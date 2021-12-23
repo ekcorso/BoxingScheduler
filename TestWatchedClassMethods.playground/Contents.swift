@@ -209,10 +209,8 @@ class WatchedClasses {
     func addNewSelections(_ selections: [MbaClass]) {
         if var currentSelections = self.current {
             currentSelections += selections
-            // Save to DataStorage
         } else {
             current = selections
-            // Save to DataStorage
         }
     }
     
@@ -225,7 +223,6 @@ class WatchedClasses {
                 }
             }
             current = filtered
-            // Save to DataStorage
         }
     }
 }
@@ -239,18 +236,26 @@ var class3 = MbaClass(name: "Cardio Boxing Saturdays (10:30am)", spotsAvailable:
 var watchedClasses = WatchedClasses()
 watchedClasses.current = [class1, class2, class3]
 
-class2.spotsAvailable = 1
-class3.date = "Saturday, December 18, 2021".extractDate().toDate() ?? Date()
+//class2.spotsAvailable = 1
+//class3.date = "Saturday, December 18, 2021".extractDate().toDate() ?? Date()
+//
+//
+//if let availableClasses = watchedClasses.nowAvailable {
+//    for mbaclass in availableClasses {
+//        print("Available: \(mbaclass.name)")
+//    }
+//}
+//
+//if let pastClasses = watchedClasses.past {
+//    for mbaclass in pastClasses {
+//        print("Past Class: \(mbaclass.name)")
+//    }
+//}
 
+watchedClasses.removeSelections([class1])
 
-if let availableClasses = watchedClasses.nowAvailable {
-    for mbaclass in availableClasses {
-        print("Available: \(mbaclass.name)")
-    }
-}
-
-if let pastClasses = watchedClasses.past {
-    for mbaclass in pastClasses {
-        print("Past Class: \(mbaclass.name)")
+if let currentClasses = watchedClasses.current {
+    for session in currentClasses {
+        print(session.name)
     }
 }
