@@ -18,6 +18,8 @@
 		FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */; };
 		FC9ECE8E277126A900097BF4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */; };
 		FC9ECE90277144F200097BF4 /* WatchedClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8F277144F200097BF4 /* WatchedClasses.swift */; };
+		FC9ECE922774DFDA00097BF4 /* NowAvailableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */; };
+		FC9ECE942775684700097BF4 /* NowAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE932775684600097BF4 /* NowAvailableCell.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
@@ -61,6 +63,8 @@
 		FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FC9ECE8F277144F200097BF4 /* WatchedClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClasses.swift; sourceTree = "<group>"; };
+		FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowAvailableTableViewController.swift; path = BoxingScheduler/Views/NowAvailableTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		FC9ECE932775684600097BF4 /* NowAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowAvailableCell.swift; sourceTree = "<group>"; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,8 +186,10 @@
 		FCF91489275704D700717347 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
+				FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */,
+				FC9ECE932775684600097BF4 /* NowAvailableCell.swift */,
 				FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */,
+				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
 				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
 				FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */,
 				FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */,
@@ -352,10 +358,12 @@
 				FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */,
 				FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */,
 				FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */,
+				FC9ECE942775684700097BF4 /* NowAvailableCell.swift in Sources */,
 				FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */,
 				FCF914542756F68700717347 /* SceneDelegate.swift in Sources */,
 				FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */,
 				FCF91484275702CF00717347 /* AcuityAPI.swift in Sources */,
+				FC9ECE922774DFDA00097BF4 /* NowAvailableTableViewController.swift in Sources */,
 				FCF9148D2757E2AE00717347 /* MbaClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
