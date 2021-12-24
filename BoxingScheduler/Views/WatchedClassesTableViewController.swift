@@ -22,7 +22,7 @@ class WatchedClassesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Watched Classes"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(WatchedClassesCell.self, forCellReuseIdentifier: WatchedClassesCell.identifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,9 +53,13 @@ class WatchedClassesTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = selectedClasses![indexPath.row].name
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchedClassesCell.identifier, for: indexPath) as? WatchedClassesCell else {
+            return UITableViewCell()
+        }
+        
+        let mbaClass = selectedClasses![indexPath.row]
+        cell.setCellText(mbaClass: mbaClass)
+        
         return cell
     }
 
