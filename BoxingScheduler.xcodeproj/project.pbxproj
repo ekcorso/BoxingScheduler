@@ -30,7 +30,6 @@
 		FCF914692756F68F00717347 /* BoxingSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914682756F68F00717347 /* BoxingSchedulerTests.swift */; };
 		FCF914742756F68F00717347 /* BoxingSchedulerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */; };
 		FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914812756FE6B00717347 /* DateListTableViewController.swift */; };
-		FCF91484275702CF00717347 /* AcuityAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF91483275702CF00717347 /* AcuityAPI.swift */; };
 		FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF9148A2757086D00717347 /* SettingsFormViewController.swift */; };
 		FCF9148D2757E2AE00717347 /* MbaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF9148C2757E2AE00717347 /* MbaClass.swift */; };
 /* End PBXBuildFile section */
@@ -81,7 +80,6 @@
 		FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxingSchedulerUITests.swift; sourceTree = "<group>"; };
 		FCF914752756F68F00717347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCF914812756FE6B00717347 /* DateListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListTableViewController.swift; sourceTree = "<group>"; };
-		FCF91483275702CF00717347 /* AcuityAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcuityAPI.swift; sourceTree = "<group>"; };
 		FCF9148A2757086D00717347 /* SettingsFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFormViewController.swift; sourceTree = "<group>"; };
 		FCF9148C2757E2AE00717347 /* MbaClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,7 +177,6 @@
 		FCF91488275704BD00717347 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				FCF91483275702CF00717347 /* AcuityAPI.swift */,
 				FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */,
 			);
 			path = Networking;
@@ -366,7 +363,6 @@
 				FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */,
 				FCF914542756F68700717347 /* SceneDelegate.swift in Sources */,
 				FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */,
-				FCF91484275702CF00717347 /* AcuityAPI.swift in Sources */,
 				FC9ECE922774DFDA00097BF4 /* NowAvailableTableViewController.swift in Sources */,
 				FCF9148D2757E2AE00717347 /* MbaClass.swift in Sources */,
 			);
