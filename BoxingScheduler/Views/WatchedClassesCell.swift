@@ -21,6 +21,6 @@ class WatchedClassesCell: UITableViewCell {
 
     func setCellText(mbaClass: MbaClass) {
         textLabel?.text = "\(mbaClass.name)"
-        detailTextLabel?.text = "\(mbaClass.date.toString(format: DateHandler.dateOutputFormat))"
+        detailTextLabel?.text = "\(mbaClass.date.toString(format: DateHandler.dateOutputFormat)) -- Spots: \(mbaClass.spotsAvailable)"
     }
 }
