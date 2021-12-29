@@ -103,9 +103,8 @@ class MbaClass: NSObject, NSCoding {
 }
 
 extension MbaClass {
-    
     override func isEqual(_ object: Any?) -> Bool {
-        if name == (object as? MbaClass)?.name && date == (object as? MbaClass)?.date && spotsAvailable == (object as? MbaClass)?.spotsAvailable {
+        if name == (object as? MbaClass)?.name && date == (object as? MbaClass)?.date {
             return true
         } else {
             return false
