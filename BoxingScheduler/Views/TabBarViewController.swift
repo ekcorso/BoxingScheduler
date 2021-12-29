@@ -26,9 +26,5 @@ class TabBarViewController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Is this updating the value of selectedClasses, or is that updated in the WatchedClasses vc itself?
-        if let selectedClasses = DataStorage().retrieve() {
-            watchedClassesViewController.selectedClasses = selectedClasses
-        }
     }
 }
