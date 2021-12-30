@@ -78,21 +78,28 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func scheduleLocal() {
-        let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests()
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Class Available"
-        content.body = "Go to MBA website to sign up"
-        
-        // Setting the trigger to be non-repeating so that it only goes off when certain criteria is met
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        center.add(request)
-        
-        print("Notification scheduled")
-//        scheduleNotificationsButton.isEnabled = false
+        let watchedClasses = WatchedClasses()
+        watchedClasses.getAllClasses() { allClasses in
+            let availableClasses = watchedClasses.getNowAvailableClasses(from: allClasses)
+            
+            if !availableClasses.isEmpty {
+                let center = UNUserNotificationCenter.current()
+                center.removeAllPendingNotificationRequests()
+                
+                let content = UNMutableNotificationContent()
+                content.title = "Class Available"
+                content.body = "Go to MBA website to sign up"
+                
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                center.add(request)
+                
+                print("Notification scheduled")
+            } else {
+                print("No notifications")
+            }
+        }
     }
 }
 
