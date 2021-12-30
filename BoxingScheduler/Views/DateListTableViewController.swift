@@ -106,7 +106,7 @@ class DateListTableViewController: UITableViewController {
     }
     
     @objc func showSettings() {
-        let settingsViewController = SettingsFormViewController()
+        let settingsViewController = SettingsViewController()
         self.present(settingsViewController, animated: true, completion: nil)
     }
     
