@@ -14,7 +14,6 @@ class WatchedClasses {
             if let current = current {
                 do {
                     try DataStorage().save(current)
-                    print("Array of current watched classes was updated")
                 } catch {
                     print("saving current classes failed")
                 }
@@ -87,7 +86,6 @@ class WatchedClasses {
                 if watchedClass.name == fetchedClass.name && watchedClass.date == fetchedClass.date && fetchedClass.spotsAvailable != 0 {
                     watchedClass.spotsAvailable = fetchedClass.spotsAvailable
                     availableClasses.append(watchedClass)
-                    print("\(String(describing: availableClasses.last?.name)) now has \(String(describing: availableClasses.last?.spotsAvailable)) spots available")
                 }
             }
         }
