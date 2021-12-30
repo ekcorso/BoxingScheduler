@@ -25,8 +25,7 @@ class NowAvailableTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         let watchedClasses = WatchedClasses()
         watchedClasses.getAllClasses() { allClassList in
-            watchedClasses.updateAllClasses(with: allClassList)
-            let nowAvailableClasses = watchedClasses.getNowAvailableClasses()
+            let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
             self.availableClasses = nowAvailableClasses
             
             print("Now Available array currently has \(nowAvailableClasses.count) classes")

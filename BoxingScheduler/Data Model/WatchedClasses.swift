@@ -21,9 +21,7 @@ class WatchedClasses {
             }
         }
     }
-    
-    var allClassesFromNetwork: [MbaClass]?
-    
+        
     init() {
         self.current = DataStorage().retrieve() ?? []
         removePastClassesFromCurrent()
@@ -73,19 +71,8 @@ class WatchedClasses {
         }
     }
     
-    // Call this inside the completion handler for getAllClasses
-    func updateAllClasses(with classList: [MbaClass]) {
-        self.allClassesFromNetwork = classList
-        
-        do {
-            if let current = self.current {
-                try? DataStorage().save(current)
-            }
-        }
-    }
-    
     // This func sorts updates the currently watched classes' spotsAvailable property when spots open up then adds that class to the nowAvailable list and returns that list. Call this inside the completion handler for getAllClasses.
-    func getNowAvailableClasses() -> [MbaClass] {
+    func getNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
         guard let currentClasses = self.current else {
             return [MbaClass]()
         }
@@ -93,7 +80,7 @@ class WatchedClasses {
         var availableClasses = [MbaClass]()
         
         for watchedClass in currentClasses {
-            for fetchedClass in allClassesFromNetwork! {
+            for fetchedClass in allClasses{
                 // The following line is ONLY for testing: it creates at least one class that has spotsAvailable
                 fetchedClass.spotsAvailable = 2
                 //Check for a fetchedClass that matches a watchedClass AND has at least one spot available
