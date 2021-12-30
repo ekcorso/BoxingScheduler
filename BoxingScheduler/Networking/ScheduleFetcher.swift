@@ -18,9 +18,9 @@ class ScheduleFetcher {
         }
     }
     
-    func getUrlContent(completion: @escaping ([ClassDate]) -> Void) -> URLSessionDataTask? {
+    func getUrlContent(completion: @escaping ([ClassDate]) -> Void) {
         guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Bqty%5D=1&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
-            return nil
+            return
         }
 
         var request = URLRequest(url: url)
@@ -44,8 +44,6 @@ class ScheduleFetcher {
         }
 
         dataTask.resume()
-
-        return dataTask
     }
 
     private func parseHtml(fromString: String) -> Document? {
