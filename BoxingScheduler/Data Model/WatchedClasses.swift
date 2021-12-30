@@ -86,6 +86,12 @@ class WatchedClasses {
                 if watchedClass.name == fetchedClass.name && watchedClass.date == fetchedClass.date && fetchedClass.spotsAvailable != 0 {
                     watchedClass.spotsAvailable = fetchedClass.spotsAvailable
                     availableClasses.append(watchedClass)
+                    
+                    do {
+                        try DataStorage().save(currentClasses)
+                    } catch {
+                        print("Saving failed")
+                    }
                 }
             }
         }
