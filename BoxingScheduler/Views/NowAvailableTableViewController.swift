@@ -23,8 +23,17 @@ class NowAvailableTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let nowAvailableClasses = WatchedClasses().nowAvailable {
+        let watchedClasses = WatchedClasses()
+        watchedClasses.getAllClasses() { allClassList in
+            watchedClasses.updateAllClasses(with: allClassList)
+            let nowAvailableClasses = watchedClasses.getNowAvailableClasses()
             self.availableClasses = nowAvailableClasses
+            
+            print("Now Available array currently has \(nowAvailableClasses.count) classes")
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -35,7 +44,7 @@ class NowAvailableTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableClasses!.count
+        return availableClasses?.count ?? 0
     }
 
 
