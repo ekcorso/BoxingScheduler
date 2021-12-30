@@ -14,7 +14,7 @@ class DateListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Available Classes"
+        self.navigationItem.title = "Schedule"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsSelection = false
@@ -24,13 +24,7 @@ class DateListTableViewController: UITableViewController {
         let tenMinnutes = TimeInterval(10 * 60)
         Timer.scheduledTimer(timeInterval: tenMinnutes, target: self, selector: #selector(populateDateList), userInfo: nil, repeats: true)
         
-        self.navigationItem.rightBarButtonItem = editButtonItem
-        if tableView.isEditing == true {
-            editButtonItem.action = #selector(submitSelections)
-        } else {
-            editButtonItem.action = #selector(startEditing)
-            editButtonItem.title = "Select"
-        }
+        configureNavBarButtons()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,12 +87,28 @@ class DateListTableViewController: UITableViewController {
         if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
             return indexPath
         } else {
-            // disable selection for row's that shouldn't be selectable
+            // disable selection for rows that shouldn't be selectable
             return nil
         }
     }
         
     // MARK: - Actions
+    
+    func configureNavBarButtons() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showSettings))
+        self.navigationItem.rightBarButtonItem = editButtonItem
+        if tableView.isEditing == true {
+            editButtonItem.action = #selector(submitSelections)
+        } else {
+            editButtonItem.action = #selector(startEditing)
+            editButtonItem.title = "Select"
+        }
+    }
+    
+    @objc func showSettings() {
+        let settingsViewController = SettingsFormViewController()
+        self.present(settingsViewController, animated: true, completion: nil)
+    }
     
     @objc func populateDateList() {
         let fetcher = ScheduleFetcher()
