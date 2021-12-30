@@ -23,17 +23,7 @@ class NowAvailableTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let watchedClasses = WatchedClasses()
-        watchedClasses.getAllClasses() { allClassList in
-            let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
-            self.availableClasses = nowAvailableClasses
-            
-            print("Now Available array currently has \(nowAvailableClasses.count) classes")
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        populateAvailableClasses()
     }
 
     // MARK: - Table view data source
@@ -56,6 +46,18 @@ class NowAvailableTableViewController: UITableViewController {
         cell.setCellText(mbaClass: mbaClass)
         
         return cell
+    }
+    
+    func populateAvailableClasses() {
+        let watchedClasses = WatchedClasses()
+        watchedClasses.getAllClasses() { allClassList in
+            let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
+            self.availableClasses = nowAvailableClasses
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
 
