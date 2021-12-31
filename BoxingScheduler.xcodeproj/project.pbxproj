@@ -23,6 +23,7 @@
 		FC9ECE9627756DA300097BF4 /* WatchedClassesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */; };
 		FC9ECE9E277E1D8200097BF4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */; };
 		FC9ECEA0277E463900097BF4 /* ColorChangingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE9F277E463900097BF4 /* ColorChangingButton.swift */; };
+		FC9ECEA5277E9A2D00097BF4 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECEA4277E9A2D00097BF4 /* NotificationHandler.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
@@ -70,6 +71,7 @@
 		FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesCell.swift; sourceTree = "<group>"; };
 		FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FC9ECE9F277E463900097BF4 /* ColorChangingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorChangingButton.swift; path = BoxingScheduler/Views/ColorChangingButton.swift; sourceTree = SOURCE_ROOT; };
+		FC9ECEA4277E9A2D00097BF4 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = BoxingScheduler/Helpers/NotificationHandler.swift; sourceTree = SOURCE_ROOT; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				FC9DC331276D46CA00091A31 /* Utilities.swift */,
 				FC9DC333276D499F00091A31 /* DateHandler.swift */,
+				FC9ECEA4277E9A2D00097BF4 /* NotificationHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -189,13 +192,13 @@
 		FCF91489275704D700717347 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */,
 				FC9ECE9F277E463900097BF4 /* ColorChangingButton.swift */,
 				FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */,
 				FC9ECE932775684600097BF4 /* NowAvailableCell.swift */,
 				FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */,
 				FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */,
 				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
-				FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */,
 				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
 				FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */,
 				FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */,
@@ -355,6 +358,7 @@
 				FC9ECE8E277126A900097BF4 /* TabBarViewController.swift in Sources */,
 				FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */,
 				FCF914522756F68700717347 /* AppDelegate.swift in Sources */,
+				FC9ECEA5277E9A2D00097BF4 /* NotificationHandler.swift in Sources */,
 				FC9ECE9E277E1D8200097BF4 /* SettingsViewController.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
 				FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */,

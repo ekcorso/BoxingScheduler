@@ -61,45 +61,11 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func registerLocal() {
-        let center = UNUserNotificationCenter.current()
-        
-        // TODO: Remove sound?
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
-            if granted {
-                print("Permission granted")
-                DispatchQueue.main.async {
-                    self.registerNotificationsButton.isEnabled.toggle()
-                }
-            } else {
-                print("Permission denied")
-            }
-        }
-        
+        NotificationHandler().registerNotifications()
     }
     
     @objc func scheduleLocal() {
-        let watchedClasses = WatchedClasses()
-        watchedClasses.getAllClasses() { allClasses in
-            let availableClasses = watchedClasses.getNowAvailableClasses(from: allClasses)
-            
-            if !availableClasses.isEmpty {
-                let center = UNUserNotificationCenter.current()
-                center.removeAllPendingNotificationRequests()
-                
-                let content = UNMutableNotificationContent()
-                content.title = "Class Available"
-                content.body = "Go to MBA website to sign up"
-                
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                
-                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                center.add(request)
-                
-                print("Notification scheduled")
-            } else {
-                print("No notifications")
-            }
-        }
+        NotificationHandler().scheduleAvailableClassNotification()
     }
 }
 
