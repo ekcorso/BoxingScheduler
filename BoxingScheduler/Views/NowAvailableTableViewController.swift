@@ -9,12 +9,26 @@ import UIKit
 
 class NowAvailableTableViewController: UITableViewController {
     var availableClasses: [MbaClass]?
+    
+    var scheduleNowButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemGreen
+        button.setTitle("Schedule Now", for: .normal)
+        button.layer.cornerRadius = 25
+        if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
+            window.addSubview(button)
+        }
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(NowAvailableCell.self, forCellReuseIdentifier: NowAvailableCell.identifier)
         title = "Available Classes"
-        
+        tableView.addSubview(scheduleNowButton)
+        constrainButton()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -60,7 +74,14 @@ class NowAvailableTableViewController: UITableViewController {
         }
     }
 
-
+    func constrainButton() {
+        NSLayoutConstraint.activate([
+            scheduleNowButton.heightAnchor.constraint(equalToConstant: 50),
+            scheduleNowButton.widthAnchor.constraint(equalToConstant: 150),
+            scheduleNowButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20),
+            scheduleNowButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10),
+        ])
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -105,5 +126,4 @@ class NowAvailableTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
