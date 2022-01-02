@@ -13,6 +13,7 @@ class NowAvailableTableViewController: UITableViewController {
     var scheduleNowButton: UIButton = {
         let floatingButton = UIButton()
         floatingButton.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton.addTarget(self, action: #selector(navigateToSchedulingWebsite), for: .touchUpInside)
         floatingButton.backgroundColor = .systemGreen
         floatingButton.setTitle("Schedule Now", for: .normal)
         floatingButton.layer.cornerRadius = 25
@@ -84,6 +85,12 @@ class NowAvailableTableViewController: UITableViewController {
             scheduleNowButton.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20),
             scheduleNowButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -10),
         ])
+    }
+    
+    @objc func navigateToSchedulingWebsite() {
+        let vc = WebViewController()
+        present(vc, animated: true)
+        
     }
     /*
     // Override to support conditional editing of the table view.
