@@ -11,15 +11,18 @@ class NowAvailableTableViewController: UITableViewController {
     var availableClasses: [MbaClass]?
     
     var scheduleNowButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .systemGreen
-        button.setTitle("Schedule Now", for: .normal)
-        button.layer.cornerRadius = 25
+        let floatingButton = UIButton()
+        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+        floatingButton.backgroundColor = .systemGreen
+        floatingButton.setTitle("Schedule Now", for: .normal)
+        floatingButton.layer.cornerRadius = 25
+        floatingButton.layer.borderWidth = 1
+        floatingButton.layer.borderColor = UIColor.systemGray2.cgColor
+        // TODO: Figure out why this button isn't opaque
         if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
-            window.addSubview(button)
+            window.addSubview(floatingButton)
         }
-        return button
+        return floatingButton
     }()
 
     override func viewDidLoad() {
