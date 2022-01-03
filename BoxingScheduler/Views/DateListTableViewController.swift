@@ -11,7 +11,7 @@ import SwiftSoup
 class DateListTableViewController: UITableViewController {
     var dateList = [ClassDate]() {
         didSet {
-            dateList.sorted()
+            dateList = dateList.sorted()
         }
     }
     var selectedClasses = [MbaClass]()

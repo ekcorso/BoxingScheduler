@@ -15,16 +15,22 @@ class ClassDate {
 
 extension ClassDate: Comparable {
     static func < (lhs: ClassDate, rhs: ClassDate) -> Bool {
-        if let leftDate = lhs.exactDate?.toDate(), let rightDate = rhs.exactDate?.toDate() {
-        return leftDate < rightDate
+        let time = "00:00"
+        let lhsFulldate = lhs.exactDate! + " \(time)"
+        let rhsFulldate = rhs.exactDate! + " \(time)"
+        if let leftDate = lhsFulldate.toDate(), let rightDate = rhsFulldate.toDate() {
+            return leftDate < rightDate
         } else {
             return false
         }
     }
     
     static func == (lhs: ClassDate, rhs: ClassDate) -> Bool {
-        if let leftDate = lhs.exactDate?.toDate(), let rightDate = rhs.exactDate?.toDate() {
-        return leftDate == rightDate
+        let time = "00:00"
+        let lhsFulldate = lhs.exactDate! + " \(time)"
+        let rhsFulldate = rhs.exactDate! + " \(time)"
+        if let leftDate = lhsFulldate.toDate(), let rightDate = rhsFulldate.toDate() {
+            return leftDate == rightDate
         } else {
             return false
         }
