@@ -81,7 +81,7 @@ class WatchedClasses {
         for watchedClass in currentClasses {
             for fetchedClass in allClasses{
                 // The following line is ONLY for testing: it creates at least one class that has spotsAvailable
-                fetchedClass.spotsAvailable = 2
+//                fetchedClass.spotsAvailable = 2
                 //Check for a fetchedClass that matches a watchedClass AND has at least one spot available
                 if watchedClass.name == fetchedClass.name && watchedClass.date == fetchedClass.date && fetchedClass.spotsAvailable != 0 {
                     watchedClass.spotsAvailable = fetchedClass.spotsAvailable
