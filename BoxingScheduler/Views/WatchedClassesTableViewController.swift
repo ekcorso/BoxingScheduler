@@ -28,12 +28,8 @@ class WatchedClassesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let currentClasses = DataStorage().retrieve() {
-            selectedClasses = currentClasses
-            tableView.reloadData()
-        } else {
-            print("No selectedClasses saved")
-        }
+        populateSelectedClasses()
+        configureRefreshControl()
         
         if selectedClasses != nil && selectedClasses?.isEmpty == false {
             self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -69,6 +65,31 @@ class WatchedClassesTableViewController: UITableViewController {
 //            WatchedClasses().removeSelections([selectedClasses![indexPath.row]])
             selectedClasses?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl!)
+        refreshControl?.addTarget(self, action: #selector(refreshWatchedClasses), for: .valueChanged)
+    }
+    
+    @objc func refreshWatchedClasses() {
+        populateSelectedClasses()
+        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func populateSelectedClasses() {
+        if let currentClasses = DataStorage().retrieve() {
+            selectedClasses = currentClasses
+            tableView.reloadData()
+        } else {
+            print("No selectedClasses saved")
         }
     }
 }

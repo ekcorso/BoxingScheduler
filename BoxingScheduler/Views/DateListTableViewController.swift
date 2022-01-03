@@ -29,6 +29,7 @@ class DateListTableViewController: UITableViewController {
         Timer.scheduledTimer(timeInterval: tenMinnutes, target: self, selector: #selector(populateDateList), userInfo: nil, repeats: true)
         
         configureNavBarButtons()
+        configureRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +99,18 @@ class DateListTableViewController: UITableViewController {
         
     // MARK: - Actions
     
+    func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl!)
+        refreshControl?.addTarget(self, action: #selector(refreshScheduleDateList), for: .valueChanged)
+    }
+    
+    @objc func refreshScheduleDateList() {
+        populateDateList()
+        tableView.reloadData()
+        refreshControl?.endRefreshing()
+    }
+    
     func configureNavBarButtons() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showSettings))
         self.navigationItem.rightBarButtonItem = editButtonItem
@@ -116,8 +129,9 @@ class DateListTableViewController: UITableViewController {
     
     @objc func populateDateList() {
         let fetcher = ScheduleFetcher()
-        fetcher.getUrlContent() { dates in
-            self.dateList += dates
+        fetcher.getUrlContent() { [self] dates in
+            // Check that dateList doesn't already contain these dates. If it doesn't, add them.
+            self.dateList += dates.filter() { !self.dateList.contains($0) }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

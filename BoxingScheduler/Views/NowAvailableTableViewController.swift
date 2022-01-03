@@ -38,6 +38,7 @@ class NowAvailableTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        configureRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,6 +93,21 @@ class NowAvailableTableViewController: UITableViewController {
         present(vc, animated: true)
         
     }
+    
+    func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.addSubview(refreshControl!)
+        refreshControl?.addTarget(self, action: #selector(refreshNowAvailable), for: .valueChanged)
+    }
+    
+    @objc func refreshNowAvailable() {
+        populateAvailableClasses()
+//        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
