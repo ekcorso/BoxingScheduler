@@ -9,7 +9,11 @@ import UIKit
 import SwiftSoup
 
 class DateListTableViewController: UITableViewController {
-    var dateList = [ClassDate]()
+    var dateList = [ClassDate]() {
+        didSet {
+            dateList.sorted()
+        }
+    }
     var selectedClasses = [MbaClass]()
 
     override func viewDidLoad() {
