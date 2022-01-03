@@ -113,7 +113,7 @@ class DateListTableViewController: UITableViewController {
     @objc func populateDateList() {
         let fetcher = ScheduleFetcher()
         fetcher.getUrlContent() { dates in
-            self.dateList = dates
+            self.dateList += dates
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
