@@ -19,34 +19,36 @@ class ScheduleFetcher {
     }
     
     func getUrlContent(completion: @escaping ([ClassDate]) -> Void) {
-        guard let urlPage1 = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Boffset%5D=0&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let urlPage2 = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Boffset%5D=15&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let urlPage3 = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Boffset%5D=30&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let urlPage4 = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payload = "type=&calendar=&skip=true&options%5Boffset%5D=45&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
+        guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payloadPage1 = "type=&calendar=&skip=true&options%5Boffset%5D=0&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage2 = "type=&calendar=&skip=true&options%5Boffset%5D=15&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage3 = "type=&calendar=&skip=true&options%5Boffset%5D=30&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage4 = "type=&calendar=&skip=true&options%5Boffset%5D=45&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
             print("One of the urls is incorrect")
             return
         }
         
-        var urlArray = [urlPage1, urlPage2, urlPage3, urlPage4]
-
-        var request = URLRequest(url: urlPage1)
+        var payloadArray = [payloadPage1, payloadPage2, payloadPage3, payloadPage4]
+        
+        var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "content-type")
-        request.httpBody = payload
-
-        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
+        for payload in payloadArray {
+            request.httpBody = payload
+            
+            let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                guard error == nil else {
+                    print(error!.localizedDescription)
+                    return
+                }
+                guard let data = data else {
+                    print("Empty data")
+                    return
+                }
+                if let str = String(data: data, encoding: .utf8) {
+                    let stringData = self.parseHtml(fromString: str)
+                    completion(self.createDateList(from: stringData!))
+                }
             }
-            guard let data = data else {
-                print("Empty data")
-                return
-            }
-            if let str = String(data: data, encoding: .utf8) {
-                let stringData = self.parseHtml(fromString: str)
-                completion(self.createDateList(from: stringData!))
-            }
+            
+            dataTask.resume()
         }
-
-        dataTask.resume()
     }
 
     private func parseHtml(fromString: String) -> Document? {
