@@ -59,7 +59,7 @@ class WatchedClasses {
         var dateList = [ClassDate]()
         var classList = [MbaClass]()
         fetcher.getUrlContent() { dates in
-            dateList = dates
+            dateList += dates.filter() { !dateList.contains($0) }
             
             for date in dateList {
                 for mbaClass in date.classes {
