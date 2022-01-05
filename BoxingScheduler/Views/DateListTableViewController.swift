@@ -76,6 +76,13 @@ class DateListTableViewController: UITableViewController {
         if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
             selectedClasses.append(mbaClass)
         }
+        
+        if let selections = DataStorage().retrieve() {
+            if selections != self.selectedClasses {
+                self.editButtonItem.title = "Submit"
+                self.editButtonItem.action = #selector(submitSelections)
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -140,8 +147,7 @@ class DateListTableViewController: UITableViewController {
     
     @objc func startEditing() {
         tableView.isEditing.toggle()
-        self.editButtonItem.title = "Submit"
-        self.editButtonItem.action = #selector(submitSelections)
+        self.editButtonItem.title = "Done"
         print("Editing enabled")
     }
     
