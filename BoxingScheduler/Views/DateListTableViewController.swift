@@ -156,7 +156,14 @@ class DateListTableViewController: UITableViewController {
             print("Saving classList failed in DateListTableViewController")
         }
         
-        let vc = WatchedClassesTableViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let ac = UIAlertController(title: "Class Selections Submitted", message: "You can view/ edit your selections in the Watched Classes tab", preferredStyle: .alert)
+        let seeWatchedClasses = UIAlertAction(title: "See Watched Classes", style: .default) { _ in
+            // Navigate to the watchedClasses tab
+            self.tabBarController?.selectedIndex = 1
+        }
+        let done = UIAlertAction(title: "Done", style: .default)
+        ac.addAction(seeWatchedClasses)
+        ac.addAction(done)
+        navigationController?.present(ac, animated: true)
     }
 }
