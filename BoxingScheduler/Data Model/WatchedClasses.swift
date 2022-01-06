@@ -28,7 +28,14 @@ class WatchedClasses {
     
     func addNewSelections(_ selections: [MbaClass]) {
         if var currentSelections = self.current {
-            currentSelections += selections
+            let allSelections: [MbaClass] = currentSelections + selections
+            currentSelections = Array(Set(allSelections))
+            
+            do {
+                try DataStorage().save(currentSelections)
+            } catch {
+                print("Save failed")
+            }
         } else {
             current = selections
         }
@@ -43,7 +50,7 @@ class WatchedClasses {
                     filtered.remove(at: index)
                 }
             }
-            current = filtered
+            current = Array(Set(filtered))
             
             do {
                 try DataStorage().save(filtered)
@@ -79,6 +86,7 @@ class WatchedClasses {
         var availableClasses = [MbaClass]()
         
         for watchedClass in currentClasses {
+//            print(watchedClass.name)
             for fetchedClass in allClasses{
                 // The following line is ONLY for testing: it creates at least one class that has spotsAvailable
 //                fetchedClass.spotsAvailable = 2
@@ -96,7 +104,7 @@ class WatchedClasses {
             }
         }
         
-        return availableClasses
+        return Array(Set(availableClasses))
     }
     
     private func removePastClassesFromCurrent() {
