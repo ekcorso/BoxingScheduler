@@ -71,7 +71,7 @@ class NowAvailableTableViewController: UITableViewController {
         let watchedClasses = WatchedClasses()
         watchedClasses.getAllClasses() { allClassList in
             let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
-            self.availableClasses = nowAvailableClasses
+            self.availableClasses = nowAvailableClasses.sorted()
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()

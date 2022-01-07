@@ -12,7 +12,7 @@ class WatchedClassesTableViewController: UITableViewController {
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
-                WatchedClasses().current = selectedClasses
+                WatchedClasses().current = selectedClasses.sorted()
             } else {
                 WatchedClasses().current = []
             }
@@ -86,7 +86,7 @@ class WatchedClassesTableViewController: UITableViewController {
     
     func populateSelectedClasses() {
         if let currentClasses = DataStorage().retrieve() {
-            selectedClasses = currentClasses
+            selectedClasses = currentClasses.sorted()
             tableView.reloadData()
         } else {
             print("No selectedClasses saved")
