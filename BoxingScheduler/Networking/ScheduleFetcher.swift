@@ -43,6 +43,7 @@ class ScheduleFetcher {
                 }
                 if let str = String(data: data, encoding: .utf8) {
                     let stringData = self.parseHtml(fromString: str)
+                    //This completion handler will be run 4 times because the dataTask gets created once for each item in the payloadArray
                     completion(self.createDateList(from: stringData!))
                 }
             }
