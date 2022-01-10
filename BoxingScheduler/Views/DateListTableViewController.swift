@@ -135,8 +135,8 @@ class DateListTableViewController: UITableViewController {
     }
     
     @objc func populateDateList() {
-        let fetcher = ScheduleFetcher()
-        fetcher.getUrlContent() { [self] dates in
+        let fetcher = Networking()
+        fetcher.fetchScheduleData() { [self] dates in
             // Check that dateList doesn't already contain these dates. If it doesn't, add them.
             self.dateList += dates.filter() { !self.dateList.contains($0) }
             DispatchQueue.main.async {

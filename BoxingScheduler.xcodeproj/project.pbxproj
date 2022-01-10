@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* ClassDate.swift */; };
 		FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D43275C3B83007A5082 /* ClassType.swift */; };
-		FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */; };
+		FC9DC3232769245A00091A31 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* Networking.swift */; };
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */; };
 		FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */; };
@@ -58,7 +58,7 @@
 /* Begin PBXFileReference section */
 		FC3A4D41275C3B08007A5082 /* ClassDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDate.swift; sourceTree = "<group>"; };
 		FC3A4D43275C3B83007A5082 /* ClassType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassType.swift; sourceTree = "<group>"; };
-		FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetcher.swift; sourceTree = "<group>"; };
+		FC9DC3222769245A00091A31 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
 		FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
 		FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesTableViewController.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		FCF91488275704BD00717347 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				FC9DC3222769245A00091A31 /* ScheduleFetcher.swift */,
+				FC9DC3222769245A00091A31 /* Networking.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -364,7 +364,7 @@
 				FC9ECEA5277E9A2D00097BF4 /* NotificationHandler.swift in Sources */,
 				FC9ECE9E277E1D8200097BF4 /* SettingsViewController.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
-				FC9DC3232769245A00091A31 /* ScheduleFetcher.swift in Sources */,
+				FC9DC3232769245A00091A31 /* Networking.swift in Sources */,
 				FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */,
 				FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */,
 				FC9ECE90277144F200097BF4 /* WatchedClasses.swift in Sources */,

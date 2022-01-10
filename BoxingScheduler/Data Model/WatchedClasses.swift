@@ -62,10 +62,10 @@ class WatchedClasses {
     
     //This func updates the class's allClassesFromAPI property when it is called in the initializer
     func getAllClasses(completion: @escaping ([MbaClass]) -> ()) {
-        let fetcher = ScheduleFetcher()
+        let fetcher = Networking()
         var dateList = [ClassDate]()
         var classList = [MbaClass]()
-        fetcher.getUrlContent() { dates in
+        fetcher.fetchScheduleData() { dates in
             dateList += dates.filter() { !dateList.contains($0) }
             
             for date in dateList {
