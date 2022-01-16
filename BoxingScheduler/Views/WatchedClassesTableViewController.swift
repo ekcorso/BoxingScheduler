@@ -44,7 +44,12 @@ class WatchedClassesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedClasses!.count
+        
+        if let selectedClasses = selectedClasses {
+            return selectedClasses.count
+        } else {
+            return 1
+        }
     }
 
 

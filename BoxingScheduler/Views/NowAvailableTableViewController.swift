@@ -61,7 +61,11 @@ class NowAvailableTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        let mbaClass = availableClasses![indexPath.row]
+        guard let availableClasses = availableClasses else {
+            return UITableViewCell()
+        }
+
+        let mbaClass = availableClasses[indexPath.row]
         cell.setCellText(mbaClass: mbaClass)
         
         return cell
