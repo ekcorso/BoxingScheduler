@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* ClassDate.swift */; };
 		FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D43275C3B83007A5082 /* ClassType.swift */; };
+		FC853E6C2793B490007680A9 /* PureLayout in Frameworks */ = {isa = PBXBuildFile; productRef = FC853E6B2793B490007680A9 /* PureLayout */; };
 		FC9DC3232769245A00091A31 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* Networking.swift */; };
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */; };
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC853E6C2793B490007680A9 /* PureLayout in Frameworks */,
 				FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +242,7 @@
 			name = BoxingScheduler;
 			packageProductDependencies = (
 				FCD56B612759A55B00DBE45B /* SwiftSoup */,
+				FC853E6B2793B490007680A9 /* PureLayout */,
 			);
 			productName = BoxingScheduler;
 			productReference = FCF9144E2756F68700717347 /* BoxingScheduler.app */;
@@ -314,6 +317,7 @@
 			mainGroup = FCF914452756F68600717347;
 			packageReferences = (
 				FCD56B602759A55B00DBE45B /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				FC853E6A2793B490007680A9 /* XCRemoteSwiftPackageReference "PureLayout" */,
 			);
 			productRefGroup = FCF9144F2756F68700717347 /* Products */;
 			projectDirPath = "";
@@ -715,6 +719,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FC853E6A2793B490007680A9 /* XCRemoteSwiftPackageReference "PureLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/PureLayout/PureLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		FCD56B602759A55B00DBE45B /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -726,6 +738,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FC853E6B2793B490007680A9 /* PureLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC853E6A2793B490007680A9 /* XCRemoteSwiftPackageReference "PureLayout" */;
+			productName = PureLayout;
+		};
 		FCD56B612759A55B00DBE45B /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCD56B602759A55B00DBE45B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
