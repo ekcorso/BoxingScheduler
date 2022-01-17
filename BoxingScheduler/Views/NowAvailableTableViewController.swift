@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import PureLayout
+
 
 class NowAvailableTableViewController: UITableViewController {
     var availableClasses: [MbaClass]?
+    private let image = UIImage(systemName: "eye")!.withRenderingMode(.alwaysTemplate)
+    private let topMessage = "Now Available"
+    private let bottomMessage = "You don't have an available classes yet. As classes become available they will show up here."
+    
     
     var scheduleNowButton: UIButton = {
         let floatingButton = UIButton()
@@ -39,6 +45,9 @@ class NowAvailableTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         configureRefreshControl()
+        setupEmptyBackgroundView()
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +119,11 @@ class NowAvailableTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.refreshControl?.endRefreshing()
         }
+    }
+    
+    func setupEmptyBackgroundView() {
+        let emptyBackgroundView = EmptyBackgroundView(image: image, top: topMessage, bottom: bottomMessage)
+        tableView.backgroundView = emptyBackgroundView
     }
 
     /*
