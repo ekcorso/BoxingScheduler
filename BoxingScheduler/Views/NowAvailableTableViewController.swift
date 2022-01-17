@@ -38,7 +38,9 @@ class NowAvailableTableViewController: UITableViewController {
         title = "Available Classes"
         tableView.addSubview(scheduleNowButton)
         constrainButton()
-
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -46,8 +48,6 @@ class NowAvailableTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         configureRefreshControl()
         setupEmptyBackgroundView()
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
