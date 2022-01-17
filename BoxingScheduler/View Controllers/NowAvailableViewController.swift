@@ -11,9 +11,9 @@ import PureLayout
 
 class NowAvailableViewController: UITableViewController {
     var availableClasses: [MbaClass]?
-    private let image = UIImage(systemName: "eye")!.withRenderingMode(.alwaysTemplate)
+    private let image = UIImage(systemName: "list.star")!.withRenderingMode(.alwaysTemplate)
     private let topMessage = "Now Available"
-    private let bottomMessage = "You don't have an available classes yet. As classes become available they will show up here."
+    private let bottomMessage = "You don't have any available classes yet. As classes become available they will show up here."
     
     
     var scheduleNowButton: UIButton = {
@@ -61,7 +61,6 @@ class NowAvailableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO: This count check may be unnecessary. Confirm after implementing in WatchedClassesVC
         if availableClasses?.count == 0 {
             tableView.separatorStyle = .none
             tableView.backgroundView?.isHidden = false
