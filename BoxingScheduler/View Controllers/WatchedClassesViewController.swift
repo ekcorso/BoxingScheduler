@@ -19,10 +19,17 @@ class WatchedClassesViewController: UITableViewController {
         }
     }
     
+    private let image = UIImage(systemName: "eye")!.withRenderingMode(.alwaysTemplate)
+    private let topMessage = "Watched Classes"
+    private let bottomMessage = "You don't have any watched classes yet. As you select classes from the schedule they will show up here."
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Watched Classes"
         tableView.register(WatchedClassesCell.self, forCellReuseIdentifier: WatchedClassesCell.identifier)
+        view.layoutIfNeeded()
+        view.setNeedsLayout()
+        setupEmptyBackgroundView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,12 +51,19 @@ class WatchedClassesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if let selectedClasses = selectedClasses {
-            return selectedClasses.count
-        } else {
+        guard let selectedClasses = selectedClasses else {
             return 1
         }
+        
+        if selectedClasses.count == 0 {
+            tableView.separatorStyle = .none
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView?.isHidden = true
+        }
+       
+        return selectedClasses.count
     }
 
 
@@ -96,5 +110,10 @@ class WatchedClassesViewController: UITableViewController {
         } else {
             print("No selectedClasses saved")
         }
+    }
+    
+    func setupEmptyBackgroundView() {
+        let emptyBackgroundView = EmptyBackgroundView(image: image, top: topMessage, bottom: bottomMessage)
+        tableView.backgroundView = emptyBackgroundView
     }
 }
