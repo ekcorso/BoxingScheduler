@@ -1,5 +1,5 @@
 //
-//  ClassListTableViewController.swift
+//  ScheduleViewController.swift
 //  BoxingScheduler
 //
 //  Created by Emily Corso on 11/30/21.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftSoup
 
-class DateListTableViewController: UITableViewController {
+class ScheduleViewController: UITableViewController {
     var dateList = [ClassDate]() {
         didSet {
             dateList = dateList.sorted()
@@ -159,7 +159,7 @@ class DateListTableViewController: UITableViewController {
         do {
             try DataStorage().save(selectedClasses)
         } catch {
-            print("Saving classList failed in DateListTableViewController")
+            print("Saving classList failed in ScheduleViewController")
         }
         
         let ac = UIAlertController(title: "Class Selections Submitted", message: "You can view/ edit your selections in the Watched Classes tab", preferredStyle: .alert)

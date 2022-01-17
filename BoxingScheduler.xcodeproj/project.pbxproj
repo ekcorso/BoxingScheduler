@@ -14,13 +14,13 @@
 		FC9DC3232769245A00091A31 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* Networking.swift */; };
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */; };
-		FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */; };
+		FC9DC32D276CF66400091A31 /* WatchedClassesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32C276CF66400091A31 /* WatchedClassesViewController.swift */; };
 		FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC331276D46CA00091A31 /* Utilities.swift */; };
 		FC9DC334276D499F00091A31 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC333276D499F00091A31 /* DateHandler.swift */; };
 		FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */; };
 		FC9ECE8E277126A900097BF4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */; };
 		FC9ECE90277144F200097BF4 /* WatchedClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE8F277144F200097BF4 /* WatchedClasses.swift */; };
-		FC9ECE922774DFDA00097BF4 /* NowAvailableTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */; };
+		FC9ECE922774DFDA00097BF4 /* NowAvailableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE912774DFDA00097BF4 /* NowAvailableViewController.swift */; };
 		FC9ECE942775684700097BF4 /* NowAvailableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE932775684600097BF4 /* NowAvailableCell.swift */; };
 		FC9ECE9627756DA300097BF4 /* WatchedClassesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */; };
 		FC9ECE9E277E1D8200097BF4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */; };
@@ -35,7 +35,7 @@
 		FCF9145E2756F68F00717347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF9145C2756F68F00717347 /* LaunchScreen.storyboard */; };
 		FCF914692756F68F00717347 /* BoxingSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914682756F68F00717347 /* BoxingSchedulerTests.swift */; };
 		FCF914742756F68F00717347 /* BoxingSchedulerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */; };
-		FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914812756FE6B00717347 /* DateListTableViewController.swift */; };
+		FCF914822756FE6B00717347 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914812756FE6B00717347 /* ScheduleViewController.swift */; };
 		FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF9148A2757086D00717347 /* SettingsFormViewController.swift */; };
 		FCF9148D2757E2AE00717347 /* MbaClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF9148C2757E2AE00717347 /* MbaClass.swift */; };
 /* End PBXBuildFile section */
@@ -64,13 +64,13 @@
 		FC9DC3222769245A00091A31 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
 		FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
-		FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesTableViewController.swift; sourceTree = "<group>"; };
+		FC9DC32C276CF66400091A31 /* WatchedClassesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesViewController.swift; sourceTree = "<group>"; };
 		FC9DC331276D46CA00091A31 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		FC9DC333276D499F00091A31 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 		FC9ECE8B276FF0EB00097BF4 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		FC9ECE8F277144F200097BF4 /* WatchedClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClasses.swift; sourceTree = "<group>"; };
-		FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowAvailableTableViewController.swift; path = "BoxingScheduler/View Controllers/NowAvailableTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		FC9ECE912774DFDA00097BF4 /* NowAvailableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NowAvailableViewController.swift; path = "BoxingScheduler/View Controllers/NowAvailableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		FC9ECE932775684600097BF4 /* NowAvailableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowAvailableCell.swift; sourceTree = "<group>"; };
 		FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchedClassesCell.swift; sourceTree = "<group>"; };
 		FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		FCF9146F2756F68F00717347 /* BoxingSchedulerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BoxingSchedulerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914732756F68F00717347 /* BoxingSchedulerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxingSchedulerUITests.swift; sourceTree = "<group>"; };
 		FCF914752756F68F00717347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FCF914812756FE6B00717347 /* DateListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateListTableViewController.swift; sourceTree = "<group>"; };
+		FCF914812756FE6B00717347 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		FCF9148A2757086D00717347 /* SettingsFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFormViewController.swift; sourceTree = "<group>"; };
 		FCF9148C2757E2AE00717347 /* MbaClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,12 +127,12 @@
 			children = (
 				FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */,
 				FC9ECEA62781631E00097BF4 /* WebViewController.swift */,
-				FC9DC32C276CF66400091A31 /* WatchedClassesTableViewController.swift */,
+				FC9DC32C276CF66400091A31 /* WatchedClassesViewController.swift */,
 				FCF9148A2757086D00717347 /* SettingsFormViewController.swift */,
-				FCF914812756FE6B00717347 /* DateListTableViewController.swift */,
+				FCF914812756FE6B00717347 /* ScheduleViewController.swift */,
 				FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */,
 				FC9ECE8D277126A900097BF4 /* TabBarViewController.swift */,
-				FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */,
+				FC9ECE912774DFDA00097BF4 /* NowAvailableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -380,7 +380,7 @@
 				FC9ECE9E277E1D8200097BF4 /* SettingsViewController.swift in Sources */,
 				FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */,
 				FC9DC3232769245A00091A31 /* Networking.swift in Sources */,
-				FC9DC32D276CF66400091A31 /* WatchedClassesTableViewController.swift in Sources */,
+				FC9DC32D276CF66400091A31 /* WatchedClassesViewController.swift in Sources */,
 				FC9DC332276D46CA00091A31 /* Utilities.swift in Sources */,
 				FC9ECE90277144F200097BF4 /* WatchedClasses.swift in Sources */,
 				FCF9148B2757086D00717347 /* SettingsFormViewController.swift in Sources */,
@@ -390,11 +390,11 @@
 				FC853E6E2795261E007680A9 /* EmptyBackgroundView.swift in Sources */,
 				FC9ECE942775684700097BF4 /* NowAvailableCell.swift in Sources */,
 				FC9ECE9627756DA300097BF4 /* WatchedClassesCell.swift in Sources */,
-				FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */,
+				FCF914822756FE6B00717347 /* ScheduleViewController.swift in Sources */,
 				FCF914542756F68700717347 /* SceneDelegate.swift in Sources */,
 				FC9ECEA0277E463900097BF4 /* ColorChangingButton.swift in Sources */,
 				FC9ECE8C276FF0EB00097BF4 /* DataStorage.swift in Sources */,
-				FC9ECE922774DFDA00097BF4 /* NowAvailableTableViewController.swift in Sources */,
+				FC9ECE922774DFDA00097BF4 /* NowAvailableViewController.swift in Sources */,
 				FCF9148D2757E2AE00717347 /* MbaClass.swift in Sources */,
 				FC9ECEA72781631E00097BF4 /* WebViewController.swift in Sources */,
 			);

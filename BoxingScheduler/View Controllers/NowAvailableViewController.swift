@@ -1,5 +1,5 @@
 //
-//  NowAvailableTableViewController.swift
+//  NowAvailableViewController.swift
 //  BoxingScheduler
 //
 //  Created by Emily Corso on 12/23/21.
@@ -9,7 +9,7 @@ import UIKit
 import PureLayout
 
 
-class NowAvailableTableViewController: UITableViewController {
+class NowAvailableViewController: UITableViewController {
     var availableClasses: [MbaClass]?
     private let image = UIImage(systemName: "eye")!.withRenderingMode(.alwaysTemplate)
     private let topMessage = "Now Available"

@@ -8,9 +8,9 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-    let dateListViewController = DateListTableViewController()
-    let watchedClassesViewController = WatchedClassesTableViewController()
-    let availableClassesViewController = NowAvailableTableViewController()
+    let dateListViewController = ScheduleViewController()
+    let watchedClassesViewController = WatchedClassesViewController()
+    let availableClassesViewController = NowAvailableViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

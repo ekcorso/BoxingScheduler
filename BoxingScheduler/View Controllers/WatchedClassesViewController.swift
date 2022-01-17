@@ -1,5 +1,5 @@
 //
-//  WatchedClassesTableViewController.swift
+//  WatchedClassesViewController.swift
 //  BoxingScheduler
 //
 //  Created by Emily Corso on 12/17/21.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class WatchedClassesTableViewController: UITableViewController {
+class WatchedClassesViewController: UITableViewController {
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
