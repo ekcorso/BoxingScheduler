@@ -78,8 +78,10 @@ class EmptyBackgroundView: UIView {
         if !didSetUpConstraints {
             topSpace.autoAlignAxis(toSuperviewAxis: .vertical)
             topSpace.autoPinEdge(toSuperviewEdge: .top)
+            
             bottomSpace.autoAlignAxis(toSuperviewAxis: .vertical)
             bottomSpace.autoPinEdge(toSuperviewEdge: .bottom)
+            
             topSpace.autoSetDimension(.height, toSize: spacing, relation: .greaterThanOrEqual)
             topSpace.autoMatch(.height, to: .height, of: bottomSpace)
             
@@ -88,7 +90,7 @@ class EmptyBackgroundView: UIView {
             imageView.autoSetDimension(.height, toSize: imageViewHeight, relation: .lessThanOrEqual)
             
             topLabel.autoAlignAxis(toSuperviewAxis: .vertical)
-            topLabel.autoPinEdge(.top, to: .bottom, of: topLabel, withOffset: spacing)
+            topLabel.autoPinEdge(.top, to: .bottom, of: imageView, withOffset: spacing)
             
             bottomLabel.autoAlignAxis(toSuperviewAxis: .vertical)
             bottomLabel.autoPinEdge(.top, to: .bottom, of: topLabel, withOffset: spacing)
