@@ -61,6 +61,15 @@ class NowAvailableTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // TODO: This count check may be unnecessary. Confirm after implementing in WatchedClassesVC
+        if availableClasses?.count == 0 {
+            tableView.separatorStyle = .none
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView?.isHidden = true
+        }
+        
         return availableClasses?.count ?? 0
     }
 
