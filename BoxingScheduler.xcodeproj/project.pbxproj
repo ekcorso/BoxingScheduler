@@ -10,6 +10,7 @@
 		FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D41275C3B08007A5082 /* ClassDate.swift */; };
 		FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3A4D43275C3B83007A5082 /* ClassType.swift */; };
 		FC853E6C2793B490007680A9 /* PureLayout in Frameworks */ = {isa = PBXBuildFile; productRef = FC853E6B2793B490007680A9 /* PureLayout */; };
+		FC853E6E2795261E007680A9 /* EmptyBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC853E6D2795261E007680A9 /* EmptyBackgroundView.swift */; };
 		FC9DC3232769245A00091A31 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC3222769245A00091A31 /* Networking.swift */; };
 		FC9DC32727698A6700091A31 /* MbaClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */; };
 		FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		FC3A4D41275C3B08007A5082 /* ClassDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDate.swift; sourceTree = "<group>"; };
 		FC3A4D43275C3B83007A5082 /* ClassType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassType.swift; sourceTree = "<group>"; };
+		FC853E6D2795261E007680A9 /* EmptyBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBackgroundView.swift; sourceTree = "<group>"; };
 		FC9DC3222769245A00091A31 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		FC9DC32627698A6700091A31 /* MbaClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbaClassTableViewCell.swift; sourceTree = "<group>"; };
 		FC9DC32827698E9800091A31 /* ClassDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassDetailViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				FC9ECE9D277E1D8200097BF4 /* SettingsViewController.swift */,
 				FC9ECE9F277E463900097BF4 /* ColorChangingButton.swift */,
 				FC9ECE912774DFDA00097BF4 /* NowAvailableTableViewController.swift */,
+				FC853E6D2795261E007680A9 /* EmptyBackgroundView.swift */,
 				FC9ECEA62781631E00097BF4 /* WebViewController.swift */,
 				FC9ECE932775684600097BF4 /* NowAvailableCell.swift */,
 				FC9ECE9527756DA300097BF4 /* WatchedClassesCell.swift */,
@@ -376,6 +379,7 @@
 				FC3A4D44275C3B83007A5082 /* ClassType.swift in Sources */,
 				FC9DC32927698E9800091A31 /* ClassDetailViewController.swift in Sources */,
 				FC3A4D42275C3B08007A5082 /* ClassDate.swift in Sources */,
+				FC853E6E2795261E007680A9 /* EmptyBackgroundView.swift in Sources */,
 				FC9ECE942775684700097BF4 /* NowAvailableCell.swift in Sources */,
 				FC9ECE9627756DA300097BF4 /* WatchedClassesCell.swift in Sources */,
 				FCF914822756FE6B00717347 /* DateListTableViewController.swift in Sources */,
