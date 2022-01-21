@@ -24,6 +24,7 @@ class ScheduleViewController: UITableViewController {
         tableView.allowsSelection = false
         
         populateDateList()
+        registerForNotifications()
         
         let tenMinnutes = TimeInterval(10 * 60)
         Timer.scheduledTimer(timeInterval: tenMinnutes, target: self, selector: #selector(populateDateList), userInfo: nil, repeats: true)
@@ -135,13 +136,19 @@ class ScheduleViewController: UITableViewController {
     }
     
     @objc func populateDateList() {
-        let fetcher = Networking()
-        fetcher.fetchScheduleData() { [self] dates in
+        Networking.fetchScheduleData() { [self] dates in
             // Check that dateList doesn't already contain these dates. If it doesn't, add them.
             self.dateList += dates.filter() { !self.dateList.contains($0) }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func populateDateListFromNotification(_ dateList: [ClassDate]) {
+        self.dateList += dateList.filter() { !self.dateList.contains($0) }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
     
@@ -171,5 +178,14 @@ class ScheduleViewController: UITableViewController {
         ac.addAction(seeWatchedClasses)
         ac.addAction(done)
         navigationController?.present(ac, animated: true)
+    }
+    
+    func registerForNotifications() {
+        NotificationCenter.default.addObserver(forName: .newScheduleData, object: nil, queue: nil) { (notification) in
+            print("Notification received")
+            if let userInfo = notification.userInfo, let schedule = userInfo["schedule"] as? [ClassDate] {
+                self.populateDateListFromNotification(schedule)
+            }
+        }
     }
 }
