@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleAppRefreshTask(task: BGAppRefreshTask) {
         task.expirationHandler = {
+            task.setTaskCompleted(success: false)
             Networking.urlSession.invalidateAndCancel()
         }
         
