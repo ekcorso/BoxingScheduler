@@ -12,6 +12,9 @@ class ScheduleViewController: UITableViewController {
     var dateList = [ClassDate]() {
         didSet {
             dateList = dateList.sorted()
+            // TODO: Remove line below when done testing.
+            // This line inserts a random item at the top of the list so it's easy to tell if the list is updating.
+            dateList.insert(dateList.randomElement()!, at: 0)
         }
     }
     var selectedClasses = [MbaClass]()
