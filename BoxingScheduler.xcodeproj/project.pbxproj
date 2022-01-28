@@ -28,10 +28,10 @@
 		FC9ECEA5277E9A2D00097BF4 /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECEA4277E9A2D00097BF4 /* NotificationHandler.swift */; };
 		FC9ECEA72781631E00097BF4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9ECEA62781631E00097BF4 /* WebViewController.swift */; };
 		FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = FCD56B612759A55B00DBE45B /* SwiftSoup */; };
-		FCE65FD627A3A30500A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
-		FCE65FD727A3A32E00A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
-		FCE65FD827A3A32F00A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
 		FCE65FDB27A3A58700A9A675 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FCE65FDA27A3A58700A9A675 /* FirebaseMessaging */; };
+		FCE65FE227A4540700A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FE127A4540700A9A675 /* GoogleService-Info.plist */; };
+		FCE65FE327A4540700A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FE127A4540700A9A675 /* GoogleService-Info.plist */; };
+		FCE65FE427A4540700A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FE127A4540700A9A675 /* GoogleService-Info.plist */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
 		FCF914592756F68700717347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF914572756F68700717347 /* Main.storyboard */; };
@@ -81,7 +81,8 @@
 		FC9ECE9F277E463900097BF4 /* ColorChangingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorChangingButton.swift; path = BoxingScheduler/Views/ColorChangingButton.swift; sourceTree = SOURCE_ROOT; };
 		FC9ECEA4277E9A2D00097BF4 /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationHandler.swift; path = BoxingScheduler/Helpers/NotificationHandler.swift; sourceTree = SOURCE_ROOT; };
 		FC9ECEA62781631E00097BF4 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FCE65FE027A44F7300A9A675 /* BoxingScheduler.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BoxingScheduler.entitlements; sourceTree = "<group>"; };
+		FCE65FE127A4540700A9A675 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FCF9144E2756F68700717347 /* BoxingScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxingScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCF914512756F68700717347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCF914532756F68700717347 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		FCF914452756F68600717347 = {
 			isa = PBXGroup;
 			children = (
+				FCE65FE127A4540700A9A675 /* GoogleService-Info.plist */,
 				FCF914502756F68700717347 /* BoxingScheduler */,
 				FCF914672756F68F00717347 /* BoxingSchedulerTests */,
 				FCF914722756F68F00717347 /* BoxingSchedulerUITests */,
@@ -176,6 +178,7 @@
 		FCF914502756F68700717347 /* BoxingScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				FCE65FE027A44F7300A9A675 /* BoxingScheduler.entitlements */,
 				FCF914512756F68700717347 /* AppDelegate.swift */,
 				FCF914532756F68700717347 /* SceneDelegate.swift */,
 				FC9DC330276D469600091A31 /* Helpers */,
@@ -187,7 +190,6 @@
 				FCF9145A2756F68F00717347 /* Assets.xcassets */,
 				FCF9145C2756F68F00717347 /* LaunchScreen.storyboard */,
 				FCF9145F2756F68F00717347 /* Info.plist */,
-				FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */,
 			);
 			path = BoxingScheduler;
 			sourceTree = "<group>";
@@ -356,7 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FCF9145E2756F68F00717347 /* LaunchScreen.storyboard in Resources */,
-				FCE65FD627A3A30500A9A675 /* GoogleService-Info.plist in Resources */,
+				FCE65FE227A4540700A9A675 /* GoogleService-Info.plist in Resources */,
 				FCF9145B2756F68F00717347 /* Assets.xcassets in Resources */,
 				FCF914592756F68700717347 /* Main.storyboard in Resources */,
 			);
@@ -366,7 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCE65FD727A3A32E00A9A675 /* GoogleService-Info.plist in Resources */,
+				FCE65FE327A4540700A9A675 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCE65FD827A3A32F00A9A675 /* GoogleService-Info.plist in Resources */,
+				FCE65FE427A4540700A9A675 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BoxingScheduler/BoxingScheduler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 35FN5AB6A3;
 				INFOPLIST_FILE = BoxingScheduler/Info.plist;
@@ -603,6 +606,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BoxingScheduler/BoxingScheduler.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 35FN5AB6A3;
 				INFOPLIST_FILE = BoxingScheduler/Info.plist;

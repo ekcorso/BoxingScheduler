@@ -3,32 +3,32 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>723361370890-aqm24buuerfv58gp93cbsckgem5k1v57.apps.googleusercontent.com</string>
+	<string>738486221187-36p0lcp23b72ssrobp7o26nb4aerjb5o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.723361370890-aqm24buuerfv58gp93cbsckgem5k1v57</string>
+	<string>com.googleusercontent.apps.738486221187-36p0lcp23b72ssrobp7o26nb4aerjb5o</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCPEFeM6ceIm1fLZc3NCByzjNapDspiql0</string>
+	<string>AIzaSyBRJkhTyBduPNMKqsD47TVlFnQF0kphvVc</string>
 	<key>GCM_SENDER_ID</key>
-	<string>723361370890</string>
+	<string>738486221187</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.emilykcorso.boxingscheduler</string>
+	<string>com.emilykcorso.BoxingScheduler</string>
 	<key>PROJECT_ID</key>
-	<string>boxingscheduler-efed2</string>
+	<string>boxing-scheduler</string>
 	<key>STORAGE_BUCKET</key>
-	<string>boxingscheduler-efed2.appspot.com</string>
+	<string>boxing-scheduler.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:723361370890:ios:feb38d29855b719d7c60f3</string>
+	<string>1:738486221187:ios:4d9c5071aad775d79f9eb6</string>
 </dict>
 </plist>
