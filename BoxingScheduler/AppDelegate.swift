@@ -7,6 +7,7 @@
 
 import UIKit
 import BackgroundTasks
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.emilykcorso.fetchScheduleData", using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
         }
+        FirebaseApp.configure()
         return true
     }
     

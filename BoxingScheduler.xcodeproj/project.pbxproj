@@ -31,6 +31,7 @@
 		FCE65FD627A3A30500A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
 		FCE65FD727A3A32E00A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
 		FCE65FD827A3A32F00A9A675 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCE65FD527A3A30500A9A675 /* GoogleService-Info.plist */; };
+		FCE65FDB27A3A58700A9A675 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FCE65FDA27A3A58700A9A675 /* FirebaseMessaging */; };
 		FCF914522756F68700717347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914512756F68700717347 /* AppDelegate.swift */; };
 		FCF914542756F68700717347 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF914532756F68700717347 /* SceneDelegate.swift */; };
 		FCF914592756F68700717347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF914572756F68700717347 /* Main.storyboard */; };
@@ -104,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCE65FDB27A3A58700A9A675 /* FirebaseMessaging in Frameworks */,
 				FC853E6C2793B490007680A9 /* PureLayout in Frameworks */,
 				FCD56B622759A55B00DBE45B /* SwiftSoup in Frameworks */,
 			);
@@ -259,6 +261,7 @@
 			packageProductDependencies = (
 				FCD56B612759A55B00DBE45B /* SwiftSoup */,
 				FC853E6B2793B490007680A9 /* PureLayout */,
+				FCE65FDA27A3A58700A9A675 /* FirebaseMessaging */,
 			);
 			productName = BoxingScheduler;
 			productReference = FCF9144E2756F68700717347 /* BoxingScheduler.app */;
@@ -334,6 +337,7 @@
 			packageReferences = (
 				FCD56B602759A55B00DBE45B /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				FC853E6A2793B490007680A9 /* XCRemoteSwiftPackageReference "PureLayout" */,
+				FCE65FD927A3A58700A9A675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = FCF9144F2756F68700717347 /* Products */;
 			projectDirPath = "";
@@ -755,6 +759,14 @@
 				minimumVersion = 2.3.3;
 			};
 		};
+		FCE65FD927A3A58700A9A675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -767,6 +779,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FCD56B602759A55B00DBE45B /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		FCE65FDA27A3A58700A9A675 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FCE65FD927A3A58700A9A675 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
