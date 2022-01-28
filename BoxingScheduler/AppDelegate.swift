@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
         }
         FirebaseApp.configure()
+        UIApplication.shared.registerForRemoteNotifications()
         return true
     }
     
@@ -34,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      let token = deviceToken.reduce("") { $0 + String(format: "%02.2hhx", $1) }
+      print("registered for notifications", token)
     }
     
     func handleAppRefreshTask(task: BGAppRefreshTask) {
