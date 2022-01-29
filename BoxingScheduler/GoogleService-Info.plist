@@ -2,12 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string></string>
 	<key>CLIENT_ID</key>
-	<string>738486221187-36p0lcp23b72ssrobp7o26nb4aerjb5o.apps.googleusercontent.com</string>
+	<string>738486221187-e7djeoc639669202097mkl41q6led68g.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.738486221187-36p0lcp23b72ssrobp7o26nb4aerjb5o</string>
+	<string>com.googleusercontent.apps.738486221187-e7djeoc639669202097mkl41q6led68g</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBRJkhTyBduPNMKqsD47TVlFnQF0kphvVc</string>
 	<key>GCM_SENDER_ID</key>
@@ -21,16 +19,16 @@
 	<key>STORAGE_BUCKET</key>
 	<string>boxing-scheduler.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:738486221187:ios:4d9c5071aad775d79f9eb6</string>
+	<string>1:738486221187:ios:b069370e41c8a11d9f9eb6</string>
 </dict>
 </plist>
