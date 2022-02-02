@@ -185,7 +185,6 @@ class ScheduleViewController: UITableViewController {
     
     func registerForNotifications() {
         NotificationCenter.default.addObserver(forName: .newScheduleData, object: nil, queue: nil) { (notification) in
-            print("Notification received")
             if let userInfo = notification.userInfo, let schedule = userInfo["schedule"] as? [ClassDate] {
                 self.populateDateListFromNotification(schedule)
             }
