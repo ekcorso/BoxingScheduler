@@ -143,6 +143,8 @@ class ScheduleViewController: UITableViewController {
             // Check that dateList doesn't already contain these dates. If it doesn't, add them.
             self.dateList += dates.filter() { !self.dateList.contains($0) }
             DispatchQueue.main.async {
+                // Print the dateList to check for fakeAvailableClass
+//                print(dateList.first?.classes[0].date.toString(format: DateHandler.dateOutputFormat))
                 self.tableView.reloadData()
             }
         }

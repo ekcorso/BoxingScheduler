@@ -68,6 +68,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
         }
         
+        /*
+        let watchedClasses = WatchedClasses()
+        watchedClasses.getAllClasses() { allClassList in
+            var nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList).sorted()
+            
+            //Insert test class into the data
+            let fakeAvailableClass = allClassList[0]
+            fakeAvailableClass.spotsAvailable = 5
+            nowAvailableClasses.append(fakeAvailableClass)
+            
+            if nowAvailableClasses.isEmpty == false {
+                NotificationCenter.default.post(name: .newAvailableClasses, object: self, userInfo: ["availableClasses": nowAvailableClasses])
+            }
+        }
+        */
+        
         print("Received remote notification!")
     }
     
