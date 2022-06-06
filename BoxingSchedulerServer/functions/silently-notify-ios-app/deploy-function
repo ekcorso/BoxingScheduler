@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")"
+
+name="${PWD##*/}"
+
+gcloud functions deploy "$name" \
+  --entry-point 'main' \
+  --runtime 'python310' \
+  --set-secrets \
+  FIREBASE_CLOUD_MANAGER_SERVER_KEY=FIREBASE_CLOUD_MANAGER_SERVER_KEY:latest,FIREBASE_CLOUD_MANAGER_TOKEN=FIREBASE_CLOUD_MANAGER_TOKEN:latest \
+  --trigger-topic 'cron-topic'
