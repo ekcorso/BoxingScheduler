@@ -5,7 +5,7 @@ set -e
 job_name="${PWD##*/}"
 topic_name='cron-topic'
 
-# Create topic
+# Upsert topic
 
 set +e
 stdout=$(
@@ -18,7 +18,7 @@ if [[ $exit_code -ne 0 && ! ${stdout} =~ 'already exists' ]]; then
   exit 1
 fi
 
-# Create Google Cloud Scheduler job
+# Upsert Google Cloud Scheduler job
 
 set +e
 stdout=$(
@@ -44,7 +44,7 @@ elif [[ $exit_code -ne 0 ]]; then
   exit 1
 fi
 
-# Create secrets
+# Upsert secrets
 
 echo -n "$FIREBASE_CLOUD_MANAGER_SERVER_KEY" | gcloud secrets versions add FIREBASE_CLOUD_MANAGER_SERVER_KEY --data-file=-
 echo -n "$FIREBASE_CLOUD_MANAGER_TOKEN" | gcloud secrets versions add FIREBASE_CLOUD_MANAGER_TOKEN --data-file=-

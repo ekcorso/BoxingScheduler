@@ -26,13 +26,22 @@ python main.py
 
 ## Deploy
 
+### Upsert schedule changes
+
 ```zsh
 ./deploy-setup
+```
+
+### Upsert function source code changes
+
+```zsh
 ./deploy-function
 ```
 
-To force the remote function to run, to verify the deployment before its next
-scheduled run:
+### Testing
+
+To verify the deployment before its next scheduled run, you may want to force
+the remote function to run. You should see an `OK` response.
 
 ```zsh
 (export name="${PWD##*/}"; gcloud functions call "$name" --data='{}')
