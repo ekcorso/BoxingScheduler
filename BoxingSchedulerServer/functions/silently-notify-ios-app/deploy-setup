@@ -8,19 +8,20 @@ topic_name='cron-topic'
 # Create topic
 
 set +e
-error=$(
+stdout=$(
   gcloud pubsub topics create $topic_name 2>&1
 )
+exit_code=$?
 set -e
-if [[ -n $error && ! ${error} =~ 'already exists' ]]; then
-  echo >&2 "$error"
+if [[ $exit_code -ne 0 && ! ${stdout} =~ 'already exists' ]]; then
+  echo >&2 "$stdout"
   exit 1
 fi
 
 # Create Google Cloud Scheduler job
 
 set +e
-error=$(
+stdout=$(
   gcloud scheduler jobs create pubsub "$job_name" \
     --location=us-west1 \
     --message-body 'Message body to appease Google Cloud' \
@@ -28,8 +29,9 @@ error=$(
     --time-zone='America/Los_Angeles' \
     --topic "$topic_name" 2>&1
 )
+exit_code=$?
 set -e
-if [[ ${error} =~ 'already exists' ]]; then
+if [[ $exit_code -ne 0 && ${stdout} =~ 'already exists' ]]; then
   # TODO: DRY above create with update/upsert
   gcloud scheduler jobs update pubsub "$job_name" \
     --location=us-west1 \
@@ -37,8 +39,8 @@ if [[ ${error} =~ 'already exists' ]]; then
     --schedule '0 * * * *' \
     --time-zone='America/Los_Angeles' \
     --topic "$topic_name"
-elif [[ -n $error ]]; then
-  echo >&2 "$error"
+elif [[ $exit_code -ne 0 ]]; then
+  echo >&2 "$stdout"
   exit 1
 fi
 
