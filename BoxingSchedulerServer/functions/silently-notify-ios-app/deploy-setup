@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+set -e
+
+job_name="${PWD##*/}"
+topic_name='cron-topic'
+
+# Upsert topic
+
+set +e
+stdout=$(
+  gcloud pubsub topics create $topic_name 2>&1
+)
+exit_code=$?
+set -e
+if [[ $exit_code -ne 0 && ! ${stdout} =~ 'already exists' ]]; then
+  echo >&2 "$stdout"
+  exit 1
+fi
+
+# Upsert Google Cloud Scheduler job
+
+set +e
+stdout=$(
+  gcloud scheduler jobs create pubsub "$job_name" \
+    --location=us-west1 \
+    --message-body 'Message body to appease Google Cloud' \
+    --schedule '0 * * * *' \
+    --time-zone='America/Los_Angeles' \
+    --topic "$topic_name" 2>&1
+)
+exit_code=$?
+set -e
+if [[ $exit_code -ne 0 && ${stdout} =~ 'already exists' ]]; then
+  # TODO: DRY above create with update/upsert
+  gcloud scheduler jobs update pubsub "$job_name" \
+    --location=us-west1 \
+    --message-body 'Message body to appease Google Cloud' \
+    --schedule '0 * * * *' \
+    --time-zone='America/Los_Angeles' \
+    --topic "$topic_name"
+elif [[ $exit_code -ne 0 ]]; then
+  echo >&2 "$stdout"
+  exit 1
+fi
+
+# Upsert secrets
+
+echo -n "$FIREBASE_CLOUD_MANAGER_SERVER_KEY" | gcloud secrets versions add FIREBASE_CLOUD_MANAGER_SERVER_KEY --data-file=-
+echo -n "$FIREBASE_CLOUD_MANAGER_TOKEN" | gcloud secrets versions add FIREBASE_CLOUD_MANAGER_TOKEN --data-file=-
