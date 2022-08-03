@@ -26,10 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
           UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
             
+            /* Ideally the badge count would be taken from the push notification's apns value (set server side),
+            but since I don't have a backend this will have to do */
             getAvailableClassCount() { availableClassCount in
-                print("Available Class Count: \(availableClassCount)")
                 DispatchQueue.main.async {
-                    UIApplication.shared.applicationIconBadgeNumber = availableClassCount ?? -1
+                    UIApplication.shared.applicationIconBadgeNumber = availableClassCount
                 }
             }
             
@@ -132,7 +133,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         watchedClasses.getAllClasses() { allClassList in
             let nowAvailableClassCount = watchedClasses.getNowAvailableClasses(from: allClassList).count
             
+            if nowAvailableClassCount >= 1 {
             completion(nowAvailableClassCount)
+            } else {
+                // Passing in -1 removes the app badge
+                completion(-1)
+            }
         }
     }
 }
