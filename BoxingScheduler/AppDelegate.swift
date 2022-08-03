@@ -13,7 +13,6 @@ import FirebaseMessaging
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.emilykcorso.fetchScheduleData", using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
@@ -26,6 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
           let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
           UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: { _, _ in })
+            
+            /* Ideally the badge count would be taken from the push notification's apns value (set server side),
+            but since I don't have a backend this will have to do */
+            getAvailableClassCount() { availableClassCount in
+                DispatchQueue.main.async {
+                    UIApplication.shared.applicationIconBadgeNumber = availableClassCount
+                }
+            }
+            
         } else {
           let settings: UIUserNotificationSettings =
             UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -119,6 +127,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("Unable to submit task: \(error.localizedDescription)")
         }
     }
+    
+    func getAvailableClassCount(_ completion: @escaping (Int) -> Void) {
+        let watchedClasses = WatchedClasses()
+        watchedClasses.getAllClasses() { allClassList in
+            let nowAvailableClassCount = watchedClasses.getNowAvailableClasses(from: allClassList).count
+            
+            if nowAvailableClassCount >= 1 {
+            completion(nowAvailableClassCount)
+            } else {
+                // Passing in -1 removes the app badge
+                completion(-1)
+            }
+        }
+    }
 }
 
 extension AppDelegate: MessagingDelegate {
@@ -127,4 +149,3 @@ extension AppDelegate: MessagingDelegate {
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: tokenDict)
     }
 }
-
