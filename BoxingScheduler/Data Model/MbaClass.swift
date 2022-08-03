@@ -64,6 +64,8 @@ class MbaClass: NSObject, NSCoding {
             return "06:30"
         case ClassType.footworkFundamentalsMondays.rawValue:
             return "17:00"
+        case ClassType.advancedFootwork.rawValue:
+            return "6:15pm"
         case ClassType.lunchTimeBoxingPowerHourTuesdays.rawValue:
             return "12:00"
         case ClassType.cardioBoxingTuesdays5.rawValue:
