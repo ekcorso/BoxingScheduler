@@ -10,7 +10,8 @@ import Foundation
 enum ClassType: String {
     //give raw values that are strings for the class names, then create an getStartTime() func that switches over these are returns a time for each (time should be formatted with the dateFormatter eventually, but could be a string to start)
     case morningBodyBlastMondays = "Morning Body Blast Mondays (With Permission Only)"
-    case footworkFundamentalsMondays = "Footwork FUNdamentals Mondays (With Permission Only)"
+    case footworkFundamentalsMondays = "Footwork FUNdamentals"
+    case advancedFootwork = "Advanced Footwork (With Permission Only)"
     case lunchTimeBoxingPowerHourTuesdays = "Lunch-Time Boxing Power Hour Tuesdays"
     case cardioBoxingTuesdays5 = "Cardio Boxing Tuesdays (5pm)"
     case cardioBoxingTuesdays615 = "Cardio Boxing Tuesdays (6:15pm)"
