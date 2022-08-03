@@ -159,7 +159,7 @@ class ScheduleViewController: UITableViewController {
     
     @objc func startEditing() {
         tableView.isEditing.toggle()
-        self.editButtonItem.title = "Done"
+        self.editButtonItem.title = tableView.isEditing ? "Done" : "Select"
         print("Editing enabled")
     }
     
