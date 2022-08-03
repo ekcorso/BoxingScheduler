@@ -91,7 +91,7 @@ class ScheduleViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
+        if mbaClass.spotsAvailable == 0 { //&& !selectedClasses.contains(where: { $0 == mbaClass }) {
             return true
         } else {
             return false
@@ -100,7 +100,7 @@ class ScheduleViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
+        if mbaClass.spotsAvailable == 0 {
             return indexPath
         } else {
             // disable selection for rows that shouldn't be selectable
