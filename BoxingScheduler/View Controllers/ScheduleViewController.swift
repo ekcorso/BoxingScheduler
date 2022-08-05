@@ -46,6 +46,16 @@ class ScheduleViewController: UITableViewController {
             print("No saved classes retreived")
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        do {
+            try DataStorage().save(selectedClasses)
+        } catch {
+            print("Saving classList failed in ScheduleViewController")
+        }
+    }
 
     // MARK: - Table view data source
 
