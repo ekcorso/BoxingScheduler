@@ -77,7 +77,8 @@ class ScheduleViewController: UITableViewController {
         }
 
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        cell.setCellText(mbaClass: mbaClass)
+        let classIsSelected = selectedClasses.contains(mbaClass)
+        cell.configureForClass(mbaClass, classIsSelected)
         
         return cell
     }
@@ -97,6 +98,17 @@ class ScheduleViewController: UITableViewController {
                 self.editButtonItem.action = #selector(submitSelections)
             }
         }
+        
+        
+        
+//        if let selections = DataStorage().retrieve() {
+//            if selections != self.selectedClasses {
+//                self.editButtonItem.title = "Submit"
+//                self.editButtonItem.action = #selector(submitSelections)
+//            }
+//        }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -134,13 +146,13 @@ class ScheduleViewController: UITableViewController {
     
     func configureNavBarButtons() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showSettings))
-        self.navigationItem.rightBarButtonItem = editButtonItem
-        if tableView.isEditing == true {
-            editButtonItem.action = #selector(submitSelections)
-        } else {
-            editButtonItem.action = #selector(startEditing)
-            editButtonItem.title = "Select"
-        }
+//        self.navigationItem.rightBarButtonItem = editButtonItem
+//        if tableView.isEditing == true {
+//            editButtonItem.action = #selector(submitSelections)
+//        } else {
+//            editButtonItem.action = #selector(startEditing)
+//            editButtonItem.title = "Select"
+//        }
     }
     
     @objc func showSettings() {
