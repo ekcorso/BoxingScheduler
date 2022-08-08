@@ -18,8 +18,19 @@ class MbaClassTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setCellText(mbaClass: MbaClass) {
+    func configureForClass(_ mbaClass: MbaClass, _ classIsSelected: Bool) {
         textLabel?.text = "\(mbaClass.name)"
         detailTextLabel?.text = "Spots available: \(mbaClass.spotsAvailable)"
+        
+        if mbaClass.spotsAvailable != 0 {
+            backgroundColor = .lightGray
+        } else {
+            if classIsSelected {
+                backgroundColor = .purple
+            } else {
+                backgroundColor = .white
+            }
+        }
+        
     }
 }

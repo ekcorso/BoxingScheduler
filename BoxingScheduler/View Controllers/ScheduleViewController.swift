@@ -23,8 +23,8 @@ class ScheduleViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Schedule"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
-        tableView.allowsMultipleSelectionDuringEditing = true
-        tableView.allowsSelection = false
+//        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.allowsMultipleSelection = true
         
         populateDateList()
         registerForNotifications()
@@ -87,17 +87,28 @@ class ScheduleViewController: UITableViewController {
 //        let detailVC = ClassDetailViewController()
 //        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
 //        navigationController?.pushViewController(detailVC, animated: true)
-        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        if mbaClass.spotsAvailable == 0 && !selectedClasses.contains(where: { $0 == mbaClass }) {
-            selectedClasses.append(mbaClass)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MbaClassTableViewCell.identifier, for: indexPath) as? MbaClassTableViewCell else {
+           return
         }
         
-        if let selections = DataStorage().retrieve() {
-            if selections != self.selectedClasses {
-                self.editButtonItem.title = "Submit"
-                self.editButtonItem.action = #selector(submitSelections)
+        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+        let classIsSelected = selectedClasses.contains(mbaClass)
+        
+        if mbaClass.spotsAvailable == 0 {
+            if !classIsSelected {
+                selectedClasses.append(mbaClass)
+            } else {
+                selectedClasses.remove(at: selectedClasses.firstIndex(of: mbaClass)!)
+            }
+        } else {
+            if !classIsSelected {
+                // This should be un-reachable
+            } else {
+                // Remove from selections
+                selectedClasses.remove(at: selectedClasses.firstIndex(of: mbaClass)!)
             }
         }
+        self.tableView.reloadData()
         
         
         
@@ -111,21 +122,23 @@ class ScheduleViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        if mbaClass.spotsAvailable == 0 { //&& !selectedClasses.contains(where: { $0 == mbaClass }) {
-            return true
-        } else {
-            return false
-        }
-    }
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+//        if mbaClass.spotsAvailable == 0 { //&& !selectedClasses.contains(where: { $0 == mbaClass }) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-        if mbaClass.spotsAvailable == 0 {
+        let classIsAlreadySelected = selectedClasses.contains(mbaClass)
+        
+        // Select classes with 0 spots available to watch, or deselect classes that are already being watched regardless of spots available
+        if mbaClass.spotsAvailable == 0 || classIsAlreadySelected {
             return indexPath
         } else {
-            // disable selection for rows that shouldn't be selectable
             return nil
         }
     }
