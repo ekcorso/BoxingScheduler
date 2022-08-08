@@ -14,7 +14,10 @@ class ScheduleViewController: UITableViewController {
             dateList = dateList.sorted()
             // TODO: Remove line below when done testing.
             // This line inserts a random item at the top of the list so it's easy to tell if the list is updating.
-            dateList.insert(dateList.randomElement()!, at: 0)
+//            let randomDate = dateList.randomElement()!
+//            let mbaClass = randomDate.classes[0]
+//            mbaClass.spotsAvailable = 0
+//            dateList.insert(randomDate, at: 0)
         }
     }
     var selectedClasses = [MbaClass]()
@@ -23,7 +26,6 @@ class ScheduleViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationItem.title = "Schedule"
         tableView.register(MbaClassTableViewCell.self, forCellReuseIdentifier: MbaClassTableViewCell.identifier)
-//        tableView.allowsMultipleSelectionDuringEditing = true
         tableView.allowsMultipleSelection = true
         
         populateDateList()
@@ -109,27 +111,7 @@ class ScheduleViewController: UITableViewController {
             }
         }
         self.tableView.reloadData()
-        
-        
-        
-//        if let selections = DataStorage().retrieve() {
-//            if selections != self.selectedClasses {
-//                self.editButtonItem.title = "Submit"
-//                self.editButtonItem.action = #selector(submitSelections)
-//            }
-//        }
-        
-        
     }
-    
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-//        if mbaClass.spotsAvailable == 0 { //&& !selectedClasses.contains(where: { $0 == mbaClass }) {
-//            return true
-//        } else {
-//            return false
-//        }
-//    }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let mbaClass = dateList[indexPath.section].classes[indexPath.row]
@@ -159,13 +141,6 @@ class ScheduleViewController: UITableViewController {
     
     func configureNavBarButtons() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(showSettings))
-//        self.navigationItem.rightBarButtonItem = editButtonItem
-//        if tableView.isEditing == true {
-//            editButtonItem.action = #selector(submitSelections)
-//        } else {
-//            editButtonItem.action = #selector(startEditing)
-//            editButtonItem.title = "Select"
-//        }
     }
     
     @objc func showSettings() {
@@ -190,34 +165,6 @@ class ScheduleViewController: UITableViewController {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-    }
-    
-    @objc func startEditing() {
-        tableView.isEditing.toggle()
-        self.editButtonItem.title = tableView.isEditing ? "Done" : "Select"
-        print("Editing enabled")
-    }
-    
-    @objc func submitSelections() {
-        tableView.isEditing.toggle()
-        self.editButtonItem.action = #selector(startEditing)
-        self.editButtonItem.title = "Select"
-        
-        do {
-            try DataStorage().save(selectedClasses)
-        } catch {
-            print("Saving classList failed in ScheduleViewController")
-        }
-        
-        let ac = UIAlertController(title: "Class Selections Submitted", message: "You can view/ edit your selections in the Watched Classes tab", preferredStyle: .alert)
-        let seeWatchedClasses = UIAlertAction(title: "See Watched Classes", style: .default) { _ in
-            // Navigate to the watchedClasses tab
-            self.tabBarController?.selectedIndex = 1
-        }
-        let done = UIAlertAction(title: "Done", style: .default)
-        ac.addAction(seeWatchedClasses)
-        ac.addAction(done)
-        navigationController?.present(ac, animated: true)
     }
     
     func registerForNotifications() {
