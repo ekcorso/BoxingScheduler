@@ -23,7 +23,7 @@ class WatchedClasses {
         
     init() {
         self.current = DataStorage().retrieve() ?? []
-        removePastClassesFromCurrent()
+        removePastClassesfromCurrent()
     }
     
     func addNewSelections(_ selections: [MbaClass]) {
@@ -38,25 +38,6 @@ class WatchedClasses {
             }
         } else {
             current = selections
-        }
-    }
-    
-    //Removes classes whose dates have passed from the current array
-    func removeSelections(_ selections: [MbaClass]) {
-        if let currentSelections = self.current {
-            var filtered = currentSelections
-            for item in selections {
-                if let index = filtered.firstIndex(of: item) {
-                    filtered.remove(at: index)
-                }
-            }
-            current = Array(Set(filtered))
-            
-            do {
-                try DataStorage().save(filtered)
-            } catch {
-                print("Saving failed")
-            }
         }
     }
     
@@ -99,18 +80,16 @@ class WatchedClasses {
         
         return orderedArray
     }
-    
-    private func removePastClassesFromCurrent() {
-            guard let currentClasses = self.current else {
-                return
-            }
-            
-            let now = Date()
-            
-            // Initialize past selections array by filtering the current watched classes for dates that have passed
-            let past = currentClasses.filter() { $0.date < now }
-            // removeSelections is commented out to keep from removing past classes so they can be potentially be used for testing
-            removeSelections(past)
+        
+    private func removePastClassesfromCurrent() {
+        guard let watched = self.current else {
+            return
+        }
+        
+        let now = Date()
+        
+        let upcomingClasses = watched.filter() { $0.date >= now }
+        self.current = upcomingClasses
     }
 }
 
