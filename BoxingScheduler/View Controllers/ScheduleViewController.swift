@@ -51,12 +51,6 @@ class ScheduleViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        do {
-            try DataStorage().save(selectedClasses)
-        } catch {
-            print("Saving classList failed in ScheduleViewController")
-        }
     }
 
     // MARK: - Table view data source
@@ -110,6 +104,8 @@ class ScheduleViewController: UITableViewController {
                 selectedClasses.remove(at: selectedClasses.firstIndex(of: mbaClass)!)
             }
         }
+        
+        saveSelections()
         self.tableView.reloadData()
     }
     
@@ -172,6 +168,14 @@ class ScheduleViewController: UITableViewController {
             if let userInfo = notification.userInfo, let schedule = userInfo["schedule"] as? [ClassDate] {
                 self.populateDateListFromNotification(schedule)
             }
+        }
+    }
+    
+    func saveSelections() {
+        do {
+            try DataStorage().save(selectedClasses)
+        } catch {
+            print("Saving classList failed in ScheduleViewController")
         }
     }
 }
