@@ -146,6 +146,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let tokenDict = ["token": fcmToken ?? ""]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: tokenDict)
+        NotificationCenter.default.post(name: .fcmToken, object: nil, userInfo: tokenDict)
     }
 }

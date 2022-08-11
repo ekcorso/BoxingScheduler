@@ -56,8 +56,3 @@ extension FileManager {
         return paths[0]
     }
 }
-
-extension Notification.Name {
-    static let newScheduleData = Notification.Name("com.emilykcorso.fetchScheduleData")
-    static let newAvailableClasses = Notification.Name("com.emilykcorso.fetchAvailableClasses")
-}
