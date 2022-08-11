@@ -8,7 +8,7 @@
 import Foundation
 
 class WatchedClasses {
-    var current: [MbaClass]? {
+    private var current: [MbaClass]? {
         didSet {
             // Re-save the current list anytime it is updated (for instance by the methods that remove past/ available classes as those arrays are computed
             if let current = current {
@@ -80,7 +80,17 @@ class WatchedClasses {
         
         return orderedArray
     }
-        
+    
+    func getCurrentWatched(completion: ([MbaClass]) -> ()) {
+//        removePastClassesfromCurrent()
+//        updateCurrentSpotsAvailable()
+        completion(self.current ?? []) // This completion will return between updateCurrentSpotsAvailable is finished
+    }
+    
+    func setCurrentWatched(_ newCurrent: [MbaClass]) {
+        self.current = newCurrent
+    }
+    
     private func removePastClassesfromCurrent() {
         guard let watched = self.current else {
             return

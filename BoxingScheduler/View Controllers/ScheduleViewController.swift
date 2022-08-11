@@ -172,10 +172,12 @@ class ScheduleViewController: UITableViewController {
     }
     
     func saveSelections() {
-        do {
-            try DataStorage().save(selectedClasses)
-        } catch {
-            print("Saving classList failed in ScheduleViewController")
-        }
+//        do {
+//            try DataStorage().save(selectedClasses)
+//        } catch {
+//            print("Saving classList failed in ScheduleViewController")
+//        }
+        print("Saving \(selectedClasses.count) classes")
+        WatchedClasses().setCurrentWatched(selectedClasses)
     }
 }

@@ -12,10 +12,9 @@ class WatchedClassesViewController: UITableViewController {
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
-                WatchedClasses().current = selectedClasses.sorted()
-            } else {
-                WatchedClasses().current = []
-            }
+//                WatchedClasses().current = selectedClasses.sorted()
+//                WatchedClasses().setCurrentWatched(selectedClasses.sorted())
+            } 
         }
     }
     
@@ -35,7 +34,12 @@ class WatchedClassesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        populateSelectedClasses()
+        populateSelectedClasses() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
         configureRefreshControl()
         
         if selectedClasses != nil && selectedClasses?.isEmpty == false {
@@ -96,19 +100,27 @@ class WatchedClassesViewController: UITableViewController {
     }
     
     @objc func refreshWatchedClasses() {
-        populateSelectedClasses()
-        tableView.reloadData()
-        DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
+        populateSelectedClasses() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
     
-    func populateSelectedClasses() {
-        if let currentClasses = DataStorage().retrieve() {
-            selectedClasses = currentClasses.sorted()
-            tableView.reloadData()
-        } else {
-            print("No selectedClasses saved")
+    func populateSelectedClasses(completion: () -> ()) {
+//        if let currentClasses = DataStorage().retrieve() {
+//            // remove past classes here
+//            selectedClasses = currentClasses.sorted()
+//            tableView.reloadData()
+//        } else {
+//            print("No selectedClasses saved")
+//        }
+        
+        WatchedClasses().getCurrentWatched() { watchedClasses in
+            selectedClasses = watchedClasses.sorted()
+            print("Count is: \(watchedClasses.count)")
+            completion()
         }
     }
     
