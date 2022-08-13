@@ -81,10 +81,19 @@ class WatchedClasses {
         return orderedArray
     }
     
-    func getCurrentWatched(completion: ([MbaClass]) -> ()) {
-//        removePastClassesfromCurrent()
-//        updateCurrentSpotsAvailable()
-        completion(self.current ?? []) // This completion will return between updateCurrentSpotsAvailable is finished
+    func getCurrentWatched(completion: @escaping ([MbaClass]) -> ()) {
+        removePastClassesfromCurrent()
+        guard let watched = self.current else {
+            return
+        }
+                
+        getAllClasses() { allClasses in // allClasses supposedly has a count of about 15, but that's probably not all of the classes. How do I get the other pages?
+            
+            let updatedList = allClasses.filter() { watched.contains($0) }
+            
+            let currentWatched = Array(Set(updatedList)) // Why is there duplication without this?
+            completion(currentWatched)
+        }
     }
     
     func setCurrentWatched(_ newCurrent: [MbaClass]) {

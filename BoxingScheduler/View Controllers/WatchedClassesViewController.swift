@@ -108,17 +108,9 @@ class WatchedClassesViewController: UITableViewController {
         }
     }
     
-    func populateSelectedClasses(completion: () -> ()) {
-//        if let currentClasses = DataStorage().retrieve() {
-//            // remove past classes here
-//            selectedClasses = currentClasses.sorted()
-//            tableView.reloadData()
-//        } else {
-//            print("No selectedClasses saved")
-//        }
-        
+    func populateSelectedClasses(completion: @escaping () -> ()) {
         WatchedClasses().getCurrentWatched() { watchedClasses in
-            selectedClasses = watchedClasses.sorted()
+            self.selectedClasses = watchedClasses.sorted()
             print("Count is: \(watchedClasses.count)")
             completion()
         }
