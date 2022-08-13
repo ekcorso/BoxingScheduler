@@ -26,21 +26,6 @@ class WatchedClasses {
         removePastClassesfromCurrent()
     }
     
-    func addNewSelections(_ selections: [MbaClass]) {
-        if var currentSelections = self.current {
-            let allSelections: [MbaClass] = currentSelections + selections
-            currentSelections = Array(Set(allSelections))
-            
-            do {
-                try DataStorage().save(currentSelections)
-            } catch {
-                print("Save failed")
-            }
-        } else {
-            current = selections
-        }
-    }
-    
     //This func updates the class's allClassesFromAPI property when it is called in the initializer
     func getAllClasses(completion: @escaping ([MbaClass]) -> ()) {
         var dateList = [ClassDate]()

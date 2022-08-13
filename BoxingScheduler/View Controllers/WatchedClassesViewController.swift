@@ -12,8 +12,7 @@ class WatchedClassesViewController: UITableViewController {
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
-//                WatchedClasses().current = selectedClasses.sorted()
-//                WatchedClasses().setCurrentWatched(selectedClasses.sorted())
+                WatchedClasses().setCurrentWatched(selectedClasses.sorted())
             } 
         }
     }
@@ -87,7 +86,6 @@ class WatchedClassesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let classToDelete = selectedClasses?[indexPath.row]
-//            WatchedClasses().removeSelections([selectedClasses![indexPath.row]])
             selectedClasses?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -113,7 +111,6 @@ class WatchedClassesViewController: UITableViewController {
     func populateSelectedClasses(completion: @escaping () -> ()) {
         WatchedClasses().getCurrentWatched() { watchedClasses in
             self.selectedClasses = watchedClasses.sorted()
-            print("Count is: \(watchedClasses.count)")
             completion()
         }
     }
