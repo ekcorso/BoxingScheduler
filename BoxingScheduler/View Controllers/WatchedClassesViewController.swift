@@ -76,8 +76,10 @@ class WatchedClassesViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        let mbaClass = selectedClasses![indexPath.row]
-        cell.setCellText(mbaClass: mbaClass)
+        if let selected = selectedClasses {
+            let mbaClass = selected[indexPath.row]
+            cell.setCellText(mbaClass: mbaClass)
+        }
         
         return cell
     }
