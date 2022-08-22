@@ -28,11 +28,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             /* Ideally the badge count would be taken from the push notification's apns value (set server side),
             but since I don't have a backend this will have to do */
-            getAvailableClassCount() { availableClassCount in
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                Task {
+                    let availableClassCount = await self.getAvailableClassCount()
                     UIApplication.shared.applicationIconBadgeNumber = availableClassCount
                 }
             }
+            
+            // TODO: Remove this call after testing the async/ await version above
+//            getAvailableClassCount() { availableClassCount in
+//                DispatchQueue.main.async {
+//                    UIApplication.shared.applicationIconBadgeNumber = availableClassCount
+//                }
+//            }
             
         } else {
           let settings: UIUserNotificationSettings =
@@ -72,9 +80,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        Networking.fetchScheduleData() { (schedule) in
+        Task {
+            let schedule = await Networking.fetchScheduleData()
             NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
         }
+        
+        // TODO: Remove this network call after testing the async/ await version above
+        //        Networking.fetchScheduleData() { (schedule) in
+        //            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+        //        }
+        
         
         /*
         let watchedClasses = WatchedClasses()
@@ -111,10 +126,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             Networking.urlSession.invalidateAndCancel()
         }
         
-        Networking.fetchScheduleData() { (schedule) in
-            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+        // TODO: Remove this network call after testing the async/ await version below
+//        Networking.fetchScheduleData() { (schedule) in
+//            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+//            task.setTaskCompleted(success: true)
+//        }
+        
+        Task {
+            let schedule = await Networking.fetchScheduleData()
+            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["scheudle": schedule])
             task.setTaskCompleted(success: true)
         }
+        
         scheduleBackgroundScheduleFetch()
     }
     
@@ -128,17 +151,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func getAvailableClassCount(_ completion: @escaping (Int) -> Void) {
-        let watchedClasses = WatchedClasses()
-        watchedClasses.getAllClasses() { allClassList in
-            let nowAvailableClassCount = watchedClasses.getNowAvailableClasses(from: allClassList).count
-            
-            if nowAvailableClassCount >= 1 {
-            completion(nowAvailableClassCount)
-            } else {
-                // Passing in -1 removes the app badge
-                completion(-1)
-            }
+    func getAvailableClassCount() async -> Int {
+        let allClassList = await WatchedClasses().getAllClasses()
+        let nowAvailableClassCount = WatchedClasses().getNowAvailableClasses(from: allClassList).count
+        
+        if nowAvailableClassCount >= 1 {
+            return nowAvailableClassCount
+        } else {
+            return -1
         }
     }
 }
