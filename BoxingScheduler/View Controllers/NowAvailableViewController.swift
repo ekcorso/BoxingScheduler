@@ -88,7 +88,7 @@ class NowAvailableViewController: UITableViewController {
         return cell
     }
     
-    func populateAvailableClasses() {
+    @objc func populateAvailableClasses() {
         let watchedClasses = WatchedClasses()
         watchedClasses.getAllClasses() { allClassList in
             let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
@@ -96,6 +96,7 @@ class NowAvailableViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             }
         }
     }
@@ -140,15 +141,7 @@ class NowAvailableViewController: UITableViewController {
     func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl!)
-        refreshControl?.addTarget(self, action: #selector(refreshNowAvailable), for: .valueChanged)
-    }
-    
-    @objc func refreshNowAvailable() {
-        populateAvailableClasses()
-//        tableView.reloadData()
-        DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
-        }
+        refreshControl?.addTarget(self, action: #selector(populateAvailableClasses), for: .valueChanged)
     }
     
     func setupEmptyBackgroundView() {

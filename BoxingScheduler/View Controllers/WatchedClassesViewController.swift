@@ -12,10 +12,8 @@ class WatchedClassesViewController: UITableViewController {
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
-                WatchedClasses().current = selectedClasses.sorted()
-            } else {
-                WatchedClasses().current = []
-            }
+                WatchedClasses().setCurrentWatched(selectedClasses.sorted())
+            } 
         }
     }
     
@@ -35,7 +33,12 @@ class WatchedClassesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        populateSelectedClasses()
+        populateSelectedClasses() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
         configureRefreshControl()
         
         if selectedClasses != nil && selectedClasses?.isEmpty == false {
@@ -72,8 +75,10 @@ class WatchedClassesViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        let mbaClass = selectedClasses![indexPath.row]
-        cell.setCellText(mbaClass: mbaClass)
+        if let selected = selectedClasses {
+            let mbaClass = selected[indexPath.row]
+            cell.setCellText(mbaClass: mbaClass)
+        }
         
         return cell
     }
@@ -81,7 +86,6 @@ class WatchedClassesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let classToDelete = selectedClasses?[indexPath.row]
-//            WatchedClasses().removeSelections([selectedClasses![indexPath.row]])
             selectedClasses?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
@@ -96,19 +100,18 @@ class WatchedClassesViewController: UITableViewController {
     }
     
     @objc func refreshWatchedClasses() {
-        populateSelectedClasses()
-        tableView.reloadData()
-        DispatchQueue.main.async {
-            self.refreshControl?.endRefreshing()
+        populateSelectedClasses() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            }
         }
     }
     
-    func populateSelectedClasses() {
-        if let currentClasses = DataStorage().retrieve() {
-            selectedClasses = currentClasses.sorted()
-            tableView.reloadData()
-        } else {
-            print("No selectedClasses saved")
+    func populateSelectedClasses(completion: @escaping () -> ()) {
+        WatchedClasses().getCurrentWatched() { watchedClasses in
+            self.selectedClasses = watchedClasses.sorted()
+            completion()
         }
     }
     
