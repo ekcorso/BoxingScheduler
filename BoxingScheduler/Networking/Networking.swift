@@ -19,39 +19,36 @@ class Networking {
         }
     }
     
-    static func fetchScheduleData(completion: @escaping ([ClassDate]) -> Void) {
+    static func fetchScheduleData() async -> [ClassDate] {
         guard let url = URL(string: "https://app.squarespacescheduling.com/schedule.php?action=showCalendar&fulldate=1&owner=19967298&template=class"), let payloadPage1 = "type=&calendar=&skip=true&options%5Boffset%5D=0&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage2 = "type=&calendar=&skip=true&options%5Boffset%5D=15&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage3 = "type=&calendar=&skip=true&options%5Boffset%5D=30&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8), let payloadPage4 = "type=&calendar=&skip=true&options%5Boffset%5D=45&options%5BnumDays%5D=5&ignoreAppointment=&appointmentType=&calendarID=".data(using: .utf8) else {
             print("One of the urls is incorrect")
-            return
+            // TODO: Throw error here instead
+            return []
         }
         
         let payloadArray = [payloadPage1, payloadPage2, payloadPage3, payloadPage4]
-        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "content-type")
+        var fullDateList = [ClassDate]()
+        
+        
         for payload in payloadArray {
             request.httpBody = payload
             
-            let dataTask = Networking.urlSession.dataTask(with: request) { (data, response, error) in
-                guard error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                guard let data = data else {
-                    print("Empty data")
-                    return
-                }
+            do {
+                let (data, _) = try await Networking.urlSession.data(for: request)
+                
                 if let str = String(data: data, encoding: .utf8) {
                     let htmlDoc = self.parseHtmlDoc(fromString: str)
-                    //This completion handler will be run 4 times because the dataTask gets created once for each item in the payloadArray
                     let dateList = self.buildDateList(from: htmlDoc!)
-                    completion(dateList)
+                    fullDateList += dateList
                 }
+            } catch {
+                print(error.localizedDescription)
             }
-            
-            dataTask.resume()
         }
+        return fullDateList
     }
 
     private static func parseHtmlDoc(fromString: String) -> Document? {

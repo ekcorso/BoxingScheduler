@@ -23,26 +23,20 @@ class WatchedClasses {
         
     init() {
         self.current = DataStorage().retrieve() ?? []
-        removePastClassesfromCurrent()
     }
     
-    //This func updates the class's allClassesFromAPI property when it is called in the initializer
-    func getAllClasses(completion: @escaping ([MbaClass]) -> ()) {
-        var dateList = [ClassDate]()
+    func getAllClasses() async -> [MbaClass] {
+        let dateList = await Networking.fetchScheduleData()
         var classList = [MbaClass]()
-        Networking.fetchScheduleData() { dates in
-            dateList += dates.filter() { !dateList.contains($0) }
-            
-            for date in dateList {
-                for mbaClass in date.classes {
-                    classList.append(mbaClass)
-                }
+        for date in dateList {
+            for mbaClass in date.classes {
+                classList.append(mbaClass)
             }
-            completion(classList)
         }
+        
+        return classList
     }
     
-    // This func sorts updates the currently watched classes' spotsAvailable property when spots open up then adds that class to the nowAvailable list and returns that list. Call this inside the completion handler for getAllClasses.
     func getNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
         guard let watched = self.current else {
             return [MbaClass]()
@@ -66,19 +60,15 @@ class WatchedClasses {
         return orderedArray
     }
     
-    func getCurrentWatched(completion: @escaping ([MbaClass]) -> ()) {
+    func getCurrentWatched() async -> [MbaClass] {
         removePastClassesfromCurrent()
         guard let watched = self.current else {
-            return
+            return []
         }
-                
-        getAllClasses() { allClasses in // allClasses supposedly has a count of about 15, but that's probably not all of the classes. How do I get the other pages?
-            
-            let updatedList = allClasses.filter() { watched.contains($0) }
-            
-            let currentWatched = Array(Set(updatedList)) // Why is there duplication without this?
-            completion(currentWatched)
-        }
+        
+        let classes = await getAllClasses()
+        let updatedClasses = classes.filter() { watched.contains($0) } // This updates the spotsAvailable with the most recent data
+        return updatedClasses
     }
     
     func setCurrentWatched(_ newCurrent: [MbaClass]) {

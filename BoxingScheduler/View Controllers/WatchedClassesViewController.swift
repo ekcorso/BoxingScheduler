@@ -13,7 +13,7 @@ class WatchedClassesViewController: UITableViewController {
         didSet {
             if let selectedClasses = selectedClasses {
                 WatchedClasses().setCurrentWatched(selectedClasses.sorted())
-            } 
+            }
         }
     }
     
@@ -85,9 +85,12 @@ class WatchedClassesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let classToDelete = selectedClasses?[indexPath.row]
-            selectedClasses?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if let selected = selectedClasses {
+//                let classToDelete = selected[indexPath.row]
+                selectedClasses!.remove(at: indexPath.row) // safe to force unwrap because we already unwrapped this in order to get here
+                WatchedClasses().setCurrentWatched(selected)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
@@ -109,8 +112,8 @@ class WatchedClassesViewController: UITableViewController {
     }
     
     func populateSelectedClasses(completion: @escaping () -> ()) {
-        WatchedClasses().getCurrentWatched() { watchedClasses in
-            self.selectedClasses = watchedClasses.sorted()
+        Task {
+            self.selectedClasses = await WatchedClasses().getCurrentWatched()
             completion()
         }
     }

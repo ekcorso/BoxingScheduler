@@ -90,10 +90,11 @@ class NowAvailableViewController: UITableViewController {
     
     @objc func populateAvailableClasses() {
         let watchedClasses = WatchedClasses()
-        watchedClasses.getAllClasses() { allClassList in
+        Task {
+            let allClassList = await watchedClasses.getAllClasses()
             let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
             self.availableClasses = nowAvailableClasses.sorted()
-            
+
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.refreshControl?.endRefreshing()

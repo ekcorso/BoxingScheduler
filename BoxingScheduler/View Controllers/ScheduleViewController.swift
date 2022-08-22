@@ -145,14 +145,11 @@ class ScheduleViewController: UITableViewController {
     }
     
     @objc func populateDateList() {
-        Networking.fetchScheduleData() { [self] dates in
-            // Check that dateList doesn't already contain these dates. If it doesn't, add them.
-            self.dateList += dates.filter() { !self.dateList.contains($0) }
-            DispatchQueue.main.async {
-                // Print the dateList to check for fakeAvailableClass
-//                print(dateList.first?.classes[0].date.toString(format: DateHandler.dateOutputFormat))
-                self.tableView.reloadData()
-            }
+        // TODO: Could this be making the loading slow?
+        Task { @MainActor in
+            let dates = await Networking.fetchScheduleData()
+            self.dateList += dates.filter() { !self.dateList.contains($0)}
+            self.tableView.reloadData()
         }
     }
     
