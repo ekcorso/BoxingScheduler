@@ -29,7 +29,8 @@ class NotificationHandler {
     
     func scheduleAvailableClassNotification() {
         let watchedClasses = WatchedClasses()
-        watchedClasses.getAllClasses() { allClasses in
+        Task {
+            let allClasses = await watchedClasses.getAllClasses()
             let availableClasses = watchedClasses.getNowAvailableClasses(from: allClasses)
             
             if !availableClasses.isEmpty {
@@ -43,7 +44,7 @@ class NotificationHandler {
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
                 
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-                center.add(request)
+                try? await center.add(request) // TODO: This needs testing
                 
                 print("Notification scheduled")
             } else {
