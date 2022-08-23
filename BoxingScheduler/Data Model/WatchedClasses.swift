@@ -68,7 +68,7 @@ class WatchedClasses {
         
         let classes = await getAllClasses()
         let updatedClasses = classes.filter() { watched.contains($0) } // This updates the spotsAvailable with the most recent data
-        return updatedClasses
+        return updatedClasses.sorted()
     }
     
     func setCurrentWatched(_ newCurrent: [MbaClass]) {
