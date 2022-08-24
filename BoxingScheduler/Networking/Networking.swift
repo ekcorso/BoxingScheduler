@@ -30,25 +30,46 @@ class Networking {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/x-www-form-urlencoded; charset=UTF-8", forHTTPHeaderField: "content-type")
-        var fullDateList = [ClassDate]()
+
+        let fullDateList = await Networking().loadAllPages(request, payloadArray)
+        return fullDateList ?? [ClassDate]() // Might be better to have this return an optional than an empty array
+    }
+    
+    private func loadSchedulePage(from request: URLRequest, with payload: Data) async -> [ClassDate]? {
+        var mutableRequest = request
+        mutableRequest.httpBody = payload
         
-        
-        for payload in payloadArray {
-            request.httpBody = payload
+        do {
+            let (data, _) = try await Networking.urlSession.data(for: mutableRequest)
             
-            do {
-                let (data, _) = try await Networking.urlSession.data(for: request)
+            if let str = String(data: data, encoding: .utf8) {
+                let htmlDoc = Networking.parseHtmlDoc(fromString: str)
+                let dateList = Networking.buildDateList(from: htmlDoc!)
                 
-                if let str = String(data: data, encoding: .utf8) {
-                    let htmlDoc = self.parseHtmlDoc(fromString: str)
-                    let dateList = self.buildDateList(from: htmlDoc!)
-                    fullDateList += dateList
-                }
-            } catch {
-                print(error.localizedDescription)
+                return dateList
+            } else {
+                return nil // String conversion failed
             }
+        } catch {
+            print("There was an error: \(error.localizedDescription)")
+            return nil
         }
-        return fullDateList
+    }
+    
+    private func loadAllPages(_ request: URLRequest, _ payloadArray: [Data]) async -> [ClassDate]? {
+        async let page1 = loadSchedulePage(from: request, with: payloadArray[0])
+        async let page2 = loadSchedulePage(from: request, with: payloadArray[1])
+        async let page3 = loadSchedulePage(from: request, with: payloadArray[2])
+        async let page4 = loadSchedulePage(from: request, with: payloadArray[3])
+        
+        do {
+            let scheduleData = try await [page1, page2, page3, page4] // Load the schedule data in parallel
+            let fullSchedule = scheduleData.compactMap() { $0 }.reduce([], +)
+            return fullSchedule
+        } catch {
+            print("There was an error: \(error.localizedDescription)")
+            return nil
+        }
     }
 
     private static func parseHtmlDoc(fromString: String) -> Document? {
