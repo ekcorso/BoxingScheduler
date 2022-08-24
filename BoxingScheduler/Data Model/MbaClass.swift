@@ -116,11 +116,6 @@ extension MbaClass {
 
 extension MbaClass: Comparable {
     static func < (lhs: MbaClass, rhs: MbaClass) -> Bool {
-        if lhs.date < rhs.date {
-            return true
-        } else if lhs.name < rhs.name {
-                return true
-            }
-        return false
-        }
-    } 
+        return lhs.date < rhs.date
+    }
+}
