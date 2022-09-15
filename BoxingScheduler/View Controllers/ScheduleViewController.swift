@@ -64,7 +64,9 @@ class ScheduleViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return dateList[section].exactDate!
+        let sectionTitle = dateList[section].exactDate!.toString(format: DateHandler.longOutputFormat)
+        return sectionTitle
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

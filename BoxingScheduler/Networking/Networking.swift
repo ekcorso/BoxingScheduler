@@ -94,16 +94,16 @@ class Networking {
         }
 
         for (index, item) in elements.enumerated() {
-            let date = ClassDate()
+            var date = ClassDate()
             do {
                 if item.hasClass("class-date-row") {
                     let exactDate = try item.select(".class-date-row").text()
-                    date.exactDate = exactDate
+                    date = ClassDate(date: exactDate, dateFormat: DateHandler.mdyDateInputFormat, classes: [])
                     dateArray.append(date)
                 } else if try! item.className().contains("class-row-xs") {
                     let name = try item.select(".class-name").text()
                     let spotsAvailable = try elements[index + 1].select(".class-spots").text()
-                    let date = dateArray.last?.exactDate ?? Date().toString(format: DateHandler.dateOutputFormat)
+                    let date = dateArray.last?.exactDate ?? Date() // I think this is breaking something
                     let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable, date: date)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)

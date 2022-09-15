@@ -21,6 +21,6 @@ class NowAvailableCell: UITableViewCell {
 
     func setCellText(mbaClass: MbaClass) {
         textLabel?.text = "\(mbaClass.name)"
-        detailTextLabel?.text = "\(mbaClass.date.toString(format: DateHandler.dateOutputFormat)) -- Spots: \(mbaClass.spotsAvailable)"
+        detailTextLabel?.text = "\(mbaClass.date.toString(format: DateHandler.shortOutputFormat)) -- Spots: \(mbaClass.spotsAvailable)"
     }
 }
