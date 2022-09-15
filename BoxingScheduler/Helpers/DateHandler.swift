@@ -9,7 +9,10 @@ import Foundation
 
 struct DateHandler {
     static let dateInputFormat = "MMM d, yyyy HH:mm"
-    static let dateOutputFormat = "MMM d h:mm a"
+    static let mdyDateInputFormat = "MMMM d, yyyy"
+    static let shortOutputFormat = "MMM d h:mm a"
+    static let longOutputFormat = "EEEE, MMM d, yyyy"
+    
     let formatter: DateFormatter
     
     init() {

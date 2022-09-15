@@ -31,8 +31,8 @@ extension String {
 }
 
 extension String {
-    func toDate() -> Date? {
-        DateHandler().formatter.date(from: self.extractDate())
+    func toDate(format: String) -> Date? {
+        DateHandler(format: format).formatter.date(from: self.extractDate())
     }
 }
 
