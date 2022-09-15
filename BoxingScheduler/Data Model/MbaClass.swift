@@ -14,12 +14,15 @@ class MbaClass: NSObject, NSCoding {
     var date: Date = Date()
     var time: String = ""
     
-    init(name: String, spotsAvailable: String, date: String) {
+    // Keeping this commented out code for now to clarify the source of date bugs
+//    init(name: String, spotsAvailable: String, date: String) {
+    init(name: String, spotsAvailable: String, date: Date) {
         super.init()
-        let fullDate = date + " \(getStartTime(for: name))"
+//        let fullDate = date + " \(getStartTime(for: name))"
         self.name = name
         self.spotsAvailable = getSpotsAsInt(from: spotsAvailable)
-        self.date = fullDate.toDate() ?? Date()
+//        self.date = fullDate.toDate() ?? Date()
+        self.date = date
     }
     
     required init?(coder: NSCoder) {
