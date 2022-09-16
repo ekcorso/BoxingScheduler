@@ -98,6 +98,21 @@ class WatchedClassesViewController: UITableViewController {
     
     // MARK: - Actions
     
+    private func createClassDatesFromClasses() -> [ClassDate] {
+        guard let selectedClasses = selectedClasses else {
+            return []
+        }
+        var classDateArray = [ClassDate]()
+        
+        let classesByDate = Dictionary(grouping: selectedClasses, by: { $0.date })
+        
+        for (key, value) in classesByDate {
+            classDateArray.append(ClassDate(date: key, classes: value))
+        }
+        
+        return classDateArray.sorted()
+    }
+    
     func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl!)
