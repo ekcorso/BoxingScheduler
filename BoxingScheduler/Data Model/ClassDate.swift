@@ -16,6 +16,11 @@ class ClassDate {
         self.classes = classes
     }
     
+    init(date: Date, classes: [MbaClass]) {
+        self.exactDate = date
+        self.classes = classes
+    }
+    
     init() {
         self.exactDate = nil
         self.classes = [MbaClass]()
