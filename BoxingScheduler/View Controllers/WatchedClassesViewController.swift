@@ -9,6 +9,7 @@ import UIKit
 import Combine
 
 class WatchedClassesViewController: UITableViewController {
+    // This is the actual date source
     var selectedClasses: [MbaClass]? {
         didSet {
             if let selectedClasses = selectedClasses {
@@ -16,6 +17,9 @@ class WatchedClassesViewController: UITableViewController {
             }
         }
     }
+    
+    // This creates sections in the data source
+    var classesByDate: [ClassDate]?
     
     private let image = UIImage(systemName: "eye")!.withRenderingMode(.alwaysTemplate)
     private let topMessage = "Watched Classes"
@@ -37,6 +41,7 @@ class WatchedClassesViewController: UITableViewController {
         
         populateSelectedClasses() {
             DispatchQueue.main.async {
+                self.classesByDate = self.createClassDatesFromClasses()
                 self.tableView.reloadData()
             }
         }
@@ -94,6 +99,12 @@ class WatchedClassesViewController: UITableViewController {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // don't implicitly unwrap here as the datasource may be nil the first time the tableView tries to render
+        let sectionTitle = classesByDate?[section].exactDate?.toString(format: DateHandler.longOutputFormat)
+        return sectionTitle
     }
     
     // MARK: - Actions
