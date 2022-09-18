@@ -56,16 +56,15 @@ class WatchedClassesViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // Ideally this would ahve multiple sections sorted by date as in the previous view
-        return 1
+        return classesByDate?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let selectedClasses = selectedClasses else {
+        guard let classesByDate = classesByDate else {
             return 1
         }
         
-        if selectedClasses.count == 0 {
+        if classesByDate.count == 0 {
             tableView.separatorStyle = .none
             tableView.backgroundView?.isHidden = false
         } else {
@@ -73,7 +72,7 @@ class WatchedClassesViewController: UITableViewController {
             tableView.backgroundView?.isHidden = true
         }
        
-        return selectedClasses.count
+        return classesByDate[section].classes.count
     }
 
 
@@ -81,9 +80,9 @@ class WatchedClassesViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchedClassesCell.identifier, for: indexPath) as? WatchedClassesCell else {
             return UITableViewCell()
         }
-        
-        if let selected = selectedClasses {
-            let mbaClass = selected[indexPath.row]
+
+        if let classesByDate = classesByDate {
+            let mbaClass = classesByDate[indexPath.section].classes[indexPath.row]
             cell.setCellText(mbaClass: mbaClass)
         }
         
@@ -92,12 +91,20 @@ class WatchedClassesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if let selected = selectedClasses {
-//                let classToDelete = selected[indexPath.row]
-                selectedClasses!.remove(at: indexPath.row) // safe to force unwrap because we already unwrapped this in order to get here
-                WatchedClasses().setCurrentWatched(selected)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+            guard let selected = selectedClasses else {
+                return
             }
+            
+            guard let dateList = classesByDate else {
+                return
+            }
+            
+            let mbaClass = dateList[indexPath.section].classes[indexPath.row]
+            selectedClasses!.remove(at: selected.firstIndex(of: mbaClass)!) // Safe to force unwrap selected and firstIndex(of:) here
+            WatchedClasses().setCurrentWatched(selectedClasses!)
+            classesByDate![indexPath.section].classes.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
