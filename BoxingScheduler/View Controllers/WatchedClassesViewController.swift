@@ -99,8 +99,9 @@ class WatchedClassesViewController: UITableViewController {
                 return
             }
             
+            // Safe to force unwrap selectedClasses and classesByDate going forward
             let mbaClass = dateList[indexPath.section].classes[indexPath.row]
-            selectedClasses!.remove(at: selected.firstIndex(of: mbaClass)!) // Safe to force unwrap selected and firstIndex(of:) here
+            selectedClasses!.remove(at: selected.firstIndex(of: mbaClass)!)
             WatchedClasses().setCurrentWatched(selectedClasses!)
             classesByDate![indexPath.section].classes.remove(at: indexPath.row)
             
