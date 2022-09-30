@@ -10,11 +10,14 @@ import PureLayout
 
 
 class NowAvailableViewController: UITableViewController {
+    // This is the actual date source
     var availableClasses: [MbaClass]?
+    // This creates sections in the data source
+    var classesByDate: [ClassDate]?
+    
     private let image = UIImage(systemName: "list.star")!.withRenderingMode(.alwaysTemplate)
     private let topMessage = "Now Available"
     private let bottomMessage = "You don't have any available classes yet. As classes become available they will show up here."
-    
     
     var scheduleNowButton: UIButton = {
         let floatingButton = UIButton()
@@ -52,6 +55,7 @@ class NowAvailableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         populateAvailableClasses()
+        createClassDatesFromClasses()
     }
 
     // MARK: - Table view data source
@@ -148,5 +152,22 @@ class NowAvailableViewController: UITableViewController {
     func setupEmptyBackgroundView() {
         let emptyBackgroundView = EmptyBackgroundView(image: image, top: topMessage, bottom: bottomMessage)
         tableView.backgroundView = emptyBackgroundView
+    }
+    
+    // This func is repeated wholesale from WatchedClassesViewController. Where could I put this so that both VCs have access to it and it isn't duplicated?
+    // Can pass in the datasource as an argument
+    private func createClassDatesFromClasses() -> [ClassDate] {
+        guard let availableClasses = availableClasses else {
+            return []
+        }
+        var classDateArray = [ClassDate]()
+        
+        let classesByDate = Dictionary(grouping: availableClasses, by: { $0.date })
+        
+        for (key, value) in classesByDate {
+            classDateArray.append(ClassDate(date: key, classes: value))
+        }
+        
+        return classDateArray.sorted()
     }
 }
