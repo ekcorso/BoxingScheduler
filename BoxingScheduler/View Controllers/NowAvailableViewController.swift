@@ -60,19 +60,23 @@ class NowAvailableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return classesByDate?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if availableClasses?.count == 0 {
+        guard let classesByDate = classesByDate else {
+            return 1
+        }
+        
+        if classesByDate.count == 0 {
             tableView.separatorStyle = .none
             tableView.backgroundView?.isHidden = false
         } else {
             tableView.separatorStyle = .singleLine
             tableView.backgroundView?.isHidden = true
         }
-        
-        return availableClasses?.count ?? 0
+       
+        return classesByDate[section].classes.count
     }
 
 
@@ -81,15 +85,23 @@ class NowAvailableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        guard let availableClasses = availableClasses else {
+        guard let classesByDate = classesByDate else {
             return UITableViewCell()
         }
 
-        let mbaClass = availableClasses[indexPath.row]
+        let mbaClass = classesByDate[indexPath.section].classes[indexPath.row]
         cell.setCellText(mbaClass: mbaClass)
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        // don't implicitly unwrap here as the datasource may be nil the first time the tableView tries to render
+        let sectionTitle = classesByDate?[section].exactDate?.toString(format: DateHandler.longOutputFormat)
+        return sectionTitle
+    }
+    
+    // MARK: - Actions
     
     @objc func populateAvailableClasses() {
         let watchedClasses = WatchedClasses()
