@@ -60,6 +60,22 @@ class WatchedClasses {
         return orderedArray
     }
     
+    // TODO: Would be nice to refactor this as a direct fetch so that availableClasses doesn't need to be passed into it
+    func createClassDatesFromClasses(_ availableClasses: [MbaClass]?) -> [ClassDate] {
+        guard let availableClasses = availableClasses else {
+            return []
+        }
+        var classDateArray = [ClassDate]()
+        
+        let classesByDate = Dictionary(grouping: availableClasses, by: { $0.date })
+        
+        for (key, value) in classesByDate {
+            classDateArray.append(ClassDate(date: key, classes: value))
+        }
+        
+        return classDateArray.sorted()
+    }
+    
     func getCurrentWatched() async -> [MbaClass] {
         removePastClassesfromCurrent()
         guard let watched = self.current else {
