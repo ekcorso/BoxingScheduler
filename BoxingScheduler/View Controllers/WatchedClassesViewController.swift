@@ -41,7 +41,7 @@ class WatchedClassesViewController: UITableViewController {
         
         populateSelectedClasses() {
             DispatchQueue.main.async {
-                self.classesByDate = self.createClassDatesFromClasses()
+                self.classesByDate = WatchedClasses().createClassDatesFromClasses(self.selectedClasses) // should the top of the class have a shared reference to watchedClasses instead?
                 self.tableView.reloadData()
             }
         }
@@ -116,22 +116,6 @@ class WatchedClassesViewController: UITableViewController {
     }
     
     // MARK: - Actions
-    
-    private func createClassDatesFromClasses() -> [ClassDate] {
-        guard let selectedClasses = selectedClasses else {
-            return []
-        }
-        var classDateArray = [ClassDate]()
-        
-        let classesByDate = Dictionary(grouping: selectedClasses, by: { $0.date })
-        
-        for (key, value) in classesByDate {
-            classDateArray.append(ClassDate(date: key, classes: value))
-        }
-        
-        return classDateArray.sorted()
-    }
-    
     func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         tableView.addSubview(refreshControl!)
