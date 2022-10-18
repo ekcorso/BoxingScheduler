@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ClassType: String {
+struct ClassType {
     //give raw values that are strings for the class names, then create an getStartTime() func that switches over these are returns a time for each (time should be formatted with the dateFormatter eventually, but could be a string to start)
     case morningBodyBlastMondays = "Morning Body Blast Mondays (With Permission Only)"
     case footworkFundamentalsMondays = "Footwork FUNdamentals"
