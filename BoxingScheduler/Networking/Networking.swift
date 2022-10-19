@@ -103,8 +103,13 @@ class Networking {
                 } else if try! item.className().contains("class-row-xs") {
                     let name = try item.select(".class-name").text()
                     let spotsAvailable = try elements[index + 1].select(".class-spots").text()
-                    let date = dateArray.last?.exactDate ?? Date() // I think this is breaking something
-                    let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable, date: date)
+                    
+                    // Format the date to include time
+                    let date = dateArray.last?.exactDate ?? Date() // This will be the correct date, but set to noon by default because it is initialized above with mdyDateInputFormat
+                    let startTime = ClassType(name: ClassType.Name(rawValue: name)!).startTime
+                    let betterDate = Calendar.current.date(bySettingHour: startTime.hours, minute: startTime.minutes, second: startTime.seconds, of: date) ?? Date()
+                    
+                    let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable, date: betterDate)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)
                     }
