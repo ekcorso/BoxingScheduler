@@ -36,4 +36,17 @@ struct ClassType {
         case cardioBoxingSaturdays1030 = "Cardio Boxing Saturdays (10:30am)"
     }
     
+    
+}
+
+struct ClassTime {
+    var hours: Int = 0
+    var minutes: Int = 0
+    var seconds: Int = 0
+    
+    init(hours: Int, minutes: Int, seconds: Int) {
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+    }
 }
