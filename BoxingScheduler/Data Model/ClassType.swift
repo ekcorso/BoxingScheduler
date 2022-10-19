@@ -36,50 +36,49 @@ struct ClassType {
         case cardioBoxingSaturdays1030 = "Cardio Boxing Saturdays (10:30am)"
     }
     
-    func getStartTime(for className: String) -> String {
+    func getStartTime(for className: Name) -> ClassTime {
         // Rather than elaborate parsing, use the Name enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
         switch className {
-        case Name.morningBodyBlastMondays.rawValue:
-            return "06:30"
-        case Name.footworkFundamentalsMondays.rawValue:
-            return "17:00"
-        case Name.advancedFootwork.rawValue:
-            // return "6:15pm" // Time format is incorrect
-            return "18:15"
-        case Name.lunchTimeBoxingPowerHourTuesdays.rawValue:
-            return "12:00"
-        case Name.cardioBoxingTuesdays5.rawValue:
-            return "17:00"
-        case Name.cardioBoxingTuesdays615.rawValue:
-            return "18:15"
-        case Name.boxingSkillsTuesdays.rawValue:
-            return "19:15"
-        case Name.morningBodyBlastWednesdays.rawValue:
-            return "06:30"
-        case Name.combatConditioningWednesdays.rawValue:
-            return "17:00"
-        case Name.TeamPracticeWednesdays.rawValue:
-            return "18:00"
-        case Name.lunchTimeBoxingPowerHourThursdays.rawValue:
-            return "12:00"
-        case Name.cardioBoxingThursdays5.rawValue:
-            return "17:00"
-        case Name.cardioBoxingThursdays615.rawValue:
-            return "18:15"
-        case Name.boxingSkillsThursdays.rawValue:
-            return "19:15"
-        case Name.morningBodyBlastFridays.rawValue:
-            return "06:30"
-        case Name.combatConditioningFridays.rawValue:
-            return "17:00"
-        case Name.teamPracticeFridays.rawValue:
-            return "18:00"
-        case Name.cardioBoxingSaturdays9.rawValue:
-            return "09:00"
-        case Name.cardioBoxingSaturdays1030.rawValue:
-            return "10:15"
+        case Name.morningBodyBlastMondays:
+            return ClassTime(hours: 6, minutes: 30, seconds: 0)
+        case Name.footworkFundamentalsMondays:
+            return ClassTime(hours: 17, minutes: 0, seconds: 0)
+        case Name.advancedFootwork:
+            return ClassTime(hours: 18, minutes: 15, seconds: 0)
+        case Name.lunchTimeBoxingPowerHourTuesdays:
+            return ClassTime(hours: 12, minutes: 0, seconds: 0)
+        case Name.cardioBoxingTuesdays5:
+            return ClassTime(hours: 17, minutes: 0, seconds: 0)
+        case Name.cardioBoxingTuesdays615:
+            return ClassTime(hours: 18, minutes: 15, seconds: 0)
+        case Name.boxingSkillsTuesdays:
+            return ClassTime(hours: 19, minutes: 15, seconds: 0)
+        case Name.morningBodyBlastWednesdays:
+            return ClassTime(hours: 6, minutes: 30, seconds: 0)
+        case Name.combatConditioningWednesdays:
+            return ClassTime(hours: 17, minutes: 0, seconds: 0)
+        case Name.TeamPracticeWednesdays:
+            return ClassTime(hours: 18, minutes: 0, seconds: 0)
+        case Name.lunchTimeBoxingPowerHourThursdays:
+            return ClassTime(hours: 12, minutes: 0, seconds: 0)
+        case Name.cardioBoxingThursdays5:
+            return ClassTime(hours: 17, minutes: 0, seconds: 0)
+        case Name.cardioBoxingThursdays615:
+            return ClassTime(hours: 18, minutes: 15, seconds: 0)
+        case Name.boxingSkillsThursdays:
+            return ClassTime(hours: 19, minutes: 15, seconds: 0)
+        case Name.morningBodyBlastFridays:
+            return ClassTime(hours: 6, minutes: 30, seconds: 0)
+        case Name.combatConditioningFridays:
+            return ClassTime(hours: 17, minutes: 0, seconds: 0)
+        case Name.teamPracticeFridays:
+            return ClassTime(hours: 18, minutes: 0, seconds: 0)
+        case Name.cardioBoxingSaturdays9:
+            return ClassTime(hours: 9, minutes: 0, seconds: 0)
+        case Name.cardioBoxingSaturdays1030:
+            return ClassTime(hours: 10, minutes: 15, seconds: 0)
         default:
-            return "12:00"
+            return ClassTime(hours: 0, minutes: 0, seconds: 0)
         }
     }
 }
