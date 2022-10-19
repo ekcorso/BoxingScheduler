@@ -36,7 +36,52 @@ struct ClassType {
         case cardioBoxingSaturdays1030 = "Cardio Boxing Saturdays (10:30am)"
     }
     
-    
+    func getStartTime(for className: String) -> String {
+        // Rather than elaborate parsing, use the Name enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
+        switch className {
+        case Name.morningBodyBlastMondays.rawValue:
+            return "06:30"
+        case Name.footworkFundamentalsMondays.rawValue:
+            return "17:00"
+        case Name.advancedFootwork.rawValue:
+            // return "6:15pm" // Time format is incorrect
+            return "18:15"
+        case Name.lunchTimeBoxingPowerHourTuesdays.rawValue:
+            return "12:00"
+        case Name.cardioBoxingTuesdays5.rawValue:
+            return "17:00"
+        case Name.cardioBoxingTuesdays615.rawValue:
+            return "18:15"
+        case Name.boxingSkillsTuesdays.rawValue:
+            return "19:15"
+        case Name.morningBodyBlastWednesdays.rawValue:
+            return "06:30"
+        case Name.combatConditioningWednesdays.rawValue:
+            return "17:00"
+        case Name.TeamPracticeWednesdays.rawValue:
+            return "18:00"
+        case Name.lunchTimeBoxingPowerHourThursdays.rawValue:
+            return "12:00"
+        case Name.cardioBoxingThursdays5.rawValue:
+            return "17:00"
+        case Name.cardioBoxingThursdays615.rawValue:
+            return "18:15"
+        case Name.boxingSkillsThursdays.rawValue:
+            return "19:15"
+        case Name.morningBodyBlastFridays.rawValue:
+            return "06:30"
+        case Name.combatConditioningFridays.rawValue:
+            return "17:00"
+        case Name.teamPracticeFridays.rawValue:
+            return "18:00"
+        case Name.cardioBoxingSaturdays9.rawValue:
+            return "09:00"
+        case Name.cardioBoxingSaturdays1030.rawValue:
+            return "10:15"
+        default:
+            return "12:00"
+        }
+    }
 }
 
 struct ClassTime {
