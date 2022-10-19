@@ -8,10 +8,12 @@
 import Foundation
 
 struct ClassType {
-    let name: Name?
+    let name: Name!
+    var startTime: ClassTime = ClassTime(hours: 0, minutes: 0, seconds: 0)
     
-    init(name: Name?) {
+    init(name: Name) {
         self.name = name
+        self.startTime = getStartTime(for: name)
     }
     
     enum Name: String {
