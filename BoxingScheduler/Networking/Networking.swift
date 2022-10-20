@@ -103,7 +103,19 @@ class Networking {
                 } else if try! item.className().contains("class-row-xs") {
                     let name = try item.select(".class-name").text()
                     let spotsAvailable = try elements[index + 1].select(".class-spots").text()
-                    let date = dateArray.last?.exactDate ?? Date() // I think this is breaking something
+                    
+                    // Format the date to include time
+                    var date = dateArray.last?.exactDate ?? Date() // This will be the correct date, but set to noon by default because it is initialized above with mdyDateInputFormat
+                    
+                    if let classByName = ClassType.Name(rawValue: name) {
+                        let startTime = ClassType(name: classByName).startTime
+                        date = Calendar.current.date(bySettingHour: startTime.hours, minute: startTime.minutes, second: startTime.seconds, of: date) ?? Date()
+                    } else {
+                        // Let's use a log here instead so that if the class name isn't part of the enum in ClassType (that is, if the schedule changes) we can find out about it
+                        print("This class name is not recognized, therefore the time is incorrect too. This likely indicates a change in the schedule.")
+                    }
+                    
+                    print(date.toString(format: DateHandler.shortOutputFormat))
                     let boxingClass = MbaClass(name: name, spotsAvailable: spotsAvailable, date: date)
                     if let previousDate = dateArray.last {
                         previousDate.classes.append(boxingClass)

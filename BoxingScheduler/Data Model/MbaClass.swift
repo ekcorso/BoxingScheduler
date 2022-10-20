@@ -56,51 +56,6 @@ class MbaClass: NSObject, NSCoding {
         return spotsInt
     }
     
-    private func getStartTime(for className: String) -> String {
-        // Rather than eleaborate parsing, use the ClassType enum and give them associated values, then just switch over those returning the appropriate time. Pros: more readable. Cons: more brittle, less "cool"
-        switch className {
-        case ClassType.morningBodyBlastMondays.rawValue:
-            return "06:30"
-        case ClassType.footworkFundamentalsMondays.rawValue:
-            return "17:00"
-        case ClassType.advancedFootwork.rawValue:
-            return "6:15pm"
-        case ClassType.lunchTimeBoxingPowerHourTuesdays.rawValue:
-            return "12:00"
-        case ClassType.cardioBoxingTuesdays5.rawValue:
-            return "17:00"
-        case ClassType.cardioBoxingTuesdays615.rawValue:
-            return "18:15"
-        case ClassType.boxingSkillsTuesdays.rawValue:
-            return "19:15"
-        case ClassType.morningBodyBlastWednesdays.rawValue:
-            return "06:30"
-        case ClassType.combatConditioningWednesdays.rawValue:
-            return "17:00"
-        case ClassType.TeamPracticeWednesdays.rawValue:
-            return "18:00"
-        case ClassType.lunchTimeBoxingPowerHourThursdays.rawValue:
-            return "12:00"
-        case ClassType.cardioBoxingThursdays5.rawValue:
-            return "17:00"
-        case ClassType.cardioBoxingThursdays615.rawValue:
-            return "18:15"
-        case ClassType.boxingSkillsThursdays.rawValue:
-            return "19:15"
-        case ClassType.morningBodyBlastFridays.rawValue:
-            return "06:30"
-        case ClassType.combatConditioningFridays.rawValue:
-            return "17:00"
-        case ClassType.teamPracticeFridays.rawValue:
-            return "18:00"
-        case ClassType.cardioBoxingSaturdays9.rawValue:
-            return "09:00"
-        case ClassType.cardioBoxingSaturdays1030.rawValue:
-            return "10:15"
-        default:
-            return "12:00"
-        }
-    }
 }
 
 extension MbaClass {
