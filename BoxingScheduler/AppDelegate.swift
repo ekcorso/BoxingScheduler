@@ -165,7 +165,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        let tokenDict = ["token": fcmToken ?? ""]
+        var tokenDict = ["token": ""]
+        if let unwrappedToken = fcmToken {
+            tokenDict = ["token": unwrappedToken]
+        } else {
+            // This should be a log
+            print("fcmToken was nil!")
+        }
+        
+//        print("Token = \(fcmToken)")
         NotificationCenter.default.post(name: .fcmToken, object: nil, userInfo: tokenDict)
     }
 }
