@@ -79,7 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        print("Received remote notification!")
+
         Task {
             let schedule = await Networking.fetchScheduleData()
             NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
@@ -107,14 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         */
         
-        print("Received remote notification!")
+//        print("Received remote notification!")
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // This gets called when a notification is tapped (even if the app is in the background)
+//        print("DidReceive without fetchCompletionHandler was called (prob in foreground)")
         completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        print("WillPresent was called")
+        // This got called by a non-silent notification when the app was foregrounded
         completionHandler([.banner, .badge, .sound])
     }
     
