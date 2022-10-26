@@ -106,6 +106,14 @@ class WatchedClasses {
         self.current = newCurrent
     }
     
+    // Returns the current available class list without taping the network to update it first
+    func retrieveNowAvailableWithoutUpdate() -> [MbaClass] {
+        guard let available = self.nowAvailable else {
+            return []
+        }
+        return available
+    }
+    
     private func removePastClassesfromCurrent() {
         guard let watched = self.current else {
             return
