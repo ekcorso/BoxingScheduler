@@ -37,8 +37,7 @@ struct DataStorage {
         return nil
     }
     
-    
-    func save(_ classList: [MbaClass]) throws {
+    func saveWatched(_ classList: [MbaClass]) throws {
         let fileManager = FileManager()
         let url = fileManager.getDocumentsDirectory().appendingPathComponent("classList.txt")
         
@@ -50,7 +49,7 @@ struct DataStorage {
         }
     }
     
-    func retrieve() -> [MbaClass]? {
+    func retrieveWatched() -> [MbaClass]? {
         let fileManager = FileManager()
         let url = fileManager.getDocumentsDirectory().appendingPathComponent("classList.txt")
         
