@@ -13,7 +13,7 @@ class WatchedClasses {
             // Re-save the current list anytime it is updated (for instance by the methods that remove past/ available classes as those arrays are computed)
             if let current = current {
                 do {
-                    try DataStorage().save(current)
+                    try DataStorage().saveWatched(current)
                 } catch {
                     print("saving current classes failed")
                 }
@@ -36,8 +36,8 @@ class WatchedClasses {
     
         
     init() {
-        self.current = DataStorage().retrieve() ?? []
-        self.nowAvailable = DataStorage().retrieveNowAvailable() ?? []
+        self.current = DataStorage().retrieveWatched() ?? []
+//        self.nowAvailable = DataStorage().retrieveNowAvailable() ?? []
     }
     
     func getAllClasses() async -> [MbaClass] {
