@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             
-            let newAvailable = watchedClasses.filterForNowAvailableClasses(from: allClasses) // does this update nowAvailable?
+            let newAvailable = watchedClasses.filterForNowAvailableClasses(from: allClasses)
             let previousAvailable = DataStorage().retrieveNowAvailable() ?? []
             
             // remove classes that have passed
@@ -190,20 +190,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if newAvailable != previousAvailableWithPastClassesRemoved {
                 
-                // Note that this will be triggered every time the push notification is received (prob hourly) as long as a watched class is available
-                // The user will need to remove the watched class in order to stop triggering the notification (with or without signing up for it)
                 NotificationHandler().scheduleAvailableClassNotification()
                 
                 do {
-                    // save nowAvailable so the next time this get's triggered it will be the correct nowAvailable list
                     try DataStorage().saveNowAvailable(newAvailable)
                 } catch {
                     print("Saving failed")
                 }
             }
-            
-            // Is this necessary at all? I think the notificationHandler call above is what is actually triggering the local notification
-//            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
 
             completion()
         }
