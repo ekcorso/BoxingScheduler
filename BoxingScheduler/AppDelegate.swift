@@ -104,7 +104,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 NotificationHandler().scheduleAvailableClassNotification()
                 
-                // Should I save this directly, or use a setter on WatchedClasses()?
                 do {
                     // save nowAvailable so the next time this get's triggered it will be the correct nowAvailable list
                     try DataStorage().saveNowAvailable(newAvailable)

@@ -20,24 +20,9 @@ class WatchedClasses {
             }
         }
     }
-    
-    private var nowAvailable: [MbaClass]? {
-        didSet {
-            // Re-save the current list anytime it is updated
-            if let available = nowAvailable {
-                do {
-                    try DataStorage().saveNowAvailable(available)
-                } catch {
-                    print("saving current classes failed")
-                }
-            }
-        }
-    }
-    
         
     init() {
         self.current = DataStorage().retrieveWatched() ?? []
-//        self.nowAvailable = DataStorage().retrieveNowAvailable() ?? []
     }
     
     func getAllClasses() async -> [MbaClass] {
@@ -105,14 +90,6 @@ class WatchedClasses {
     
     func setCurrentWatched(_ newCurrent: [MbaClass]) {
         self.current = newCurrent
-    }
-    
-    // Returns the current available class list without taping the network to update it first
-    func retrieveNowAvailableWithoutUpdate() -> [MbaClass] {
-        guard let available = self.nowAvailable else {
-            return []
-        }
-        return available
     }
     
     private func removePastClassesfromCurrent() {
