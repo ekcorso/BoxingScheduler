@@ -184,8 +184,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let newAvailable = watchedClasses.filterForNowAvailableClasses(from: allClasses) // does this update nowAvailable?
             let previousAvailable = DataStorage().retrieveNowAvailable() ?? []
             
-            if newAvailable != previousAvailable { // this check is too simple, will need to check nowAvailable against a version of previous available that is first filtered for classes that have passed. Leaving it for now because it helps with testing
+            // remove classes that have passed
+            let now = Date()
+            let previousAvailableWithPastClassesRemoved = previousAvailable.filter() { $0.date >= now }
+            
+            if newAvailable != previousAvailableWithPastClassesRemoved {
                 
+                // Note that this will be triggered every time the push notification is received (prob hourly) as long as a watched class is available
+                // The user will need to remove the watched class in order to stop triggering the notification (with or without signing up for it)
                 NotificationHandler().scheduleAvailableClassNotification()
                 
                 do {
