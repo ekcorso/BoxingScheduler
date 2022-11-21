@@ -12,7 +12,7 @@ import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    let watchedClasses = WatchedClasses()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.emilykcorso.fetchScheduleData", using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
@@ -80,10 +80,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Received remote notification!")
-
+        
+        // Going to move all this mess to it's own method
         Task {
-            let schedule = await Networking.fetchScheduleData()
-            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+            var schedule = await Networking.fetchScheduleData()
+            
+            // This fake class is for testing push notifications. Tbh, not sure if it works
+//            let tommorrow = Calendar.current.date(byAdding: DateComponents(hour: 12), to: .now)!
+//            let fakeClassDate = ClassDate(date: .now, classes: [MbaClass(name: ClassType.morningBodyBlastFridays.rawValue, spotsAvailable: "88", date: tommorrow)])
+//            schedule.append(fakeClassDate)
+
+            var allClasses = [MbaClass]()
+            for date in schedule {
+                for mbaClass in date.classes {
+                    allClasses.append(mbaClass)
+                }
+            }
+            
+            let newAvailable = watchedClasses.getNowAvailableClasses(from: allClasses) // does this update nowAvailable?
+            let previousAvailable = DataStorage().retrieveNowAvailable() ?? []
+            
+            if newAvailable != previousAvailable { // this check is too simple, will need to check nowAvailable against a version of previous available that is first filtered for classes that have passed. Leaving it for now because it helps with testing
+                
+                NotificationHandler().scheduleAvailableClassNotification()
+                
+                // Should I save this directly, or use a setter on WatchedClasses()?
+                do {
+                    // save nowAvailable so the next time this get's triggered it will be the correct nowAvailable list
+                    try DataStorage().saveNowAvailable(newAvailable)
+                } catch {
+                    print("Saving failed")
+                }
+            }
+            
+            // Is this necessary at all? I think the notificationHandler call above is what is actually triggering the local notification
+//            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+
+            completionHandler(.newData)
         }
         
         // TODO: Remove this network call after testing the async/ await version above
