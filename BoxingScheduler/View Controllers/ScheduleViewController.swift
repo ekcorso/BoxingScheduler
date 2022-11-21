@@ -41,7 +41,7 @@ class ScheduleViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let currentlySelected = DataStorage().retrieve() {
+        if let currentlySelected = DataStorage().retrieveWatched() {
             selectedClasses = currentlySelected
             tableView.reloadData()
         } else {

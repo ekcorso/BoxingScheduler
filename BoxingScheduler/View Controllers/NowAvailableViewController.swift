@@ -107,7 +107,7 @@ class NowAvailableViewController: UITableViewController {
         let watchedClasses = WatchedClasses()
         Task {
             let allClassList = await watchedClasses.getAllClasses()
-            let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
+            let nowAvailableClasses = watchedClasses.filterForNowAvailableClasses(from: allClassList)
             self.availableClasses = nowAvailableClasses.sorted()
             self.classesByDate = watchedClasses.createClassDatesFromClasses(self.availableClasses)
 
@@ -117,29 +117,7 @@ class NowAvailableViewController: UITableViewController {
             }
         }
     }
-    /*
-    func populateNowAvailableFromNotification(_ newAvailableClasses: [MbaClass]) {
-        print("Got to populateNoteAvailableClassesFromNotification")
-        if let existingAvailableClasses = self.availableClasses {
-            self.availableClasses! += newAvailableClasses.filter() { !availableClasses!.contains($0) }
-        } else {
-            self.availableClasses = newAvailableClasses
-        }
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    
-    func registerForNotifications() {
-        NotificationCenter.default.addObserver(forName: .newScheduleData, object: nil, queue: nil) { (notification) in
-            if let userInfo = notification.userInfo, let availableClasses = userInfo["availableClasses"] as? [MbaClass] {
-                self.populateNowAvailableFromNotification(availableClasses)
-            }
-        }
-    }
-    */
-    
+
     func constrainButton() {
         NSLayoutConstraint.activate([
             scheduleNowButton.heightAnchor.constraint(equalToConstant: 50),

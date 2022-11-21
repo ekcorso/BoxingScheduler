@@ -12,7 +12,7 @@ import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    let watchedClasses = WatchedClasses()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.emilykcorso.fetchScheduleData", using: nil) { (task) in
             self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
@@ -79,10 +79,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Received remote notification!")
         
-        Task {
-            let schedule = await Networking.fetchScheduleData()
-            NotificationCenter.default.post(name: .newScheduleData, object: self, userInfo: ["schedule": schedule])
+        checkForNewAvailableClasses() {
+            completionHandler(.newData)
         }
         
         // TODO: Remove this network call after testing the async/ await version above
@@ -107,14 +107,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         */
         
-        print("Received remote notification!")
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // This gets called when a notification is tapped (even if the app is in the background)
+//        print("DidReceive without fetchCompletionHandler was called (prob in foreground)")
         completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        print("WillPresent was called")
+        // This got called by a non-silent notification when the app was foregrounded
         completionHandler([.banner, .badge, .sound])
     }
     
@@ -153,7 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func getAvailableClassCount() async -> Int {
         let allClassList = await WatchedClasses().getAllClasses()
-        let nowAvailableClassCount = WatchedClasses().getNowAvailableClasses(from: allClassList).count
+        let nowAvailableClassCount = WatchedClasses().filterForNowAvailableClasses(from: allClassList).count
         
         if nowAvailableClassCount >= 1 {
             return nowAvailableClassCount
@@ -161,11 +164,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return -1
         }
     }
+    
+    func checkForNewAvailableClasses(_ completion: @escaping () -> Void) {
+        Task {
+            var schedule = await Networking.fetchScheduleData()
+            
+            // This fake class is for testing push notifications. Tbh, not sure if it works
+//            let tommorrow = Calendar.current.date(byAdding: DateComponents(hour: 12), to: .now)!
+//            let fakeClassDate = ClassDate(date: .now, classes: [MbaClass(name: ClassType.morningBodyBlastFridays.rawValue, spotsAvailable: "88", date: tommorrow)])
+//            schedule.append(fakeClassDate)
+
+            var allClasses = [MbaClass]()
+            for date in schedule {
+                for mbaClass in date.classes {
+                    allClasses.append(mbaClass)
+                }
+            }
+            
+            let newAvailable = watchedClasses.filterForNowAvailableClasses(from: allClasses)
+            let previousAvailable = DataStorage().retrieveNowAvailable() ?? []
+            
+            // remove classes that have passed
+            let now = Date()
+            let previousAvailableWithPastClassesRemoved = previousAvailable.filter() { $0.date >= now }
+            
+            if newAvailable != previousAvailableWithPastClassesRemoved {
+                
+                NotificationHandler().scheduleAvailableClassNotification()
+                
+                do {
+                    try DataStorage().saveNowAvailable(newAvailable)
+                } catch {
+                    print("Saving failed")
+                }
+            }
+
+            completion()
+        }
+    }
 }
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        let tokenDict = ["token": fcmToken ?? ""]
+        var tokenDict = ["token": ""]
+        if let unwrappedToken = fcmToken {
+            tokenDict = ["token": unwrappedToken]
+        } else {
+            // This should be a log
+            print("fcmToken was nil!")
+        }
+        
+//        print("Token = \(fcmToken)")
         NotificationCenter.default.post(name: .fcmToken, object: nil, userInfo: tokenDict)
     }
 }

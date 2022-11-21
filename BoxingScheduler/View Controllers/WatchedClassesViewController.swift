@@ -37,7 +37,7 @@ class WatchedClassesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.selectedClasses = DataStorage().retrieve()?.sorted()
+        self.selectedClasses = DataStorage().retrieveWatched()?.sorted()
         
         populateSelectedClasses() {
             DispatchQueue.main.async {

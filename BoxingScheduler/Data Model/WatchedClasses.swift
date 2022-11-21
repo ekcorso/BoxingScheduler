@@ -10,10 +10,10 @@ import Foundation
 class WatchedClasses {
     private var current: [MbaClass]? {
         didSet {
-            // Re-save the current list anytime it is updated (for instance by the methods that remove past/ available classes as those arrays are computed
+            // Re-save the current list anytime it is updated (for instance by the methods that remove past/ available classes as those arrays are computed)
             if let current = current {
                 do {
-                    try DataStorage().save(current)
+                    try DataStorage().saveWatched(current)
                 } catch {
                     print("saving current classes failed")
                 }
@@ -22,7 +22,7 @@ class WatchedClasses {
     }
         
     init() {
-        self.current = DataStorage().retrieve() ?? []
+        self.current = DataStorage().retrieveWatched() ?? []
     }
     
     func getAllClasses() async -> [MbaClass] {
@@ -37,7 +37,7 @@ class WatchedClasses {
         return classList
     }
     
-    func getNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
+    func filterForNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
         guard let watched = self.current else {
             return [MbaClass]()
         }
@@ -53,6 +53,7 @@ class WatchedClasses {
             }
         }
         
+        // Note that updating the saved current property is a side-effect of calling this method
         self.current = watched
         
         let orderedArray = Array(Set(availableClasses))
