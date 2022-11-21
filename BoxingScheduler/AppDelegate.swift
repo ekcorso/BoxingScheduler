@@ -97,7 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             
-            let newAvailable = watchedClasses.getNowAvailableClasses(from: allClasses) // does this update nowAvailable?
+            let newAvailable = watchedClasses.filterForNowAvailableClasses(from: allClasses) // does this update nowAvailable?
             let previousAvailable = DataStorage().retrieveNowAvailable() ?? []
             
             if newAvailable != previousAvailable { // this check is too simple, will need to check nowAvailable against a version of previous available that is first filtered for classes that have passed. Leaving it for now because it helps with testing
@@ -191,7 +191,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func getAvailableClassCount() async -> Int {
         let allClassList = await WatchedClasses().getAllClasses()
-        let nowAvailableClassCount = WatchedClasses().getNowAvailableClasses(from: allClassList).count
+        let nowAvailableClassCount = WatchedClasses().filterForNowAvailableClasses(from: allClassList).count
         
         if nowAvailableClassCount >= 1 {
             return nowAvailableClassCount

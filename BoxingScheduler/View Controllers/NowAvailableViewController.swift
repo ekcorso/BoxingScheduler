@@ -107,7 +107,7 @@ class NowAvailableViewController: UITableViewController {
         let watchedClasses = WatchedClasses()
         Task {
             let allClassList = await watchedClasses.getAllClasses()
-            let nowAvailableClasses = watchedClasses.getNowAvailableClasses(from: allClassList)
+            let nowAvailableClasses = watchedClasses.filterForNowAvailableClasses(from: allClassList)
             self.availableClasses = nowAvailableClasses.sorted()
             self.classesByDate = watchedClasses.createClassDatesFromClasses(self.availableClasses)
 

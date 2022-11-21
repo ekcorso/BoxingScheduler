@@ -52,7 +52,7 @@ class WatchedClasses {
         return classList
     }
     
-    func getNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
+    func filterForNowAvailableClasses(from allClasses: [MbaClass]) -> [MbaClass] {
         guard let watched = self.current else {
             return [MbaClass]()
         }
@@ -68,6 +68,7 @@ class WatchedClasses {
             }
         }
         
+        // Note that updating the saved current property is a side-effect of calling this method
         self.current = watched
         
         let orderedArray = Array(Set(availableClasses))
