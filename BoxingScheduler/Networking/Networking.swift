@@ -62,14 +62,9 @@ class Networking {
         async let page3 = loadSchedulePage(from: request, with: payloadArray[2])
         async let page4 = loadSchedulePage(from: request, with: payloadArray[3])
         
-        do {
-            let scheduleData = try await [page1, page2, page3, page4] // Load the schedule data in parallel
-            let fullSchedule = scheduleData.compactMap() { $0 }.reduce([], +)
-            return fullSchedule
-        } catch {
-            print("There was an error: \(error.localizedDescription)")
-            return nil
-        }
+        let scheduleData = await [page1, page2, page3, page4] // Load the schedule data in parallel
+        let fullSchedule = scheduleData.compactMap() { $0 }.reduce([], +)
+        return fullSchedule
     }
 
     private static func parseHtmlDoc(fromString: String) -> Document? {
