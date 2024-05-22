@@ -167,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func checkForNewAvailableClasses(_ completion: @escaping () -> Void) {
         Task {
-            var schedule = await Networking.fetchScheduleData()
+            let schedule = await Networking.fetchScheduleData()
             
             // This fake class is for testing push notifications. Tbh, not sure if it works
 //            let tommorrow = Calendar.current.date(byAdding: DateComponents(hour: 12), to: .now)!
