@@ -84,7 +84,7 @@ class ScheduleViewController: UITableViewController {
 //        let detailVC = ClassDetailViewController()
 //        detailVC.mbaClass = dateList[indexPath.section].classes[indexPath.row]
 //        navigationController?.pushViewController(detailVC, animated: true)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MbaClassTableViewCell.identifier, for: indexPath) as? MbaClassTableViewCell else {
+        guard let _ = tableView.dequeueReusableCell(withIdentifier: MbaClassTableViewCell.identifier, for: indexPath) as? MbaClassTableViewCell else {
            return
         }
         

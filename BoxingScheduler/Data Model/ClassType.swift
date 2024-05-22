@@ -79,8 +79,6 @@ struct ClassType {
             return ClassTime(hours: 9, minutes: 0, seconds: 0)
         case Name.cardioBoxingSaturdays1030:
             return ClassTime(hours: 10, minutes: 15, seconds: 0)
-        default:
-            return ClassTime(hours: 0, minutes: 0, seconds: 0)
         }
     }
 }

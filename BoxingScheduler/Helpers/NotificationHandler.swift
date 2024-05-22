@@ -28,7 +28,6 @@ class NotificationHandler {
     }
     
     func scheduleAvailableClassNotification() {
-        let watchedClasses = WatchedClasses()
         Task {
                 let center = UNUserNotificationCenter.current()
                 center.removeAllPendingNotificationRequests()
