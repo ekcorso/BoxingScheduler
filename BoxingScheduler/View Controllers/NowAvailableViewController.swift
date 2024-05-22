@@ -29,8 +29,9 @@ class NowAvailableViewController: UITableViewController {
         floatingButton.layer.borderWidth = 1
         floatingButton.layer.borderColor = UIColor.systemGray2.cgColor
         // TODO: Figure out why this button isn't opaque
-        if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
-            window.addSubview(floatingButton)
+        
+        if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            window.windows.first?.addSubview(floatingButton)
         }
         return floatingButton
     }()
