@@ -18,6 +18,7 @@ class NotificationHandler {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("Permission granted")
+                // TODO: Fix this-- button is not correctly disabled
                 DispatchQueue.main.async {
                     SettingsViewController().registerNotificationsButton.isEnabled.toggle()
                 }
