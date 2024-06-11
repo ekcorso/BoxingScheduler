@@ -12,30 +12,22 @@ import UserNotifications
 class SettingsViewController: UIViewController {
     
     lazy var registerNotificationsButton: ColorChangingButton = {
-        var registerNotificationsButton = ColorChangingButton()
-        view.addSubview(registerNotificationsButton)
-        registerNotificationsButton.translatesAutoresizingMaskIntoConstraints = false
-        registerNotificationsButton.setTitle("Enable notifications", for: .normal)
-        registerNotificationsButton.titleLabel?.textColor = .white
-        registerNotificationsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        registerNotificationsButton.setBackgoundColor(.systemGreen, for: .normal)
-        registerNotificationsButton.setBackgoundColor(.systemGreen.withAlphaComponent(0.3), for: .disabled)
-        registerNotificationsButton.layer.cornerRadius = 8
+        var registerNotificationsButton = ColorChangingButton(title: "Enable notifications", backgroundColor: .systemGreen)
+        
         registerNotificationsButton.addTarget(self, action: #selector(registerLocal), for: .touchUpInside)
+        registerNotificationsButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(registerNotificationsButton)
+        
         return registerNotificationsButton
     }()
     
     lazy var scheduleNotificationsButton: ColorChangingButton = {
-        var scheduleNotificationsButton = ColorChangingButton()
-        view.addSubview(scheduleNotificationsButton)
-        scheduleNotificationsButton.translatesAutoresizingMaskIntoConstraints = false
-        scheduleNotificationsButton.setTitle("Schedule notifications", for: .normal)
-        scheduleNotificationsButton.titleLabel?.textColor = .white
-        scheduleNotificationsButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        scheduleNotificationsButton.setBackgoundColor(.systemGreen, for: .normal)
-        scheduleNotificationsButton.setBackgoundColor(.systemGreen.withAlphaComponent(0.3), for: .disabled)
-        scheduleNotificationsButton.layer.cornerRadius = 8
+        var scheduleNotificationsButton = ColorChangingButton(title: "Schedule notifications", backgroundColor: .systemBlue)
+        
         scheduleNotificationsButton.addTarget(self, action: #selector(scheduleLocal), for: .touchUpInside)
+        scheduleNotificationsButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scheduleNotificationsButton)
+        
         return scheduleNotificationsButton
     }()
     
