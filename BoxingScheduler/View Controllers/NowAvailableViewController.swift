@@ -19,16 +19,17 @@ class NowAvailableViewController: UITableViewController {
     private let topMessage = "Now Available"
     private let bottomMessage = "You don't have any available classes yet. As classes become available they will show up here."
     
-    var scheduleNowButton: UIButton = {
+    lazy var scheduleNowButton: UIButton = {
         let floatingButton = UIButton()
         floatingButton.translatesAutoresizingMaskIntoConstraints = false
         floatingButton.addTarget(self, action: #selector(navigateToSchedulingWebsite), for: .touchUpInside)
-        floatingButton.backgroundColor = .systemGreen
-        floatingButton.setTitle("Schedule Now", for: .normal)
-        floatingButton.layer.cornerRadius = 25
-        floatingButton.layer.borderWidth = 1
-        floatingButton.layer.borderColor = UIColor.systemGray2.cgColor
-        // TODO: Figure out why this button isn't opaque
+        
+        var config = UIButton.Configuration.borderedProminent()
+        config.baseBackgroundColor = .systemGreen
+        config.title = "Schedule Now"
+        config.cornerStyle = .capsule
+        
+        floatingButton.configuration = config
         
         if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             window.windows.first?.addSubview(floatingButton)
