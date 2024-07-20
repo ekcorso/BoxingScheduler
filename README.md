@@ -10,3 +10,10 @@ This is a personal project built to solve a problem for myself: my boxing gym do
 
 Instead, I use `URLSession` to fetch the raw HTML from the scheduling site and then parse it into Swift objects with `SwiftSoup`. The user can select the classes they want to “watch” for openings and get a notification when someone drops the class so they can sign up for it.
 
+## License
+
+This project is licensed under the BDS 3-Clause License. See the [LICENSE](./LICENSE.txt) file for details.
+
+## Contact
+
+For any inquiries or questions, please contact me at https://www.emilykcorso.com/contact.
