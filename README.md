@@ -50,6 +50,10 @@ The app leverages several technologies and services to function:
 - **Background Execution**: Apple restricts background execution time, allowing only about 30 seconds when the app wakes up. [Learn more about background execution](https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background).
 - **Notification Reliability**: Apple does not guarantee the delivery of notifications. [Read more about notification delivery](https://developer.apple.com/documentation/usernotifications/).
 
+## Screenshots
+
+Coming soon...
+
 ## License
 
 This project is licensed under the BDS 3-Clause License. See the [LICENSE](./LICENSE.txt) file for details.
