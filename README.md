@@ -20,6 +20,22 @@ Instead, I use `URLSession` to fetch the raw HTML from the scheduling site and t
 - Allows user to schedule classes by opening a `WebView` of the gym's site from the app.
 - Utilizes Google Cloud Scheduler and silent push notifications to create a pseudo-backend.
 
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/ekcorso/BoxingScheduler 
+   ```
+2. Open the project in Xcode.  
+3. Run the project on your device or simulator.
+
+## Usage
+
+1. Open the app and navigate to the class schedule.
+2. Add classes you want to watch for openings to your "Watched classes" list.
+3. Allow notifications to receive alerts when a class opens up.
+4. If you receive a notification 
+
 ## How It Works
 
 The app leverages several technologies and services to function:
